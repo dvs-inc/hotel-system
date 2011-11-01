@@ -2,7 +2,9 @@
 
 class PageBase
 {
-	protected var $smarty = new Smarty();
+	protected var $mSmarty = new Smarty();
+
+	protected var $mPageTitle = "";
 
 	public function execute()
 	{
