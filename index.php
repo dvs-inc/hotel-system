@@ -13,3 +13,4 @@ $smarty->assign("scripts",$gScripts);
 $smarty->assign("styles",$gStyles);
 
 $smarty->display("base.tpl");
+
