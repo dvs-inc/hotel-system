@@ -1,5 +1,5 @@
 $(window).bind("load", function() {
-	$("div#my-folio-of-works").slideViewerPro({
+	$("div#image").slideViewerPro({
 		thumbs: 6, 
 		autoslide: true, 
 		asTimer: 3500, 
