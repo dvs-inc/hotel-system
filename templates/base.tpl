@@ -1,7 +1,8 @@
 <html>
 <head>
 <title></title>
-
+<!-- styles -->
+<!-- scripts -->
 </head>
 <body>
 	<div id="globalwrapper">
