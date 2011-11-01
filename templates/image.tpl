@@ -1,9 +1,6 @@
 <div id="image" class="svwp">
-	<ul>
-        <li><img alt="Meander - P.J. Onori"  src="images/01.jpg" /></li>
-        <li><img alt="Flock and Predator - L. Ongaro"  src="images/02.jpg" /></li>
-        <li><img alt="Empathy - K. McDonald"  src="images/03.jpg" /></li>
-        <li><img alt="DIY 3D Scanner - K. McDonald"  src="images/04.jpg" /></li>
-        <!--eccetera-->
-    </ul>
+<ul>
+        <li><img width="960" height="500" alt="Image 1"  src="images/image1.png" /></li>
+        <li><img width="960" height="500" alt="Image 2"  src="images/image2.png" /></li>
+</ul>
 </div>
