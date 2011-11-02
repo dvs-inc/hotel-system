@@ -39,7 +39,7 @@ jQuery.fn.slideViewerPro = function(settings) {
 			buttonsTextColor: "#ff0000",
 			thumbsBorderOpacity: 1.0, // could be 0, 0.1 up to 1.0
 			thumbsActiveBorderOpacity: 1.0, // could be 0, 0.1 up to 1.0
-			easeTime: 750,
+			easeTime: 1500,
 			asTimer: 4000,
 			thumbs: 5,
 			thumbsPercentReduction: 12,
@@ -48,8 +48,8 @@ jQuery.fn.slideViewerPro = function(settings) {
 			leftButtonInner: "-", //could be an image "<img src='images/larw.gif' />" or an escaped char as "&larr";
 			rightButtonInner: "+", //could be an image or an escaped char as "&rarr";
 			autoslide: false,
-			typo: false,
-			typoFullOpacity: 0.9,
+			typo: true,
+			typoFullOpacity: 0.7,
 			shuffle: false
 		}, settings);
 		

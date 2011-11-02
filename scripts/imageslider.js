@@ -1,15 +1,12 @@
-$(window).bind("load", function() {
-	$("div#my-folio-of-works").slideViewerPro({
-		thumbs: 6, 
-		autoslide: true, 
-		asTimer: 3500, 
-		typo: true,
+$(window).bind("load", function() 
+{
+	$("div#noui").slideViewerPro
+	
+	({
 		galBorderWidth: 0,
-		thumbsBorderOpacity: 0, 
-		buttonsTextColor: "#707070",
-		buttonsWidth: 40,
-		thumbsActiveBorderOpacity: 0.8,
-		thumbsActiveBorderColor: "aqua",
+		autoslide: true, 
+		thumbsVis: false,
 		shuffle: true
 	});
-});
+		
+});	
