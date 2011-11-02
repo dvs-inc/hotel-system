@@ -4,7 +4,7 @@
 
 ini_set('display_errors',1);
 
-$cIncludeDirectory = "include";
+$cIncludePath = "include";
 
 
 // array of global scripts to be included
@@ -23,8 +23,8 @@ $cGlobalStyles = array(
 // autoload function handles all the silly require stuff for us automatically;
 function autoLoader($class_name)
 {
-	global $cIncludeDirectory;
-	require_once($cIncludeDirectory . "/" . $class_name . ".php");
+	global $cIncludePath;
+	require_once($cIncludePath . "/" . $class_name . ".php");
 }
 
 // not caught by the above :(
