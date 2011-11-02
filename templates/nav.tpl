@@ -1,6 +1,6 @@
 <div id="nav">
 	<ul>
-		<li>menu1</li>
-		<li>menu2</li>
+		<li><a>menu1</a></li>
+		<li><a>menu2</a></li>
 	</ul>
 </div>

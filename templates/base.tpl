@@ -1,6 +1,15 @@
 <html>
 <head>
-<title>{$pagetitle}</title>
+	<title>{$pagetitle}</title>
+
+	<!-- styles -->
+	{foreach from="$styles" item="thisstyle"}
+		<link rel="stylesheet" type="text/css" href="{$thisstyle}" />
+	{/foreach}
+	<!-- scripts -->
+	{foreach from="$scripts" item="thisscript"}
+		<script src="{$thisscript}" type="text/javascript"></script>
+	{/foreach}
 
 </head>
 <body>
