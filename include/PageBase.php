@@ -31,8 +31,10 @@ abstract class PageBase
 		$styles = array_merge($cGlobalStyles, $this->mStyles);
 		$this->mSmarty->assign("styles",$styles);
 
-		global $test;
 		$this->mSmarty->assign("pagetitle", $this->mPageTitle);
+
+		global $cWebPath;
+		$this->mSmarty->assign("cWebPath", $cWebPath);
 
 		// actually display the page.
 		$this->mSmarty->display($this->mBasePage);
