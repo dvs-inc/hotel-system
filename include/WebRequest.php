@@ -2,14 +2,14 @@
 
 class WebRequest
 {
-	static function pathInfo()
+	public static function pathInfo()
 	{
 		if(isset($_SERVER['PATH_INFO']))
 			return $_SERVER['PATH_INFO'];
 		else return "";
 	}
 
-	static function get(string $variable)
+	public static function get(string $variable)
 	{
 		if(isset($_GET[$variable]))
 		{
@@ -18,7 +18,7 @@ class WebRequest
 		else return "";
 	}
 
-	static function post(string $variable)
+	public static function post(string $variable)
 	{
 		if(isset($_POST[$variable]))
 		{
