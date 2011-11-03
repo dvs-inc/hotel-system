@@ -1,6 +1,7 @@
 <div id="nav">
 	<ul>
-		<li><a>menu1</a></li>
-		<li><a>menu2</a></li>
+		{foreach from="$mainmenu" item="link" key="text"}
+			<li><a href="{$cScriptPath}{$link}">{$text}</a></li>
+		{/foreach}
 	</ul>
 </div>

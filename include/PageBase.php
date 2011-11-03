@@ -16,6 +16,12 @@ abstract class PageBase
 	// base template to use
 	protected $mBasePage = "base.tpl";
 
+	// main menu
+	protected $mMainMenu = array(
+		"Home" => "/",
+		"PHP Info" => "/PhpInfo",
+		);
+
 	public function execute()
 	{
 		$this->mSmarty = new Smarty();
@@ -33,8 +39,11 @@ abstract class PageBase
 
 		$this->mSmarty->assign("pagetitle", $this->mPageTitle);
 
-		global $cWebPath;
+		$this->mSmarty->assign("mainmenu", $this->mMainMenu);
+
+		global $cWebPath, $cScriptPath;
 		$this->mSmarty->assign("cWebPath", $cWebPath);
+		$this->mSmarty->assign("cScriptPath", $cScriptPath);
 
 		// actually display the page.
 		$this->mSmarty->display($this->mBasePage);

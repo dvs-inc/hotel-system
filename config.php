@@ -8,6 +8,8 @@ ini_set('display_errors',1);
 
 $cIncludePath = "include";
 $cFilePath = __DIR__;
+$cScriptPath = $_SERVER['SCRIPT_NAME'];
+
 
 $pparts = pathinfo($_SERVER["SCRIPT_NAME"]);
 $cWebPath = $pparts["dirname"] == "/" ? "" : $pparts["dirname"];
