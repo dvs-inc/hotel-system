@@ -10,7 +10,7 @@ $cIncludePath = "include";
 $cFilePath = __DIR__;
 
 $pparts = pathinfo($_SERVER["SCRIPT_NAME"]);
-$cWebPath = $pparts["dirname"];
+$cWebPath = $pparts["dirname"] == "/" ? "" : $pparts["dirname"];
 
 // array of global scripts to be included
 // Global scripts are included first, then local scripts second
