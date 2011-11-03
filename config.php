@@ -1,5 +1,7 @@
 <?php
 
+if(!defined("HMS")) die("Invalid entry point");
+
 // main configuration file
 
 ini_set('display_errors',1);
