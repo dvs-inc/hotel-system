@@ -8,7 +8,7 @@ class WebRequest
 	/**
 	 * Retrieves the PATH_INFO server variable, if it is set
 	 */
-	static function pathInfo()
+	public static function pathInfo()
 	{
 		if(isset($_SERVER['PATH_INFO']))
 		{
@@ -23,7 +23,7 @@ class WebRequest
 	/**
 	 * Retrieves a GET variable, if it is set.
 	 */
-	static function get(string $variable)
+	public static function get(string $variable)
 	{
 		if(isset($_GET[$variable]))
 		{
@@ -38,7 +38,7 @@ class WebRequest
 	/**
 	 * Retrieves a POST variable, if it is set.
 	 */
-	static function post(string $variable)
+	public static function post(string $variable)
 	{
 		if(isset($_POST[$variable]))
 		{
