@@ -1,4 +1,6 @@
 <?php
+// check for invalid entry point
+if(!defined("HMS")) die("Invalid entry point");
 
 /**
  * Holds functions to abstract away from the web, and provides a safe API to the web server information etc.
