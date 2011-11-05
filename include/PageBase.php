@@ -21,6 +21,9 @@ abstract class PageBase
 		"Home" => "/",
 		"PHP Info" => "/PhpInfo",
 		);
+		
+	// array of HTTP headers to add to the request.
+	protected $mHeaders = array();
 
 	public function execute()
 	{
@@ -45,6 +48,12 @@ abstract class PageBase
 		$this->mSmarty->assign("cWebPath", $cWebPath);
 		$this->mSmarty->assign("cScriptPath", $cScriptPath);
 
+		// set any HTTP headers
+		foreach($this->mHeaders as $h)
+		{
+			header($h);
+		}
+		
 		// actually display the page.
 		$this->mSmarty->display($this->mBasePage);
 	}
