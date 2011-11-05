@@ -18,8 +18,20 @@ abstract class PageBase
 
 	// main menu
 	protected $mMainMenu = array(
-		"Home" => "/",
-		"PHP Info" => "/PhpInfo",
+		/* Format:
+			"Class name" => array(
+				"title" => "Title to display",
+				"link" => "Link to show",
+				),
+			*/		
+		"PageMain" => array(
+			"title" => "Home",
+			"link" => "/",
+			),
+		"PagePhpInfo" => array(
+			"title" => "PHP Info",
+			"link" => "/PhpInfo",
+			),
 		);
 		
 	// array of HTTP headers to add to the request.
@@ -42,6 +54,8 @@ abstract class PageBase
 
 		$this->mSmarty->assign("pagetitle", $this->mPageTitle);
 
+		// setup the current page on the menu
+		$this->mMainMenu[get_class($this)]["current"] = true;
 		$this->mSmarty->assign("mainmenu", $this->mMainMenu);
 
 		global $cWebPath, $cScriptPath;
