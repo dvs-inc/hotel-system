@@ -1,4 +1,6 @@
 <?php
+// check for invalid entry point
+if(!defined("HMS")) die("Invalid entry point");
 
 /**
  * DataObject is the base class for all the database access classes. Each "DataObject" holds one record from the database, and
@@ -8,10 +10,14 @@
  */
 abstract class DataObject
 {
+	protected $fId;
+
+	protected $isNew;
+	
 	/**
 	 * Retrieves a data object by it's row ID.
 	 */
-	public abstract function getById(int $id);
+	public abstract static function getById(int $id);
 
 	/**
 	 * Saves a data object to the database, either updating or inserting a record.

@@ -1,5 +1,5 @@
 <?php
-
+// check for invalid entry point
 if(!defined("HMS")) die("Invalid entry point");
 
 // main configuration file
@@ -25,6 +25,17 @@ $cGlobalScripts = array(
 
 $cGlobalStyles = array(
 	$cWebPath.'/style/svwp_style.css',
+	);
+	
+$cCardEncryptionKey = base64_decode(
+	"XDI3MVwzMzJTeFwyNzQ7XDMyXDM0MCdcMjIxIVwzNTVcMzY2XlwyMjFcMzQyZVwz".
+	"NzBcMzM1XDMzNzV3XDM1MVp0JGNdcFwyNzVcMzU3XDM1M1wyMDJcMjIyLlwyNTdc".
+	"MjAxXDM1N1wzNjZcMzYyXDMzNVwzMTUwJSZfa1wzNTRcMjMzXDMwNFwzNTdcMjQz".
+	"XDIxN1wzMDN3XCJcMjI2XDMwNFwzNDJcMjcxXDM1N1wyOlVJXDIzNVwzNjZcMzMy".
+	"flowIyR2XDMzM1wyMzR6XDM3NVwiNFwzMTZcMzQ3cVwyNTMsSVwzMTFcMjQ3XDI0".
+	"NFwzMTBcMzBcMjQyXDMxNFwyMDRcMjI1XDM3KlwzMTFcNFwyNzJcMitcMzQ3XDMz".
+	"MVwyNjNcMzQ1XDI1N1wyMDRcMjUxXDIwNFwzMTUzXDM2MlwyNjNcMjczXDIxM1wy".
+	"MzFQXDIwMUFgXDM0NGxcMjVcMzUzXDIyMVwzN1w2LVwyMTRcMzI3b1wzNzN2XDMz"
 	);
 
 // autoload function handles all the silly require stuff for us automatically;

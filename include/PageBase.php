@@ -1,4 +1,6 @@
 <?php
+// check for invalid entry point
+if(!defined("HMS")) die("Invalid entry point");
 
 abstract class PageBase
 {
@@ -18,9 +20,24 @@ abstract class PageBase
 
 	// main menu
 	protected $mMainMenu = array(
-		"Home" => "/",
-		"PHP Info" => "/PhpInfo",
+		/* Format:
+			"Class name" => array(
+				"title" => "Title to display",
+				"link" => "Link to show",
+				),
+			*/		
+		"PageMain" => array(
+			"title" => "Home",
+			"link" => "/",
+			),
+		"PagePhpInfo" => array(
+			"title" => "PHP Info",
+			"link" => "/PhpInfo",
+			),
 		);
+		
+	// array of HTTP headers to add to the request.
+	protected $mHeaders = array();
 
 	public function execute()
 	{
@@ -39,12 +56,20 @@ abstract class PageBase
 
 		$this->mSmarty->assign("pagetitle", $this->mPageTitle);
 
+		// setup the current page on the menu
+		$this->mMainMenu[get_class($this)]["current"] = true;
 		$this->mSmarty->assign("mainmenu", $this->mMainMenu);
 
 		global $cWebPath, $cScriptPath;
 		$this->mSmarty->assign("cWebPath", $cWebPath);
 		$this->mSmarty->assign("cScriptPath", $cScriptPath);
 
+		// set any HTTP headers
+		foreach($this->mHeaders as $h)
+		{
+			header($h);
+		}
+		
 		// actually display the page.
 		$this->mSmarty->display($this->mBasePage);
 	}
