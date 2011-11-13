@@ -10,7 +10,7 @@ if(!defined("HMS")) die("Invalid entry point");
  */
 abstract class DataObject
 {
-	protected $fId;
+	protected $id;
 
 	protected $isNew;
 	

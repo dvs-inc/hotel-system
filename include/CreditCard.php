@@ -16,7 +16,7 @@ class CreditCard extends DataObject
 	/**
 	 * Encrypted bata blob from db
 	 */
-	private $fCard;
+	private $card;
 	
 	private $mCardDetails = array(
 		"cardnumber" => "",
@@ -43,8 +43,8 @@ class CreditCard extends DataObject
 				);
 				
 			$obj->isNew = false;
-			$obj->fId = $id;
-			$obj->fCard = $blob;
+			$obj->id = $id;
+			$obj->card = $blob;
 			
 			return $obj;
 		}
@@ -116,7 +116,7 @@ class CreditCard extends DataObject
 	
 	public function save()
 	{
-		$this->fCard = encrypt($this->mCardDetails);
+		$this->card = encrypt($this->mCardDetails);
 	
 		if($this->isNew)
 		{ // insert
