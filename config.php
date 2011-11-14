@@ -30,6 +30,11 @@ $cGlobalStyles = array(
 	$cWebPath.'/style/svwp_style.css',
 	);
 	
+$cAvailableLanguages = array(
+	'en-GB' => "English (British)",
+	'fi' => "Suomi",
+	);
+	
 // change this before using it on a live system! this is for test purposes only.
 $cCardEncryptionKey = base64_decode(
 	"XDI3MVwzMzJTeFwyNzQ7XDMyXDM0MCdcMjIxIVwzNTVcMzY2XlwyMjFcMzQyZVwz".
