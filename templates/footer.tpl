@@ -1,3 +1,3 @@
 <div id="footer">
-	{message "footer-copyright"}
+	{message name="footer-copyright"}
 </div>
