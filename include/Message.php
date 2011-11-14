@@ -59,7 +59,7 @@ class Message extends DataObject
 		$em = new Message();
 		$em->code = $language;
 		$em->name = $name;
-		$em->content = "<$language:$name>";
+		$em->content = "&lt;$language:$name&gt;";
 		$em->isNew = true;
 		return $em;
 	}
