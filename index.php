@@ -7,7 +7,7 @@ define("HMS",1);
 
 // include the configuration file, which should set up the entire environment as we need it.
 require_once('config.php');
-// create a page...
-$page = PageBase::create();
-// ...and execute it.
-$page->execute();
+
+// create and run a new instance of the Hotel application.
+$application = new Hotel();
+$application->run();

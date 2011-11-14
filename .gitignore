@@ -1,1 +1,4 @@
 templates_c/*
+
+*.ipr
+*.iws

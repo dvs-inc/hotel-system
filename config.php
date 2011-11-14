@@ -10,9 +10,12 @@ $cIncludePath = "include";
 $cFilePath = __DIR__;
 $cScriptPath = $_SERVER['SCRIPT_NAME'];
 
-
 $pparts = pathinfo($_SERVER["SCRIPT_NAME"]);
 $cWebPath = $pparts["dirname"] == "/" ? "" : $pparts["dirname"];
+
+// database details
+$cDatabaseConnectionString = 'mysql:host=dbmaster.helpmebot.org.uk;dbname=dvs_hotel';
+$cMyDotCnfFile = ".my.cnf";
 
 // array of global scripts to be included
 // Global scripts are included first, then local scripts second
@@ -27,6 +30,7 @@ $cGlobalStyles = array(
 	$cWebPath.'/style/svwp_style.css',
 	);
 	
+// change this before using it on a live system! this is for test purposes only.
 $cCardEncryptionKey = base64_decode(
 	"XDI3MVwzMzJTeFwyNzQ7XDMyXDM0MCdcMjIxIVwzNTVcMzY2XlwyMjFcMzQyZVwz".
 	"NzBcMzM1XDMzNzV3XDM1MVp0JGNdcFwyNzVcMzU3XDM1M1wyMDJcMjIyLlwyNTdc".
@@ -37,7 +41,7 @@ $cCardEncryptionKey = base64_decode(
 	"MVwyNjNcMzQ1XDI1N1wyMDRcMjUxXDIwNFwzMTUzXDM2MlwyNjNcMjczXDIxM1wy".
 	"MzFQXDIwMUFgXDM0NGxcMjVcMzUzXDIyMVwzN1w2LVwyMTRcMzI3b1wzNzN2XDMz"
 	);
-
+	
 // autoload function handles all the silly require stuff for us automatically;
 function autoLoader($class_name)
 {
@@ -49,4 +53,3 @@ function autoLoader($class_name)
 require_once('smarty/Smarty.class.php');
 
 spl_autoload_register("autoLoader");
-
