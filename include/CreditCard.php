@@ -33,7 +33,7 @@ class CreditCard extends DataObject
 		"cvc" => "",
 		),
 		
-	public static function getById(int $id)
+	public static function getById($id)
 	{
 		// get from DB
 		

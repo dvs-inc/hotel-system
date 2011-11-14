@@ -12,7 +12,7 @@ class Message extends DataObject
 	protected $code;
 	protected $content;
 
-	public static function getById(int $id)
+	public static function getById($id)
 	{
 		global $gDatabase;
 		$statement = $gDatabase->prepare("SELECT * FROM message WHERE id = :id LIMIT 1;");
@@ -25,7 +25,7 @@ class Message extends DataObject
 		return $resultMessage;
 	}
 	
-	public static function getByName(string $name, string $language)
+	public static function getByName($name, $language)
 	{
 		global $gDatabase;
 		$statement = $gDatabase->prepare("SELECT * FROM message WHERE name = :name AND code = :language LIMIT 1;");
@@ -46,7 +46,7 @@ class Message extends DataObject
 		}
 	}
 	
-	public static function retrieveContent(string $name, string $language)
+	public static function retrieveContent($name, $language)
 	{
 		return self::getByName($name, $language)->getContent();
 	}
@@ -54,7 +54,7 @@ class Message extends DataObject
 	/**
 	 * Returns an error version of a requested message.
 	 */
-	public static function getError(string $name, string $language)
+	public static function getError( $name,  $language)
 	{
 		$em = new Message();
 		$em->code = $language;
@@ -80,7 +80,9 @@ class Message extends DataObject
 		$language = /* figure out some sensible non-global way 
 					of getting the language in here */ "en-GB";
 		
-		return self::retrieveContent((string)$params["name"], $language);
+		$name = $params["name"];
+		
+		return self::retrieveContent($name, $language);
 	}
 	
 	public function getName()

@@ -17,7 +17,7 @@ abstract class DataObject
 	/**
 	 * Retrieves a data object by it's row ID.
 	 */
-	public abstract static function getById(int $id);
+	public abstract static function getById($id);
 
 	/**
 	 * Saves a data object to the database, either updating or inserting a record.
