@@ -4,13 +4,21 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class CreditCard extends DataObject
 {
-	public function __construct($number, $name, $expiry, $cvc)
+	public function __construct()
 	{
-		$this->isNew = true;
-		$this->mCardDetails["cardnumber"] = $number;
-		$this->mCardDetails["name"] = $name;
-		$this->mCardDetails["expiry"] = $expiry;
-		$this->mCardDetails["cvc"] = $cvc;
+	}
+	
+	public static function create($number, $name, $expiry, $cvc)
+	{
+		$card = new self();
+	
+		$card->isNew = true;
+		$card->mCardDetails["cardnumber"] = $number;
+		$card->mCardDetails["name"] = $name;
+		$card->mCardDetails["expiry"] = $expiry;
+		$card->mCardDetails["cvc"] = $cvc;
+		
+		return $card;
 	}
 
 	/**
