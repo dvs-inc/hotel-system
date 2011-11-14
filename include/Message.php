@@ -80,7 +80,7 @@ class Message extends DataObject
 		$language = /* figure out some sensible non-global way 
 					of getting the language in here */ "en-GB";
 		
-		return self::retrieveContent($params["name"], $language);
+		return self::retrieveContent((string)$params["name"], $language);
 	}
 	
 	public function getName()
