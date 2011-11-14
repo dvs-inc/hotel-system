@@ -67,8 +67,12 @@ abstract class PageBase
 
 		$this->mSmarty->assign("pagetitle", $this->mPageTitle);
 
-		// setup the current page on the menu
-		$this->mMainMenu[get_class($this)]["current"] = true;
+		// setup the current page on the menu, but only if the current page 
+		// exists on the main menu in the first place
+		if(array_key_exists(get_class($this), $this->mMainMenu))
+		{
+			$this->mMainMenu[get_class($this)]["current"] = true;
+		}
 		$this->mSmarty->assign("mainmenu", $this->mMainMenu);
 
 		global $cWebPath, $cScriptPath;
