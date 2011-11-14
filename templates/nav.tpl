@@ -6,8 +6,8 @@
 	</ul>
 	<div id="langlinks">
 		<ul>
-			<li><a><img src="{$cWebPath}/images/United-Kingdom-flag-32.png" alt="English" /></a></li>
-			<li><a><img src="{$cWebPath}/images/Finland-Flag-32.png" alt="Suomi" /></a></li>
+			<li><a href="?lang=en-GB"><img src="{$cWebPath}/images/United-Kingdom-flag-32.png" alt="English" /></a></li>
+			<li><a href="?lang=fi"><img src="{$cWebPath}/images/Finland-Flag-32.png" alt="Suomi" /></a></li>
 		</ul>
 	</div>
 </div>

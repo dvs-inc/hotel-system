@@ -75,14 +75,20 @@ abstract class PageBase
 		$this->mSmarty->assign("cWebPath", $cWebPath);
 		$this->mSmarty->assign("cScriptPath", $cScriptPath);
 
+		// get the page content
+		$content = $this->mSmarty->fetch($this->mBasePage);
+
 		// set any HTTP headers
 		foreach($this->mHeaders as $h)
 		{
 			header($h);
 		}
 		
-		// actually display the page.
-		$this->mSmarty->display($this->mBasePage);
+		// send the cookies to make the client smile and go mmmmm nom nom
+		WebRequest::sendCookies();
+		
+		// actually send the content to the client.
+		echo $content;
 	}
 
 	protected abstract function runPage();

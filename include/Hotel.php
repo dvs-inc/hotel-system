@@ -21,6 +21,9 @@ class Hotel
 		
 		// tidy up sensitive data we don't want lying around.
 		unset($mycnf);
+		
+		global $gCookieJar;
+		$gCookieJar = array();
 	}
 	
 	private function cleanupEnvironment()

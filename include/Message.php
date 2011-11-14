@@ -5,6 +5,8 @@ if(!defined("HMS")) die("Invalid entry point");
 class Message extends DataObject
 {
 
+	protected static $requestLanguage = "";
+
 	/**
 	 * Database fields
 	 */
@@ -71,8 +73,52 @@ class Message extends DataObject
 	
 	public static function getActiveLanguage()
 	{
-		/* figure out some sensible non-global way of getting 
-		   the language in here */
+		global $cAvailableLanguages;
+	
+		// look in the order of most volatile first - if we find something, use it.
+		// request cache
+		if(self::$requestLanguage != "")
+		{
+			return self::$requestLanguage;
+		}
+		
+		// get parameter
+		$getParam = WebRequest::get("lang");
+		if($getParam != "")
+		{
+			// check value is in list of allowed values
+			if(array_key_exists($getParam, $cAvailableLanguages))
+			{
+				// save local cache for other messages this request
+				self::$requestLanguage = $getParam;
+			
+				// set a cookie to persist that option for this session (do we want
+				// this option to set the preferences too?)
+				WebRequest::setCookie("lang", $getParam);
+			
+				// use this value.
+				return $getParam;
+			}
+		}
+		
+		// cookie
+		$cookie = WebRequest::getCookie("lang");
+		if($cookie != "")
+		{
+			// check value is in list of allowed values
+			if(array_key_exists($cookie, $cAvailableLanguages))
+			{
+				// save local cache for other messages this request
+				self::$requestLanguage = $cookie;
+			
+				// use this value.
+				return $getParam;
+			}
+		
+		}
+		// user preference
+		
+		// site default
 		return "en-GB";
 	}
 	

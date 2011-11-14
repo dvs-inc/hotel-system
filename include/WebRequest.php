@@ -25,7 +25,7 @@ class WebRequest
 	/**
 	 * Retrieves a GET variable, if it is set.
 	 */
-	public static function get(string $variable)
+	public static function get($variable)
 	{
 		if(isset($_GET[$variable]))
 		{
@@ -40,7 +40,7 @@ class WebRequest
 	/**
 	 * Retrieves a POST variable, if it is set.
 	 */
-	public static function post(string $variable)
+	public static function post($variable)
 	{
 		if(isset($_POST[$variable]))
 		{
@@ -64,4 +64,32 @@ class WebRequest
 
 		return false;
 	}
+	
+	public static function setCookie($name, $content)
+	{	
+		global $gCookieJar;
+		$gCookieJar[$name] = $content;
+	}
+	
+	public static function sendCookies()
+	{	
+		global $gCookieJar;
+		foreach($gCookieJar as $name => $value)
+		{
+			setcookie($name, $value);
+		}
+	}
+	
+	public static function getCookie($name)
+	{
+		if(isset($_COOKIE[$name]))
+		{
+			return $_COOKIE[$name]; // nom nom!
+		}
+		else
+		{
+			return ""; // :'(
+		}
+	}
+	
 }
