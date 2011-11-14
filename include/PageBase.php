@@ -44,7 +44,7 @@ abstract class PageBase
 		$this->mSmarty = new Smarty();
 
 		$this->mSmarty->registerPlugin(
-			"function"
+			"function",
 			"message", 
 			array(
 				"Message", 
