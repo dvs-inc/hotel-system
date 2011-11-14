@@ -64,6 +64,25 @@ class Message extends DataObject
 		return $em;
 	}
 	
+	/**
+	 * Never call this function.
+	 *
+	 * Really, don't do it.
+	 *
+	 * Don't delete it either.
+	 *
+	 * -- Simon :D xx
+	 */
+	public static function 
+		smartyGetRealMessageContentWithDynamicLanguageFromUserPrefsAndCookies
+		($params, $smarty)
+	{
+		$language = /* figure out some sensible non-global way 
+					of getting the language in here */ "en-GB";
+		
+		return self::retrieveContent($params[0], $language);
+	}
+	
 	public function getName()
 	{
 		return $this->name;
