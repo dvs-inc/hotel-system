@@ -42,7 +42,7 @@ class Message extends DataObject
 		}
 		else
 		{
-			return self::getError();
+			return self::getError($name, $language);
 		}
 	}
 	

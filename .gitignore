@@ -3,3 +3,4 @@ templates_c/*
 *.ipr
 *.iws
 .my.cnf
+web.config
