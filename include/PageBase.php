@@ -12,8 +12,8 @@ abstract class PageBase
 
 	protected $mSmarty;
 
-	// title of the page
-	protected $mPageTitle = "The Blackfish Hotel";
+	// message containing the title of the page
+	protected $mPageTitle = "html-title";
 
 	// base template to use
 	protected $mBasePage = "base.tpl";
@@ -22,16 +22,16 @@ abstract class PageBase
 	protected $mMainMenu = array(
 		/* Format:
 			"Class name" => array(
-				"title" => "Title to display",
+				"title" => "Message name to display",
 				"link" => "Link to show",
 				),
 			*/		
 		"PageMain" => array(
-			"title" => "Home",
+			"title" => "page-home",
 			"link" => "/",
 			),
 		"PagePhpInfo" => array(
-			"title" => "PHP Info",
+			"title" => "page-phpinfo",
 			"link" => "/PhpInfo",
 			),
 		);

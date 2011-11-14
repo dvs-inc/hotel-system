@@ -51,6 +51,11 @@ class Message extends DataObject
 		return self::getByName($name, $language)->getContent();
 	}
 	
+	public static function getMessage($name)
+	{
+		return self::getByName($name, self::getActiveLanguage())->getContent();
+	}
+	
 	/**
 	 * Returns an error version of a requested message.
 	 */
@@ -62,6 +67,13 @@ class Message extends DataObject
 		$em->content = "&lt;$language:$name&gt;";
 		$em->isNew = true;
 		return $em;
+	}
+	
+	public static function getActiveLanguage()
+	{
+		/* figure out some sensible non-global way of getting 
+		   the language in here */
+		return "en-GB";
 	}
 	
 	/**
@@ -77,8 +89,7 @@ class Message extends DataObject
 		smartyGetRealMessageContentWithDynamicLanguageFromUserPrefsAndCookies
 		($params, $smarty)
 	{
-		$language = /* figure out some sensible non-global way 
-					of getting the language in here */ "en-GB";
+		$language = self::getActiveLanguage();
 		
 		$name = $params["name"];
 		
