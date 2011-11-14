@@ -47,6 +47,13 @@ $cCardEncryptionKey = base64_decode(
 	"MzFQXDIwMUFgXDM0NGxcMjVcMzUzXDIyMVwzN1w2LVwyMTRcMzI3b1wzNzN2XDMz"
 	);
 	
+///////////////// don't put new config options below this line
+
+if(file_exists("config.local.php")
+{
+	require_once("config.local.php");
+}
+
 // autoload function handles all the silly require stuff for us automatically;
 function autoLoader($class_name)
 {
