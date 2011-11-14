@@ -17,7 +17,7 @@ class Hotel
 		
 		$mycnf = parse_ini_file($cMyDotCnfFile);
 		
-		$gDatabase = new Database('mysql:host=localhost;dbname=test',$mycnf["user"], $mycnf["password"]);
+		$gDatabase = new Database($cDatabaseConnectionString,$mycnf["user"], $mycnf["password"]);
 		
 		// tidy up sensitive data we don't want lying around.
 		unset($mycnf);
