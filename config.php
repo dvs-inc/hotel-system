@@ -49,7 +49,7 @@ $cCardEncryptionKey = base64_decode(
 	
 ///////////////// don't put new config options below this line
 
-if(file_exists("config.local.php")
+if(file_exists("config.local.php"))
 {
 	require_once("config.local.php");
 }
