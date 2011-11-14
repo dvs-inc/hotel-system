@@ -43,10 +43,14 @@ abstract class PageBase
 	{
 		$this->mSmarty = new Smarty();
 
-		$this->mSmarty->register_function(
+		$this->mSmarty->registerPlugin(
+			"function"
 			"message", 
-			"Message::smartyGetRealMessageContentWithDynamicLanguageFromUser" . 
-				"PrefsAndCookies"
+			array(
+				"Message", 
+				"smartyGetRealMessageContentWithDynamicLanguageFromUser" . 
+					"PrefsAndCookies"
+				)
 			);
 		
 		// "run" the page - allow the user to make any customisations to the
