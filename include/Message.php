@@ -29,6 +29,20 @@ class Message extends DataObject
 	
 	public static function getByName($name, $language)
 	{
+		// language pseudocode exception
+		// the idea of this is you can use language code zxx
+		// to view all the available language codes in situ.
+		if($language == "zxx")
+		{
+			$m = new Message();
+			$m->name = $name;
+			$m->code = $language;
+			$m->content = $name;
+
+			return $m;
+		}
+		// end of language pseudocode exception
+
 		global $gDatabase;
 		$statement = $gDatabase->prepare("SELECT * FROM message WHERE name = :name AND code = :language LIMIT 1;");
 		$statement->bindParam(":name", $name);
