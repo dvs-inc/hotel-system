@@ -11,7 +11,7 @@ class Hotel
 		$this->cleanupEnvironment();
 	}
 	
-	private function setupEnvironment()
+	protected function setupEnvironment()
 	{
 		global $gDatabase, $cDatabaseConnectionString, $cMyDotCnfFile;
 		
@@ -26,12 +26,12 @@ class Hotel
 		$gCookieJar = array();
 	}
 	
-	private function cleanupEnvironment()
+	protected function cleanupEnvironment()
 	{
 	
 	}
 	
-	private function main()
+	protected function main()
 	{
 		// create a page...
 		$page = PageBase::create();
