@@ -22,9 +22,9 @@ jQuery.extend( jQuery.easing, // from the jquery.easing plugin
 		return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
 	}
 });
-jQuery(function(){
-   jQuery("div.svwp").prepend("<img src='images/svwloader.gif' class='ldrgif' alt='loading...'/ >"); //change with YOUR loader image path   
-});
+//jQuery(function(){
+//   jQuery("div.svwp").prepend("<img src='images/svwloader.gif' class='ldrgif' alt='loading...'/ >"); //change with YOUR loader image path   
+//});
 var j = 0;
 jQuery.fn.slideViewerPro = function(settings) {
 	  settings = jQuery.extend({
