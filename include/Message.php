@@ -82,6 +82,13 @@ class Message extends DataObject
 		$em->name = $name;
 		$em->content = "&lt;$language:$name&gt;";
 		$em->isNew = true;
+
+		$em->save();
+
+if($name == "pagetitle-404")
+	phpinfo();
+
+
 		return $em;
 	}
 	
@@ -175,6 +182,27 @@ class Message extends DataObject
 	
 	public function save()
 	{
-	
+		if($this->isNew)
+		{
+			global $gDatabase;
+			$statement = $gDatabase->prepare("INSERT INTO message (name, code, content) VALUES (:name, :code, :content);");
+
+			$statement->bindParam(":name", $this->name);
+			$statement->bindParam(":code", $this->code);
+			$statement->bindParam(":content", $this->content);
+
+			if($statement->execute())
+			{
+				$this->isNew = false;
+			}
+			else
+			{
+				throw new Exception();
+			}
+		}
+		else
+		{
+			
+		}
 	}
 }
