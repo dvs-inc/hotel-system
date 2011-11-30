@@ -4,7 +4,7 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class HotelManagement extends Hotel
 {
-	private function main()
+	protected function main()
 	{
 		// create a page...
 		$page = ManagementPageBase::create();
