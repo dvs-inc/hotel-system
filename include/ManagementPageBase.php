@@ -4,6 +4,11 @@ if(!defined("HMS")) die("Invalid entry point");
 
 abstract class ManagementPageBase extends PageBase
 {
+	// is this page a protected by login page?
+	// defaults to true, so we protect everything and have to explicitly 
+	// unprotect if desired.
+	protected $mIsProtectedPage = true;
+
 	// message containing the title of the page
 	protected $mPageTitle = "management-title";
 
@@ -28,6 +33,11 @@ abstract class ManagementPageBase extends PageBase
 			),
 		);
 
+	public function isProtected()
+	{
+		return $this->mIsProtectedPage;
+	}
+		
 	public static function create()
 	{
 		// use "Main" as the default
@@ -67,7 +77,24 @@ abstract class ManagementPageBase extends PageBase
 			$pageobject = new $pagename;
 			
 			if(get_parent_class($pageobject) == "ManagementPageBase")
-				return $pageobject;
+			{
+				if(! $pageobject->isProtected())
+				{
+					return $pageobject;
+				}
+				else
+				{
+					if(/* logged in */)
+					{
+						return $pageobject
+					}
+					else
+					{ // not logged in
+						require_once($cIncludePath . "/ManagementPage/MPageLogin.php");
+						return new MPageLogin();
+					}
+				}
+			}
 			else	// defined, but doesn't inherit properly, so we can't guarentee stuff will work.
 				throw new Exception();
 		}
