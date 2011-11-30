@@ -86,7 +86,7 @@ abstract class ManagementPageBase extends PageBase
 				{
 					if(/* logged in */false)
 					{
-						return $pageobject
+						return $pageobject;
 					}
 					else
 					{ // not logged in
