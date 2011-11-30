@@ -4,3 +4,4 @@ templates_c/*
 *.iws
 .my.cnf
 web.config
+config.local.php
