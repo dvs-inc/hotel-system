@@ -29,6 +29,20 @@ class Message extends DataObject
 	
 	public static function getByName($name, $language)
 	{
+		// language pseudocode exception
+		// the idea of this is you can use language code zxx
+		// to view all the available language codes in situ.
+		if($language == "zxx")
+		{
+			$m = new Message();
+			$m->name = $name;
+			$m->code = $language;
+			$m->content = $name;
+
+			return $m;
+		}
+		// end of language pseudocode exception
+
 		global $gDatabase;
 		$statement = $gDatabase->prepare("SELECT * FROM message WHERE name = :name AND code = :language LIMIT 1;");
 		$statement->bindParam(":name", $name);
@@ -68,6 +82,13 @@ class Message extends DataObject
 		$em->name = $name;
 		$em->content = "&lt;$language:$name&gt;";
 		$em->isNew = true;
+
+		$em->save();
+
+if($name == "pagetitle-404")
+	phpinfo();
+
+
 		return $em;
 	}
 	
@@ -161,6 +182,27 @@ class Message extends DataObject
 	
 	public function save()
 	{
-	
+		if($this->isNew)
+		{
+			global $gDatabase;
+			$statement = $gDatabase->prepare("INSERT INTO message (name, code, content) VALUES (:name, :code, :content);");
+
+			$statement->bindParam(":name", $this->name);
+			$statement->bindParam(":code", $this->code);
+			$statement->bindParam(":content", $this->content);
+
+			if($statement->execute())
+			{
+				$this->isNew = false;
+			}
+			else
+			{
+				throw new Exception();
+			}
+		}
+		else
+		{
+			
+		}
 	}
 }
