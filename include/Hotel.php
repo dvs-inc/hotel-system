@@ -11,15 +11,45 @@ class Hotel
 		$this->cleanupEnvironment();
 	}
 	
+	// autoload function handles all the silly require stuff for us automatically;
+	private static function autoLoader($class_name)
+	{
+		global $cIncludePath;
+		require_once($cIncludePath . "/" . $class_name . ".php");
+	}	
+
+	private function checkPhpExtensions()
+	{
+		global $cRequiredExtensions;
+		
+		foreach($cRequiredExtensions as $ext)
+		{
+			if(!extension_loaded($ext))
+			{
+				throw new ExtensionUnavailableException($ext);
+			}
+		}
+	}
+	
 	private function setupEnvironment()
 	{
-		if(!extension_loaded('pdo'))
-		{
-			throw new ExtensionUnavailableException("pdo");
-		}
+		global $gDatabase, $cDatabaseConnectionString, $cMyDotCnfFile, 
+			$cDatabaseModule, $cIncludePath;
+
 	
-		global $gDatabase, $cDatabaseConnectionString, $cMyDotCnfFile, $cDatabaseModule;
-		
+		// check all the required PHP extensions are enabled on this SAPI
+		$this->checkPhpExtensions();
+	
+	
+		// many exceptions defined in one file, let's not clutter stuff. 
+		// This ofc breaks the autoloading, so let's include them all now.
+		require_once($cIncludePath . "/_Exceptions.php");
+
+		// not caught by the autoloader :(
+		require_once('smarty/Smarty.class.php');
+
+		spl_autoload_register("Hotel::autoLoader");
+			
 		if(!extension_loaded($cDatabaseModule))
 		{
 			throw new ExtensionUnavailableException($cDatabaseModule);

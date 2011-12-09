@@ -48,7 +48,11 @@ $cCardEncryptionKey = base64_decode(
 	"MVwyNjNcMzQ1XDI1N1wyMDRcMjUxXDIwNFwzMTUzXDM2MlwyNjNcMjczXDIxM1wy".
 	"MzFQXDIwMUFgXDM0NGxcMjVcMzUzXDIyMVwzN1w2LVwyMTRcMzI3b1wzNzN2XDMz"
 	);
-	
+
+$cRequiredExtensions = array(
+	"PDO",
+	"SPL",
+	);
 ///////////////// don't put new config options below this line
 
 if(file_exists("config.local.php"))
@@ -56,18 +60,5 @@ if(file_exists("config.local.php"))
 	require_once("config.local.php");
 }
 
-// many exceptions defined in one file, let's not clutter stuff. This ofc breaks
-// the autoloader.
-require_once($cIncludePath . "/_Exceptions.php");
-
-// autoload function handles all the silly require stuff for us automatically;
-function autoLoader($class_name)
-{
-	global $cIncludePath;
-	require_once($cIncludePath . "/" . $class_name . ".php");
-}
-
-// not caught by the above :(
-require_once('smarty/Smarty.class.php');
-
-spl_autoload_register("autoLoader");
+// Load the main hotel file
+require_once($cIncludePath . "/Hotel.php");
