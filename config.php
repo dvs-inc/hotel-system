@@ -15,6 +15,7 @@ $cWebPath = $pparts["dirname"] == "/" ? "" : $pparts["dirname"];
 
 // database details
 $cDatabaseConnectionString = 'mysql:host=dbmaster.helpmebot.org.uk;dbname=dvs_hotel';
+$cDatabaseModule = "pdo_mysql";
 $cMyDotCnfFile = ".my.cnf";
 
 // array of global scripts to be included
@@ -54,6 +55,10 @@ if(file_exists("config.local.php"))
 {
 	require_once("config.local.php");
 }
+
+// many exceptions defined in one file, let's not clutter stuff. This ofc breaks
+// the autoloader.
+require_once($cIncludePath . "/_Exceptions.php");
 
 // autoload function handles all the silly require stuff for us automatically;
 function autoLoader($class_name)

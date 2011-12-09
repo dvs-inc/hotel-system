@@ -13,7 +13,17 @@ class Hotel
 	
 	private function setupEnvironment()
 	{
-		global $gDatabase, $cDatabaseConnectionString, $cMyDotCnfFile;
+		if(!extension_loaded('pdo'))
+		{
+			throw new ExtensionUnavailableException("pdo");
+		}
+	
+		global $gDatabase, $cDatabaseConnectionString, $cMyDotCnfFile, $cDatabaseModule;
+		
+		if(!extension_loaded($cDatabaseModule))
+		{
+			throw new ExtensionUnavailableException($cDatabaseModule);
+		}
 		
 		$mycnf = parse_ini_file($cMyDotCnfFile);
 		
