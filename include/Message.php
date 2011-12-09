@@ -85,10 +85,6 @@ class Message extends DataObject
 
 		$em->save();
 
-if($name == "pagetitle-404")
-	phpinfo();
-
-
 		return $em;
 	}
 	
@@ -105,7 +101,7 @@ if($name == "pagetitle-404")
 		
 		// get parameter
 		$getParam = WebRequest::get("lang");
-		if($getParam != "")
+		if($getParam != false)
 		{
 			// check value is in list of allowed values
 			if(array_key_exists($getParam, $cAvailableLanguages))
@@ -124,7 +120,7 @@ if($name == "pagetitle-404")
 		
 		// cookie
 		$cookie = WebRequest::getCookie("lang");
-		if($cookie != "")
+		if($cookie != false)
 		{
 			// check value is in list of allowed values
 			if(array_key_exists($cookie, $cAvailableLanguages))

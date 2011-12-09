@@ -18,7 +18,7 @@ class WebRequest
 		}
 		else
 		{
-			return "";
+			return false;
 		}
 	}
 
@@ -33,7 +33,7 @@ class WebRequest
 		}
 		else
 		{
-			return "";
+			return false;
 		}
 	}
 
@@ -48,7 +48,7 @@ class WebRequest
 		}
 		else
 		{
-			return "";
+			return false;
 		}
 	}
 
@@ -88,7 +88,7 @@ class WebRequest
 		}
 		else
 		{
-			return ""; // :'(
+			return false; // :'(
 		}
 	}
 	
