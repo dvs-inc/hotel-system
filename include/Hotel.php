@@ -40,6 +40,8 @@ class Hotel
 		// check all the required PHP extensions are enabled on this SAPI
 		$this->checkPhpExtensions();
 	
+		// start output buffering before anything is sent to the browser.
+		ob_start();
 	
 		// many exceptions defined in one file, let's not clutter stuff. 
 		// This ofc breaks the autoloading, so let's include them all now.
@@ -68,13 +70,15 @@ class Hotel
 	
 	private function cleanupEnvironment()
 	{
-	
+		// discard any extra content
+		ob_end_clean();
 	}
 	
 	private function main()
 	{
 		// create a page...
 		$page = PageBase::create();
+		
 		// ...and execute it.
 		$page->execute();
 	}

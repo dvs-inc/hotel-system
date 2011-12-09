@@ -17,10 +17,10 @@ class PagePhpInfo extends PageBase
 			$linktarget = "?showall=yes";
 		}
 
-		ob_start();
+		ob_clean();
 		phpinfo($phpinfo_parts);
 		$pinfo = ob_get_contents();
-		ob_end_clean();
+		ob_clean();
 
 		if(WebRequest::get("showall") === "yes")
 		{
