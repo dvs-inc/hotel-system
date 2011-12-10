@@ -64,6 +64,19 @@ class Hotel
 		// tidy up sensitive data we don't want lying around.
 		unset($mycnf);
 		
+		// can we tidy up the output with tidy before we send it?
+		if(extension_loaded($cDatabaseModule))
+		{ // Yes!
+			// register a new function to hook into the output bit
+			Hooks::register("BeforeOutputSend", function($params) {
+					$tidy = new Tidy();
+					global $cTidyOptions;
+					return $tidy->repairString($params[0], $cTidyOptions, "utf8");
+				});
+		}
+		
+		
+		
 		global $gCookieJar;
 		$gCookieJar = array();
 	}

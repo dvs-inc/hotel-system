@@ -53,6 +53,15 @@ $cRequiredExtensions = array(
 	"PDO",
 	"SPL",
 	);
+	
+$cTidyOptions = array(
+	//"hide-comments" => 1,
+	"logical-emphasis" => 1,
+	"output-xhtml" => 1,
+	"indent" => 1,
+	"wrap" => 0,
+	"vertical-space" => 1,
+	);
 ///////////////// don't put new config options below this line
 
 if(file_exists("config.local.php"))
