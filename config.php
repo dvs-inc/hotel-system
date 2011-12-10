@@ -15,6 +15,7 @@ $cWebPath = $pparts["dirname"] == "/" ? "" : $pparts["dirname"];
 
 // database details
 $cDatabaseConnectionString = 'mysql:host=dbmaster.helpmebot.org.uk;dbname=dvs_hotel';
+$cDatabaseModule = "pdo_mysql";
 $cMyDotCnfFile = ".my.cnf";
 
 // array of global scripts to be included
@@ -47,7 +48,27 @@ $cCardEncryptionKey = base64_decode(
 	"MVwyNjNcMzQ1XDI1N1wyMDRcMjUxXDIwNFwzMTUzXDM2MlwyNjNcMjczXDIxM1wy".
 	"MzFQXDIwMUFgXDM0NGxcMjVcMzUzXDIyMVwzN1w2LVwyMTRcMzI3b1wzNzN2XDMz"
 	);
+
+// list of required php extensions.
+// The PDO module required is set above, and need not be listed here also.
+// Optional ones such as Tidy should not be listed here - the site will run 
+// without them. 
+$cRequiredExtensions = array(
+	"PDO",
+	"SPL",
+	);
 	
+// use Tidy to make pretty HTML.
+$cUseTidy = true;
+	
+$cTidyOptions = array(
+	//"hide-comments" => 1, // discards html comments
+	"logical-emphasis" => 1, // swaps <b> for <strong> and <i> for <em>
+	"output-xhtml" => 1,
+	"indent" => 1,
+	"wrap" => 0, // disables wrapping
+	"vertical-space" => 1, // adds vertical spacing for readability
+	);
 ///////////////// don't put new config options below this line
 
 if(file_exists("config.local.php"))
@@ -55,14 +76,5 @@ if(file_exists("config.local.php"))
 	require_once("config.local.php");
 }
 
-// autoload function handles all the silly require stuff for us automatically;
-function autoLoader($class_name)
-{
-	global $cIncludePath;
-	require_once($cIncludePath . "/" . $class_name . ".php");
-}
-
-// not caught by the above :(
-require_once('smarty/Smarty.class.php');
-
-spl_autoload_register("autoLoader");
+// Load the main hotel file
+require_once($cIncludePath . "/Hotel.php");

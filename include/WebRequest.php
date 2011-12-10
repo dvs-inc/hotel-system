@@ -92,4 +92,22 @@ class WebRequest
 		}
 	}
 	
+	/**
+	 * Outputs all content to the browser
+	 */
+	public static function output($content)
+	{
+		// final transformations?
+		$content = Hooks::run("BeforeOutputSend",array($content));
+	
+		// clean the output buffer so anything that's been rogue sent to the 
+		// browser is discarded
+		ob_clean();
+		
+		// write the HTML to the buffer
+		print $content;
+		
+		// flush the buffer to the browser
+		ob_flush();
+	}
 }

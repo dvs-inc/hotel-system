@@ -91,8 +91,7 @@ abstract class PageBase
 		// send the cookies to make the client smile and go mmmmm nom nom
 		WebRequest::sendCookies();
 		
-		// actually send the content to the client.
-		echo $content;
+		WebRequest::output($content);
 	}
 
 	protected abstract function runPage();
