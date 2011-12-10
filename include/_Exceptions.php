@@ -2,7 +2,6 @@
 // check for invalid entry point
 if(!defined("HMS")) die("Invalid entry point");
 
-class ExtensionUnavailableException extends Exception
-{
+class ExtensionUnavailableException extends Exception {}
 
-}
+class SmartyTemplateNotFoundException extends SmartyException{}

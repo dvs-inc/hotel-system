@@ -109,9 +109,23 @@ abstract class PageBase
 		// needs to be rebuilt/updated.
 		$this->finalSetup();
 
-		// get the page content
-		$content = $this->mSmarty->fetch($this->mBasePage);
-
+		try
+		{
+			// get the page content
+			$content = $this->mSmarty->fetch($this->mBasePage);
+		}
+		catch(SmartyException $ex)
+		{
+			if(strpos($ex->getMessage(), "Unable to load template file") !== false)
+			{
+				// throw our own exception so the stack trace comes back here.
+				throw new SmartyTemplateNotFoundException(
+					$ex->getMessage(),
+					$ex->getCode()
+					);
+			}
+		}
+		
 		// set any HTTP headers
 		foreach($this->mHeaders as $h)
 		{
