@@ -23,4 +23,9 @@ abstract class DataObject
 	 * Saves a data object to the database, either updating or inserting a record.
 	 */
 	public abstract function save();
+	
+	public function getId()
+	{
+		return $this->id;
+	}
 }

@@ -14,6 +14,20 @@ class Message extends DataObject
 	protected $code;
 	protected $content;
 
+	/**
+	 * Retrieves a list of all the known message keys
+	 */
+	public static function getMessageKeys()
+	{
+		global $gDatabase;
+		$statement = $gDatabase->prepare("SELECT DISTINCT name FROM message;");
+		$statement->execute();
+		
+		$result = $statement->fetchAll(PDO::FETCH_COLUMN,0);
+		
+		return $result;
+	}
+	
 	public static function getById($id)
 	{
 		global $gDatabase;
