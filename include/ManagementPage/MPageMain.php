@@ -6,6 +6,6 @@ class MPageMain extends ManagementPageBase
 {
 	protected function runPage()
 	{
-		$this->mBasePage = "home.tpl";
+		$this->mBasePage="mgmt/home.tpl";
 	}
 }
