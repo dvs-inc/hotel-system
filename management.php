@@ -8,6 +8,7 @@ define("HMS",1);
 // include the configuration file, which should set up the entire environment as we need it.
 require_once('config.php');
 
-// create and run a new instance of the Hotel application.
-$application = new HotelManagement();
+// create and run a new instance of the Hotel application in management mode.
+$application = new Hotel();
+$application->setManagementMode(1);
 $application->run();

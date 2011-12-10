@@ -4,11 +4,25 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class Hotel
 {
+	private $managementMode = false;
+
 	public function run()
 	{
 		$this->setupEnvironment();
 		$this->main();
 		$this->cleanupEnvironment();
+	}
+	
+	public function setManagementMode($value)
+	{
+		if($value == "1" || $value == "2")
+		{
+			$this->managementMode = $value;
+		}
+		else
+		{
+			$this->managementMode = true;
+		}
 	}
 	
 	private static function autoLoader($class_name)
@@ -93,8 +107,10 @@ class Hotel
 	
 	protected function main()
 	{
+		$basePage = $this->managementMode ? "ManagementPageBase" : "PageBase";
+	
 		// create a page...
-		$page = PageBase::create();
+		$page = $basePage::create();
 		
 		// ...and execute it.
 		$page->execute();
