@@ -49,6 +49,7 @@ class Hotel
 		global $gDatabase, $cDatabaseConnectionString, $cMyDotCnfFile, 
 			$cDatabaseModule, $cIncludePath;
 
+		session_start();
 	
 		// check all the required PHP extensions are enabled on this SAPI
 		$this->checkPhpExtensions();

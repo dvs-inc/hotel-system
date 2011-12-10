@@ -1,0 +1,10 @@
+#loginform {
+	margin: 50px 0 50px 50px;
+}
+#loginform div {
+	margin-bottom:10px;
+}
+#loginform input {
+	position:absolute;
+	left:150px;
+}

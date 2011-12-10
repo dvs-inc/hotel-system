@@ -39,6 +39,10 @@ abstract class ManagementPageBase extends PageBase
 					),
 				)
 			),
+		"MPageLogout" => array(
+			"title" => "mpage-logout",
+			"link" => "/Logout",
+			),
 		);
 		
 	protected $mSubMenu = array();
@@ -107,7 +111,7 @@ abstract class ManagementPageBase extends PageBase
 				}
 				else
 				{
-					if(/* logged in */true)
+					if(isset($_SESSION['uid']))
 					{
 						return $pageobject;
 					}
