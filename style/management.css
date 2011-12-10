@@ -1,0 +1,22 @@
+﻿body {
+	background-color: #e4e4e4;
+	margin: 0px;
+}
+#globalwrapper {
+}
+#header {
+	padding: 2px;
+	background-color: red;
+}
+#nav {
+	background-color: yellow;
+	float: left;
+	width: 12em;
+}
+#footer {
+	background-color: magenta;
+}
+#contentwrapper {
+	background-color: blue;
+	position: relative;
+}
