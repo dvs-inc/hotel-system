@@ -55,13 +55,13 @@ $cRequiredExtensions = array(
 	);
 	
 // use Tidy to make pretty HTML.
-$cUseTidy = true;
+$cUseTidy = false;
 	
 $cTidyOptions = array(
 	//"hide-comments" => 1, // discards html comments
 	"logical-emphasis" => 1, // swaps <b> for <strong> and <i> for <em>
 	"output-xhtml" => 1,
-	"indent" => 1,
+	"indent" => "auto",
 	"wrap" => 0, // disables wrapping
 	"vertical-space" => 1, // adds vertical spacing for readability
 	);
