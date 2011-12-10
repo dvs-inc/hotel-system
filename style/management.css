@@ -5,7 +5,6 @@
 #globalwrapper {
 }
 #header {
-	padding: 2px;
 	background-color: red;
 }
 #nav {
@@ -19,4 +18,39 @@
 #contentwrapper {
 	background-color: blue;
 	position: relative;
+}
+#logo {
+	display: block;
+}
+#logo img {
+	width: 12em;
+}
+#title {
+	padding: 9px;
+	position: absolute;
+	height: 60px;
+	top: 0px;
+	left: 12em;
+}
+#title h1 {
+	display: inline;
+}
+#nav {
+}
+#nav ul {
+	list-style-type: none;
+	margin: 0px;
+}
+#nav ul li a {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	width: 12em;
+	background-color: #008000;
+	text-decoration: none;
+	color: #000000;
+	font-style: normal;
+	font-weight: bold;
+}
+#footer {
+	clear: both;
 }
