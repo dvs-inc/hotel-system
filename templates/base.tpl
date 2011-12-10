@@ -19,7 +19,12 @@
 		{block name="header"}{include file="header.tpl"}{/block}
 		{block name="nav"}{include file="nav.tpl"}{/block}
 		{block name="image"}{include file="image.tpl"}{/block}
-		{block name="body"}{$content|default:"Nothing to see here!"}{/block}
+		<div id="contentwrapper">
+			{block name="subnav"}{* For the management system, default empty *}{/block}
+			<div id="content">
+				{block name="body"}{$content|default:"<p>Nothing to see here!</p>"}{/block}
+			</div>
+		</div>
 		{block name="footer"}{include file="footer.tpl"}{/block}
 	</div>
 </body>
