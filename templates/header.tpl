@@ -1,5 +1,5 @@
 <div id="header">
-	<div id="logo"><h1>{message name="header-title"}</h1></div>
+	<div id="logo"><img alt="{message name="logo-alt"}"  src="{$cWebPath}/images/bflogo.png" /></div>
 	<div id="login">
 		<form action="" method="post">
 			<div id="loginparts">

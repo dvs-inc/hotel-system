@@ -1,7 +1,15 @@
 <div id="nav">
 	<ul>
 		{foreach from="$mainmenu" item="menuitem" }
-			<li><a href="{$cScriptPath}{$menuitem.link}" {if isset($menuitem.current)}class="current"{/if}>{message name={$menuitem.title}}</a></li>
+			<li><a href="{$cScriptPath}{$menuitem.link}" {if isset($menuitem.current)}class="current"{/if}>{message name={$menuitem.title}}</a>
+			{if isset($menuitem.items)}{assign "submenu" "{$menuitem.items}"}
+				<ul>
+					{foreach from="$submenu" item="subitem" }
+						<li><a href="{$cScriptPath}{$subitem.link}" {if isset($subitem.current)}class="current"{/if}>{message name={$subitem.title}}</a></li>
+					{/foreach}
+				</ul>
+			{/if}
+			</li>
 		{/foreach}
 	</ul>
 	{block name="langlinks"}

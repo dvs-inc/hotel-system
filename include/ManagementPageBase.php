@@ -15,23 +15,33 @@ abstract class ManagementPageBase extends PageBase
 	// base template to use
 	protected $mBasePage = "base.tpl";
 
-	// main menu
+	// main module menu
 	protected $mMainMenu = array(
-		/* Format:
-			"Class name" => array(
-				"title" => "Message name to display",
-				"link" => "Link to show",
-				),
-			*/		
-		"PageMain" => array(
-			"title" => "page-home",
+		"MPageHome" => array(
+			"title" => "mpage-home",
 			"link" => "/",
 			),
-		"PagePhpInfo" => array(
-			"title" => "page-phpinfo",
-			"link" => "/PhpInfo",
+		"MPageSystem" => array(
+			"title" => "mpage-system",
+			"link" => "/System",
+			"items" => array(
+				"MPagePhpInfo" => array(
+					"title" => "mpage-phpinfo",
+					"link" => "/PhpInfo",
+					),
+				"MPageSystemUsers" => array(
+					"title" => "mpage-systemusers",
+					"link" => "/SystemUsers",
+					),
+				"MPageLanguages" => array(
+					"title" => "mpage-languages",
+					"link" => "/Languages",
+					),
+				)
 			),
 		);
+		
+	protected $mSubMenu = array();
 
 	public function isProtected()
 	{
