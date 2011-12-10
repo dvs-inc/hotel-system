@@ -49,18 +49,25 @@ $cCardEncryptionKey = base64_decode(
 	"MzFQXDIwMUFgXDM0NGxcMjVcMzUzXDIyMVwzN1w2LVwyMTRcMzI3b1wzNzN2XDMz"
 	);
 
+// list of required php extensions.
+// The PDO module required is set above, and need not be listed here also.
+// Optional ones such as Tidy should not be listed here - the site will run 
+// without them. 
 $cRequiredExtensions = array(
 	"PDO",
 	"SPL",
 	);
 	
+// use Tidy to make pretty HTML.
+$cUseTidy = true;
+	
 $cTidyOptions = array(
-	//"hide-comments" => 1,
-	"logical-emphasis" => 1,
+	//"hide-comments" => 1, // discards html comments
+	"logical-emphasis" => 1, // swaps <b> for <strong> and <i> for <em>
 	"output-xhtml" => 1,
 	"indent" => 1,
-	"wrap" => 0,
-	"vertical-space" => 1,
+	"wrap" => 0, // disables wrapping
+	"vertical-space" => 1, // adds vertical spacing for readability
 	);
 ///////////////// don't put new config options below this line
 
