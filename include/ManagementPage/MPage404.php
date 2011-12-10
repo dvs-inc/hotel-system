@@ -8,6 +8,7 @@ class MPage404 extends ManagementPageBase
 	{
 		$this->mHeaders[] = "HTTP/1.0 404 Not Found";
 		$this->mPageTitle = "mpage-title-404";
-		$this->mSmarty->assign("content", "Sorry, what you were looking for couldn't be found.");
+		
+		$this->mSmarty->assign("content", Message::getMessage("page-not-found"));
 	}
 }
