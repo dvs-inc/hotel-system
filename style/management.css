@@ -5,19 +5,21 @@
 #globalwrapper {
 }
 #header {
-	background-color: red;
 }
 #nav {
-	background-color: yellow;
 	float: left;
 	width: 12em;
 }
 #footer {
-	background-color: magenta;
+	border-width: 1px;
+	border-color: #000000;
+	clear: both;
+	border-top-style: solid;
 }
 #contentwrapper {
-	background-color: blue;
 	position: relative;
+	margin-left: 12em;
+	padding:5px;
 }
 #logo {
 	display: block;
@@ -40,17 +42,67 @@
 #nav ul {
 	list-style-type: none;
 	margin: 0px;
+	padding-left:0px;
+}
+#nav ul li {
+
 }
 #nav ul li a {
-	padding-top: 3px;
-	padding-bottom: 3px;
-	width: 12em;
-	background-color: #008000;
+	padding: 8px;
+	width: 11em;
+	background-color: #787878;
 	text-decoration: none;
-	color: #000000;
+	color: #FFFFFF;
 	font-style: normal;
 	font-weight: bold;
+	height: 1.5em;
+	border-width: 1px;
+	border-color: #ffffff;
+	border-bottom-style: solid;
+	display:block;
 }
-#footer {
-	clear: both;
+#nav ul li ul {
+	margin-left: 1em;
+
+}
+#nav ul li ul li {
+}
+#nav ul li ul li a {
+	border-width: 1px;
+	border-color: #000000;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 10em;
+	background-color: #C0C0C0;
+	color: #000000;
+	border-bottom-style: solid;
+}
+#subnav {
+}
+#subnav ul {
+	list-style-type: none;
+	margin: 0px;
+	padding-top: 6px;
+	padding-left:0px;
+}
+#subnav ul li {
+	display: inline;
+	border-style: solid solid none solid;
+	border-width: 1px;
+	margin: 4px;
+}
+#subnav ul li a {
+	padding: 3px 5px 0px 5px;
+	background-color: white;
+	text-decoration: none;
+	font-size: 10pt;
+	color: #000000;
+	margin-right: -4px;
+}
+#content {
+	background-color: white;
+	border-style: solid;
+	border-width: 1px;
+	margin: -1px 2px 2px 2px;
+		padding:5px;
 }

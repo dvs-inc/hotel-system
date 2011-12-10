@@ -35,7 +35,7 @@ abstract class PageBase
 	// array of HTTP headers to add to the request.
 	protected $mHeaders = array();
 
-	public function execute()
+	protected function setupPage()
 	{
 		$this->mSmarty = new Smarty();
 
@@ -49,10 +49,11 @@ abstract class PageBase
 				)
 			);
 		
-		// "run" the page - allow the user to make any customisations to the
-		// current state
-		$this->runPage();
-
+		$this->addSystemCssJs();
+	}
+	
+	protected function finalSetup()
+	{
 		global $cGlobalScripts;
 		$scripts = array_merge($cGlobalScripts, $this->mScripts);
 		$this->mSmarty->assign("scripts",$scripts);
@@ -74,6 +75,39 @@ abstract class PageBase
 		global $cWebPath, $cScriptPath;
 		$this->mSmarty->assign("cWebPath", $cWebPath);
 		$this->mSmarty->assign("cScriptPath", $cScriptPath);
+	}
+	
+	/**
+	 * Adds the "global" CSS / JS for this part of the system.
+	 *
+	 * This differs for the management side of the system, hence is overridden over there.
+	 * This method is just to make it easier to override.
+	 */
+	protected function addSystemCssJs()
+	{
+		global $cWebPath;
+		// $mStyles[] = $cWebPath . "/style/main.css";
+		
+		$this->mStyles[] = $cWebPath . '/style/svwp_style.css';
+		
+		$this->mScripts[] = $cWebPath . '/scripts/jquery.slideViewerPro.1.5.js';
+		$this->mScripts[] = $cWebPath . '/scripts/jquery.timers-1.2.js';
+		$this->mScripts[] = $cWebPath . '/scripts/imageslider.js';
+	}
+	
+	public function execute()
+	{
+		// set up the page
+		$this->setupPage();
+
+		// "run" the page - allow the user to make any customisations to the
+		// current state
+		$this->runPage();
+
+		// perform any final setup for the page, overwriting any user 
+		// customisations which aren't allowed, and anything that potentially 
+		// needs to be rebuilt/updated.
+		$this->finalSetup();
 
 		// get the page content
 		$content = $this->mSmarty->fetch($this->mBasePage);
@@ -87,6 +121,7 @@ abstract class PageBase
 		// send the cookies to make the client smile and go mmmmm nom nom
 		WebRequest::sendCookies();
 		
+		// send the output
 		WebRequest::output($content);
 	}
 

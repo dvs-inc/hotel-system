@@ -47,7 +47,20 @@ abstract class ManagementPageBase extends PageBase
 	{
 		return $this->mIsProtectedPage;
 	}
+	
+	protected function addSystemCssJs()
+	{
+		global $cWebPath;
+		$this->mStyles[] = $cWebPath . "/style/management.css";
+	}
+	
+	protected function finalSetup()
+	{
+		parent::finalSetup();
 		
+		$this->mSmarty->assign("subnavigation", $this->mSubMenu);
+	}
+	
 	public static function create()
 	{
 		// use "Main" as the default

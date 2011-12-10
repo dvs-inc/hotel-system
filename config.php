@@ -22,13 +22,9 @@ $cMyDotCnfFile = ".my.cnf";
 // Global scripts are included first, then local scripts second
 $cGlobalScripts = array(
 	'http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js', 
-	$cWebPath.'/scripts/jquery.slideViewerPro.1.5.js', 
-	$cWebPath.'/scripts/jquery.timers-1.2.js', 
-	$cWebPath.'/scripts/imageslider.js',
 	);
 
 $cGlobalStyles = array(
-	$cWebPath.'/style/svwp_style.css',
 	);
 	
 $cAvailableLanguages = array(
