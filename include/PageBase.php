@@ -30,10 +30,6 @@ abstract class PageBase
 			"title" => "page-home",
 			"link" => "/",
 			),
-		"PagePhpInfo" => array(
-			"title" => "page-phpinfo",
-			"link" => "/PhpInfo",
-			),
 		);
 		
 	// array of HTTP headers to add to the request.

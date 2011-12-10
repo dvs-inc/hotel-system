@@ -2,7 +2,7 @@
 // check for invalid entry point
 if(!defined("HMS")) die("Invalid entry point");
 
-class PagePhpInfo extends PageBase
+class MPagePhpInfo extends ManagementPageBase
 {
 	protected function runPage()
 	{

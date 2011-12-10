@@ -13,7 +13,7 @@ abstract class ManagementPageBase extends PageBase
 	protected $mPageTitle = "management-title";
 
 	// base template to use
-	protected $mBasePage = "base.tpl";
+	protected $mBasePage = "mgmt/base.tpl";
 
 	// main module menu
 	protected $mMainMenu = array(
@@ -94,7 +94,7 @@ abstract class ManagementPageBase extends PageBase
 				}
 				else
 				{
-					if(/* logged in */false)
+					if(/* logged in */true)
 					{
 						return $pageobject;
 					}
