@@ -32,7 +32,7 @@ class Message extends DataObject
 	{
 		global $gDatabase;
 		$statement = $gDatabase->prepare("SELECT * FROM message WHERE id = :id LIMIT 1;");
-		$statement->bindParam(":id", $name);
+		$statement->bindParam(":id", $id);
 		
 		$statement->execute();
 		
@@ -204,15 +204,25 @@ class Message extends DataObject
 			if($statement->execute())
 			{
 				$this->isNew = false;
+				$this->id = $gDatabase->lastInsertId();
 			}
 			else
 			{
-				throw new Exception();
+				throw new SaveFailedException();
 			}
 		}
 		else
 		{
-			
+			global $gDatabase;
+			$statement = $gDatabase->prepare("UPDATE message SET content = :content WHERE id = :id LIMIT 1;");
+
+			$statement->bindParam(":id", $this->id);
+			$statement->bindParam(":content", $this->content);
+
+			if(! $statement->execute())
+			{
+				throw new SaveFailedException();
+			}
 		}
 	}
 }

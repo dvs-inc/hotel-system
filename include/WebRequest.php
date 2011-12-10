@@ -52,6 +52,11 @@ class WebRequest
 		}
 	}
 
+	public static function getPostKeys()
+	{
+		return array_keys($_POST);
+	}
+	
 	/**
 	 * Returns true if the request was sent via a HTTP POST, false otherwise
 	 */

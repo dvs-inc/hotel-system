@@ -1,7 +1,7 @@
 {extends file="mgmt/base.tpl"}
 {block name="body"}
 {message name="mlanguage-editor"}
-<form method="post">
+<form method="post" action="?submit">
 <table>
 	<tr>
 		{foreach from="$languages" item="lang"}
@@ -17,7 +17,7 @@
 				{if $message@key eq 'zxx'}
 					{$message.content}
 				{else}
-					<textarea name="lang{$message.id}" cols="40" rows="5" xml:space="preserve">{$message.content|escape}</textarea>
+					<textarea name="lang{$message.id}msg" cols="40" rows="5" xml:space="preserve">{$message.content|escape}</textarea>
 				{/if}
 			</td>
 			{/foreach}
