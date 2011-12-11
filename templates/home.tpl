@@ -3,5 +3,5 @@
 {message name="home-column1"}		
 {/block}
 {block name="columntwo"}
-{message name="home-column2"}
+{include file="quickbook.tpl"}
 {/block}

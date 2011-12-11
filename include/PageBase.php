@@ -30,6 +30,26 @@ abstract class PageBase
 			"title" => "page-home",
 			"link" => "/",
 			),
+		"PageAbout" => array(
+			"title" => "page-about",
+			"link" => "/About",
+			),
+		"PageBook" => array(
+			"title" => "page-book",
+			"link" => "/Book",
+			),
+		"PageContact" => array(
+			"title" => "page-contact",
+			"link" => "/Contact",
+			),
+		"PageOffers" => array(
+			"title" => "page-offers",
+			"link" => "/Offers",
+			),
+		"PageGallery" => array(
+			"title" => "page-gallery",
+			"link" => "/Gallery",
+			),
 		);
 		
 	// array of HTTP headers to add to the request.
