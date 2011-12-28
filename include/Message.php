@@ -192,6 +192,8 @@ class Message extends DataObject
 	
 	public function save()
 	{
+		try
+		{
 		if($this->isNew)
 		{
 			global $gDatabase;
@@ -223,6 +225,11 @@ class Message extends DataObject
 			{
 				throw new SaveFailedException();
 			}
+		}
+		}
+		catch( PDOException $ex)
+		{
+			throw new SaveFailedException($ex->getMessage(), $ex->getCode, $ex);
 		}
 	}
 }

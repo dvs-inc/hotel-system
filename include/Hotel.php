@@ -120,6 +120,9 @@ HTML;
 		// tidy up sensitive data we don't want lying around.
 		unset($mycnf);
 		
+		// use exceptions on failed database stuff
+		$gDatabase->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
 		// can we tidy up the output with tidy before we send it?
 		if(extension_loaded("tidy"))
 		{ // Yes!
