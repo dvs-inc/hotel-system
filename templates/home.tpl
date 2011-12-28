@@ -1,7 +1,13 @@
 {extends file="twocolumn.tpl"}
+
 {block name="columnone"}
-{message name="home-column1"}		
+	{message name="home-column1"}		
 {/block}
+
 {block name="columntwo"}
-{include file="quickbook.tpl"}
+	<h2>{message name="quick-book"}</h2>
+	<form>
+	{include file="quickbook.tpl"}
+	<input type="submit" value="{message name="check-availability"}"/>
+	</form>
 {/block}
