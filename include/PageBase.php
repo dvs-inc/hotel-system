@@ -106,8 +106,8 @@ abstract class PageBase
 	protected function addSystemCssJs()
 	{
 		global $cWebPath;
-		// $mStyles[] = $cWebPath . "/style/main.css";
-		
+				
+		$this->mStyles[] = $cWebPath . '/style/mainstyle.css';
 		$this->mStyles[] = $cWebPath . '/style/svwp_style.css';
 		
 		$this->mScripts[] = $cWebPath . '/scripts/jquery.slideViewerPro.1.5.js';

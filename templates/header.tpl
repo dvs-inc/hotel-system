@@ -11,7 +11,10 @@
 					{message name="login-password"}
 					<input name="lgPasswd" type="password"/>
 				</label>
-				<input type="submit" value="{message name="login-loginbutton"}"/>
+				<label>
+					&nbsp;
+					<input type="submit" value="{message name="login-loginbutton"}"/>
+				</label>
 			</div>
 		</form>
 		<div id="loginlinks">

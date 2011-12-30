@@ -1,4 +1,4 @@
-{extends file="twocolumn.tpl"}
+{extends file="twocolumnuneven.tpl"}
 
 {block name="columnone"}
 	{message name="home-column1"}		

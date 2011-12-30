@@ -1,0 +1,113 @@
+body{
+	margin:0;
+}
+
+#globalwrapper{
+	background:red;
+	/*background-image: url("./images/bg.gif");*/
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#header{
+	background:green;
+	height:100px;
+	width:960px;
+	margin:0;
+}
+#logo{
+	width:370px;
+	height:100px;
+	float:left;
+}
+#logo img{
+	height:100px;
+}
+#login{
+	float:right;
+}
+#loginparts label{
+	display:block;
+	float:left;
+	margin-top:13px;
+	margin-right:7px;
+}
+#loginlinks{
+	display:block;
+	margin-top:2px;
+	top:60px;
+	position:absolute;
+}
+#loginlinks ul{
+	margin-top:0px;
+	list-style-type:none;
+	padding-left:0px;
+}
+
+#nav{
+	width:960px;
+	height:50px;
+	background:yellow;
+}
+#nav ul{
+	margin:0;
+	list-style-type:none;
+}
+#nav ul li{
+	display:inline;
+}
+
+#image{
+	height:275px;
+	width:960px;
+}
+
+#image div{
+	height:275px;
+}
+
+#contentwrapper{
+	background:#00ffff;
+	width:960px;
+	
+}
+
+#content{
+	padding:15px;
+}
+
+h2{
+	margin-top:0;
+}
+
+.twocolumn{
+	background:#ff8888;
+}
+.twocolumn .columnone, .twocolumn  .columntwo{
+	width:460px;
+	background:green;
+	display:inline;
+	margin-bottom:15px;
+}
+.twocolumn .columnone{
+	float:left;
+}
+.twocolumn  .columntwo{
+	float:right;
+}
+
+
+#footer{
+	clear:both;
+	width:960px;
+	height:50px;
+	background:orange;
+}
+
+label{
+	display:block;
+}
+label input{
+	display:block;
+}
