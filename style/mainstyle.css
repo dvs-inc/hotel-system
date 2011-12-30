@@ -4,14 +4,13 @@ body{
 
 #globalwrapper{
 	background:red;
-	/*background-image: url("./images/bg.gif");*/
+	background-image: url("../images/bg.gif");
 	width:960px;
 	margin-left:auto;
 	margin-right:auto;
 }
 
 #header{
-	background:green;
 	height:100px;
 	width:960px;
 	margin:0;
@@ -43,19 +42,70 @@ body{
 	margin-top:0px;
 	list-style-type:none;
 	padding-left:0px;
+	margin-bottom:0px;
+}
+#loginlinks ul li a{
+	
 }
 
 #nav{
 	width:960px;
 	height:50px;
-	background:yellow;
+	background-image: url("../images/g.gif");
 }
+
 #nav ul{
-	margin:0;
 	list-style-type:none;
+	padding:0px;
+	margin-top:0px;
 }
 #nav ul li{
-	display:inline;
+	float:left;
+}
+
+#nav1{
+		margin-left:auto;
+		margin-right:auto;
+		width:550px;
+		display:block;
+}
+#nav1 ul{
+	display:block;
+	margin:0;
+}
+#nav1 ul li{
+	border-left:1px solid #e4e4e4;
+	border-right:1px solid #d2d2d2;
+	padding:0px;
+}
+#nav1 ul li a{
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:15px;
+	padding-bottom:15px;
+	margin:0px;
+	height:20px;	
+	display:block;
+	text-decoration:none;
+	color:#686868;
+	font-weight:bold;
+}
+#nav1 ul li a.current{
+	color:#006600;
+}
+#nav1 a:hover{
+	background-image: url("../images/gh.gif");
+}
+
+#langlinks{
+	display:block;
+	margin-right:14px;
+	float:right;
+}
+#langlinks ul li{
+	margin-left:2px;
+	margin-right:2px;
+	margin-top:7px;
 }
 
 #image{
@@ -68,9 +118,7 @@ body{
 }
 
 #contentwrapper{
-	background:#00ffff;
 	width:960px;
-	
 }
 
 #content{
@@ -97,12 +145,18 @@ h2{
 	float:right;
 }
 
+.tcuneven .columnone{
+	width:620px;
+}
+.tcuneven .columntwo{
+	width:300px;
+}
 
 #footer{
 	clear:both;
 	width:960px;
 	height:50px;
-	background:orange;
+	background-image: url("../images/g.gif");
 }
 
 label{
