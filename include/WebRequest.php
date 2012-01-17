@@ -51,6 +51,17 @@ class WebRequest
 			return false;
 		}
 	}
+	
+	public static function postString($variable)
+	{
+		return htmlentities(self::post($variable));
+	}
+	
+	public static function postInt($variable)
+	{
+		$x = self::post($variable);
+		return is_numeric($x) && intval($x)==$x ? intval($x) : false;
+	}
 
 	public static function getPostKeys()
 	{
