@@ -37,6 +37,10 @@ abstract class ManagementPageBase extends PageBase
 					"title" => "mpage-languages",
 					"link" => "/Languages",
 					),
+				"MPageGit" => array(
+					"title" => "mpage-git",
+					"link" => "/Git",
+					),
 				)
 			),
 		"MPageLogout" => array(
