@@ -8,9 +8,28 @@ class InternalUser extends DataObject
 	protected $username;
 	protected $password;
 
+	public static function getIdList()
+	{
+		global $gDatabase;
+		$statement = $gDatabase->prepare("SELECT id FROM internaluser;");
+		$statement->execute();
+
+		$result = $statement->fetchAll(PDO::FETCH_COLUMN,0);
+
+		return $result;
+	}
+
 	public static function getById($id)
 	{
-		
+		global $gDatabase;
+		$statement = $gDatabase->prepare("SELECT * FROM internaluser WHERE id = :id LIMIT 1;");
+		$statement->bindParam(":id", $id);
+
+		$statement->execute();
+
+		$resultObject = $statement->fetchObject("InternalUser");
+
+		return $resultObject;
 	}
 	
 	public static function getByName($name)
@@ -48,6 +67,11 @@ class InternalUser extends DataObject
 		{
 		
 		}
+	}
+
+	public function getUsername()
+	{
+		return $this->username;
 	}
 
 }
