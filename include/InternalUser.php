@@ -59,19 +59,31 @@ class InternalUser extends DataObject
 	
 	public function save()
 	{
+		global $gDatabase;
+
 		if($this->isNew)
-		{
-		
+		{ // insert
+			
 		}
 		else
-		{
-		
+		{ // update
+			$statement = $gDatabase->prepare("UPDATE internaluser SET username = :username, password = :password WHERE id = :id LIMIT 1;");
+			$statement->bindParam(":username", $this->username);
+			$statement->bindParam(":password", $this->password);
+			$statement->bindParam(":id", $this->id);
+
+			$statement->execute();
 		}
 	}
 
 	public function getUsername()
 	{
 		return $this->username;
+	}
+
+	public function setPassword($password)
+	{
+		$this->password = self::encryptPassword($this->username, $password);
 	}
 
 }

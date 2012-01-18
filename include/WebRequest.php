@@ -63,6 +63,12 @@ class WebRequest
 		return is_numeric($x) && intval($x)==$x ? intval($x) : false;
 	}
 
+	public static function getInt($variable)
+	{
+		$x = self::get($variable);
+		return is_numeric($x) && intval($x)==$x ? intval($x) : false;
+	}
+
 	public static function getPostKeys()
 	{
 		return array_keys($_POST);

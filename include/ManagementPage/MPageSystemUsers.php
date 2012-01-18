@@ -21,6 +21,11 @@ class MPageSystemUsers extends ManagementPageBase
 		$action = WebRequest::get("action");
 		switch($action)
 		{
+			case "changepw":
+				$this->showChangePasswordPage();
+				break;
+			case "del":
+				break;
 			case "create":
 				$this->showCreateUserPage();
 				break;
@@ -52,5 +57,36 @@ class MPageSystemUsers extends ManagementPageBase
 
 		$this->mBasePage="mgmt/iuserlist.tpl";
 
+	}
+
+	private function showChangePasswordPage()
+	{
+		$userid=WebRequest::getInt("id");
+		if($userid < 1)
+			throw new Exception("UserID too small");
+
+		if(InternalUser::getById($userid) == null)
+			throw new Exception("User does not exist");
+
+		if(WebRequest::wasPosted())
+		{
+			if(WebRequest::post("newpass") != WebRequest::post("newpass2"))
+				throw new Exception("Passwords do not match");
+
+			$password = WebRequest::post("newpass");
+
+			$user = InternalUser::getById($userid);
+			$user->setPassword($password);
+			$user->save();
+
+			global $cScriptPath;
+
+			$this->mHeaders[] = "Location: {$cScriptPath}/SystemUsers";
+		}
+		else
+		{
+			$this->mSmarty->assign("userid",$userid);
+			$this->mBasePage="mgmt/iuserChangePw.tpl";
+		}
 	}
 }
