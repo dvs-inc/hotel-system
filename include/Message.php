@@ -22,25 +22,27 @@ class Message extends DataObject
 		global $gDatabase;
 		$statement = $gDatabase->prepare("SELECT DISTINCT name FROM message;");
 		$statement->execute();
-		
+
 		$result = $statement->fetchAll(PDO::FETCH_COLUMN,0);
-		
+
 		return $result;
 	}
-	
+
 	public static function getById($id)
 	{
 		global $gDatabase;
 		$statement = $gDatabase->prepare("SELECT * FROM message WHERE id = :id LIMIT 1;");
 		$statement->bindParam(":id", $id);
-		
+
 		$statement->execute();
-		
+
 		$resultMessage = $statement->fetchObject("Message");
-		
+
+		$resultMessage->isNew = false;
+
 		return $resultMessage;
 	}
-	
+
 	public static function getByName($name, $language)
 	{
 		// language pseudocode exception
@@ -61,13 +63,14 @@ class Message extends DataObject
 		$statement = $gDatabase->prepare("SELECT * FROM message WHERE name = :name AND code = :language LIMIT 1;");
 		$statement->bindParam(":name", $name);
 		$statement->bindParam(":language", $language);
-		
+
 		$statement->execute();
-		
+
 		$resultMessage = $statement->fetchObject("Message");
-		
+
 		if($resultMessage != false)
 		{
+			$resultMessage->isNew = false;
 			return $resultMessage;
 		}
 		else
@@ -75,7 +78,7 @@ class Message extends DataObject
 			return self::getError($name, $language);
 		}
 	}
-	
+
 	public static function retrieveContent($name, $language)
 	{
 		return self::getByName($name, $language)->getContent();

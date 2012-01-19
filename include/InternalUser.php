@@ -28,15 +28,15 @@ class InternalUser extends DataObject
 		$statement->execute();
 
 		$resultObject = $statement->fetchObject("InternalUser");
-
+		$resultObject->isNew = false;
 		return $resultObject;
 	}
-	
+
 	public static function getByName($name)
 	{
-	
+
 	}
-	
+
 	/**
 	 * Check the stored password against the provided password
 	 * @returns true if the password is correct
@@ -45,7 +45,7 @@ class InternalUser extends DataObject
 	{
 		return ( $this->password == encryptPassword($this->username, $password));
 	}
-	
+
 	// let's not make a decrypt method.... we don't need it.
 	protected static function encryptPassword($username, $password)
 	{
@@ -56,14 +56,25 @@ class InternalUser extends DataObject
 		// tables practically useless against this set of passwords.
 		return md5(md5($username . md5($password)));
 	}
-	
+
 	public function save()
 	{
 		global $gDatabase;
 
 		if($this->isNew)
 		{ // insert
-			
+			$statement = $gDatabase->prepare("INSERT INTO internaluser VALUES (null, :username, :password);");
+			$statement->bindParam(":username", $this->username);
+			$statement->bindParam(":password", $this->password);
+			if($statement->execute())
+			{
+				$this->isNew = false;
+				$this->id = $gDatabase->lastInsertId();
+			}
+			else
+			{
+				throw new SaveFailedException();
+			}
 		}
 		else
 		{ // update
@@ -72,7 +83,10 @@ class InternalUser extends DataObject
 			$statement->bindParam(":password", $this->password);
 			$statement->bindParam(":id", $this->id);
 
-			$statement->execute();
+			if(!$statement->execute())
+			{
+				throw new SaveFailedException();
+			}
 		}
 	}
 
@@ -86,4 +100,8 @@ class InternalUser extends DataObject
 		$this->password = self::encryptPassword($this->username, $password);
 	}
 
+	public function setUsername($username)
+	{
+		$this->username = $username;
+	}
 }

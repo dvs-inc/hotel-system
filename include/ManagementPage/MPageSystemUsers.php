@@ -38,8 +38,30 @@ class MPageSystemUsers extends ManagementPageBase
 
 	private function showCreateUserPage()
 	{
-		$this->mBasePage="mgmt/home.tpl";
+		if(WebRequest::wasPosted())
+		{
+                        if(WebRequest::post("pass") != WebRequest::post("pass2"))
+                                throw new Exception("Passwords do not match");
 
+			if(trim(WebRequest::post("username")) =="")
+				throw new Exception("Username is empty");
+
+                        $password = WebRequest::post("pass");
+			$username = WebRequest::post("username");
+			$user = new InternalUser();
+			$user->setUsername($username);
+			$user->setPassword($password);
+			$user->save();
+			
+			throw new Exception(print_r($user, true));
+
+			global $cScriptPath;
+			$this->mHeaders[] = "Location: {$cScriptPath}/SystemUsers";
+		}
+		else
+		{
+			$this->mBasePage="mgmt/iuserCreate.tpl";
+		}
 	}
 
 	private function showListUserPage()
@@ -80,7 +102,6 @@ class MPageSystemUsers extends ManagementPageBase
 			$user->save();
 
 			global $cScriptPath;
-
 			$this->mHeaders[] = "Location: {$cScriptPath}/SystemUsers";
 		}
 		else

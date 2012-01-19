@@ -10,9 +10,9 @@ if(!defined("HMS")) die("Invalid entry point");
  */
 abstract class DataObject
 {
-	protected $id;
+	protected $id = 0;
 
-	protected $isNew;
+	protected $isNew = true;
 	
 	/**
 	 * Retrieves a data object by it's row ID.
