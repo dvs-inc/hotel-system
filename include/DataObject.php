@@ -13,7 +13,7 @@ abstract class DataObject
 	protected $id = 0;
 
 	protected $isNew = true;
-	
+
 	/**
 	 * Retrieves a data object by it's row ID.
 	 */
@@ -23,9 +23,11 @@ abstract class DataObject
 	 * Saves a data object to the database, either updating or inserting a record.
 	 */
 	public abstract function save();
-	
+
 	public function getId()
 	{
 		return $this->id;
 	}
+
+	public abstract function delete();
 }

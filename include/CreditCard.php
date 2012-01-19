@@ -136,4 +136,9 @@ class CreditCard extends DataObject
 		
 		}
 	}
+
+	public function delete()
+	{
+		throw new Exception("Not Implemented yet");
+	}
 }

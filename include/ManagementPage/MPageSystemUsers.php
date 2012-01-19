@@ -25,6 +25,7 @@ class MPageSystemUsers extends ManagementPageBase
 				$this->showChangePasswordPage();
 				break;
 			case "del":
+				$this->doDeleteUserAction();
 				break;
 			case "create":
 				$this->showCreateUserPage();
@@ -52,8 +53,6 @@ class MPageSystemUsers extends ManagementPageBase
 			$user->setUsername($username);
 			$user->setPassword($password);
 			$user->save();
-			
-			throw new Exception(print_r($user, true));
 
 			global $cScriptPath;
 			$this->mHeaders[] = "Location: {$cScriptPath}/SystemUsers";
@@ -109,5 +108,20 @@ class MPageSystemUsers extends ManagementPageBase
 			$this->mSmarty->assign("userid",$userid);
 			$this->mBasePage="mgmt/iuserChangePw.tpl";
 		}
+	}
+
+	private function doDeleteUserAction()
+	{
+                $userid=WebRequest::getInt("id");
+                if($userid < 1)
+                        throw new Exception("UserID too small");
+
+                if(InternalUser::getById($userid) == null)
+                        throw new Exception("User does not exist");
+
+		InternalUser::getById($userid)->delete();
+
+		global $cScriptPath;
+		$this->mHeaders[] = "Location: {$cScriptPath}/SystemUsers";
 	}
 }

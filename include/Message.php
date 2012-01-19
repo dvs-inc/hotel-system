@@ -235,4 +235,9 @@ class Message extends DataObject
 			throw new SaveFailedException($ex->getMessage(), $ex->getCode, $ex);
 		}
 	}
+
+	public function delete()
+	{
+		throw new Exception("Not implemented");
+	}
 }

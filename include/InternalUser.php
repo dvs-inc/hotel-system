@@ -104,4 +104,15 @@ class InternalUser extends DataObject
 	{
 		$this->username = $username;
 	}
+
+	public function delete()
+	{
+		global $gDatabase;
+		$statement = $gDatabase->prepare("DELETE FROM internaluser WHERE id = :id LIMIT 1;");
+		$statement->bindParam(":id", $this->id);
+		$statement->execute();
+
+		$this->id=0;
+		$this->isNew = true;
+	}
 }
