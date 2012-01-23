@@ -30,10 +30,21 @@ class MPageLogin extends ManagementPageBase
 			);
 		$this->mSubMenu = array();
 	}
-	
+
 	private function handleLogin()
 	{
-		if(/*success*/ true)
+		// variable to set the status of the login
+		// defaults to false.
+		$success = false;
+
+		// TODO: remove this after login username agreed with group
+		// --stw 23/01/2011
+		if(WebRequest::postString("bypass") == "bypass")
+		{
+			$success=true;
+		}
+
+		if($success)
 		{
 			$_SESSION["uid"] = "0";
 			global $cWebPath;
@@ -42,8 +53,7 @@ class MPageLogin extends ManagementPageBase
 		}
 		else
 		{
-		
+
 		}
-		
 	}
 }
