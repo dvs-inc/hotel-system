@@ -62,6 +62,13 @@ abstract class ManagementPageBase extends PageBase
 		$this->mStyles[] = $cWebPath . "/style/management.css";
 	}
 	
+	protected function setupPage()
+	{
+		parent::setupPage();
+
+		$this->mSmarty->assign("showError", "no");
+	}
+
 	protected function finalSetup()
 	{
 		global $gLogger;
