@@ -5,19 +5,19 @@
 			<div id="loginparts">
 				<label>
 					{message name="login-email"}
-					<input name="lgEmail" type="text" />
+					<input class="datainput" name="lgEmail" type="text" />
 				</label>
 				<label>
 					{message name="login-password"}
-					<input name="lgPasswd" type="password"/>
+					<input class="datainput" name="lgPasswd" type="password"/>
 				</label>
 				<label>
 					&nbsp;
-					<input type="submit" value="{message name="login-loginbutton"}"/>
+					<input id="submitbutton" type="submit" value="{message name="login-loginbutton"}"/>
 				</label>
 			</div>
 		</form>
-		<div id="loginlinks">
+		<div id="loginlinks" >
 			<ul>
 				<li><a href="{$cScriptPath}/ForgotPassword">{message name="login-forgotpassword"}</a></li>
 				<li><a href="{$cScriptPath}/Signup">{message name="login-signup"}</a></li>

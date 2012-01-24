@@ -7,14 +7,14 @@
 
 {block name="columntwo"}
 	<h2>{message name="yourdetails"}</h2>
-	<label>{message name="firstname"}<input name="qbFirstname" /></label>
-	<label>{message name="lastname"}<input name="qbLastname" /></label>
-	<label>{message name="address"}<input name="qbAddress" /></label>
-	<label>{message name="city"}<input name="qbCity" /></label>
-	<label>{message name="postcode"}<input name="qbPostcode" /></label>
-	<label>{message name="country"}<select name="qbCountry" /></label>
-	<label>{message name="email"}<select name="qbEmail" /></label>
-	<input type="submit" value="{message name="check-availability"}"/>
+	<label>{message name="firstname"}<input name="qbFirstname" class="datainput" /></label>
+	<label>{message name="lastname"}<input name="qbLastname" class="datainput" /></label>
+	<label>{message name="address"}<input name="qbAddress" class="datainput" /></label>
+	<label>{message name="city"}<input name="qbCity" class="datainput" /></label>
+	<label>{message name="postcode"}<input name="qbPostcode" class="datainput" /></label>
+	<label>{message name="country"}<select name="qbCountry" class="datainput" /></label>
+	<label>{message name="email"}<select name="qbEmail" class="datainput" /></label>
+	<input type="submit" id="submitbutton" style="margin-top:20px" value="{message name="check-availability"}"/>
 {/block}
 
 {block name="twocolpre"}
