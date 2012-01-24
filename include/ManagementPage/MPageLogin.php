@@ -91,6 +91,7 @@ class MPageLogin extends ManagementPageBase
 		else
 		{
 			$this->error($error);
+			$this->showLoginForm();
 		}
 	}
 }
