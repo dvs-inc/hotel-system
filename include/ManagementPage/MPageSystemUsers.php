@@ -78,6 +78,10 @@ class MPageSystemUsers extends ManagementPageBase
 
 		$this->mBasePage="mgmt/iuserlist.tpl";
 
+		if(isset($_SESSION['uid']))
+		{
+			$this->mSmarty->assign("currentUid", $_SESSION['uid']);
+		}
 	}
 
 	private function showChangePasswordPage()
