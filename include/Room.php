@@ -26,7 +26,13 @@ class Room extends DataObject
 		return $resultObject;
 	}
 	
-	public abstract function save();
+	public function save()
+	{
+	
+	}
 
-	public abstract function delete();
+	public function delete()
+	{
+	
+	}
 }
