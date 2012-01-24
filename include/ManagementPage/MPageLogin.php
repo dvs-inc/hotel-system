@@ -61,14 +61,14 @@ class MPageLogin extends ManagementPageBase
 			}
 			else
 			{
-				$error = "Bad Password";
+				$error = "bad-password";
 				$gLogger->log("Login:Bad password");
 
 			}
 		}
 		else
 		{
-			$error = "Bad username";
+			$error = "bad-username";
 			$gLogger->log("Login:Bad username");
 
 		}
@@ -90,7 +90,7 @@ class MPageLogin extends ManagementPageBase
 		}
 		else
 		{
-			throw new LoginFailedException($error);
+			$this->error($error);
 		}
 	}
 }

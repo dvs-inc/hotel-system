@@ -1,3 +1,3 @@
 <div id="errorbar">
-	<p>{$errortext}</p>
+	<p>{message name="$errortext"}</p>
 </div>

@@ -150,4 +150,10 @@ abstract class ManagementPageBase extends PageBase
 		else // file exists, but the class "within" doesn't, this is a problem as stuff isn't where it should be.
 			throw new Exception();
 	}
+
+	protected function error($messageTag)
+	{
+		$this->mSmarty->assign("showError", "yes");
+		$this->mSmarty->assign("errortext", $messageTag);
+	}
 }
