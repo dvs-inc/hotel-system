@@ -64,6 +64,24 @@ abstract class ManagementPageBase extends PageBase
 	
 	protected function finalSetup()
 	{
+		global $gLogger;
+		$gLogger->log("MPage final setup");
+		if(isset($_SESSION['uid']))
+		{
+			$gLogger->log("uid is set");
+			$uid = $_SESSION['uid'];
+			if($uid!=0)
+			{
+				$gLogger->log("uid is $uid");
+
+				$user = InternalUser::getById($uid);
+
+				$gLogger->log("name is" . $user->getUsername());
+
+				$this->mMainMenu["MPageLogout"]["data"] = " (". $user->getUsername().")";
+			}
+		}
+
 		parent::finalSetup();
 		
 		$this->mSmarty->assign("subnavigation", $this->mSubMenu);
