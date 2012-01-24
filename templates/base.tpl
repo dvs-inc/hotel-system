@@ -22,6 +22,7 @@
 		<div id="contentwrapper">
 			{block name="subnav"}{* For the management system, default empty *}{/block}
 			<div id="content">
+				{block name="prebody"}{* For possible use by notification bars, etc *}{/block}
 				{block name="body"}{$content|default:"<p>Nothing to see here!</p>"}{/block}
 			</div>
 		</div>
