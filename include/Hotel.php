@@ -86,10 +86,10 @@ HTML;
 	private function setupEnvironment()
 	{
 		global $gDatabase, $cDatabaseConnectionString, $cMyDotCnfFile, 
-			$cDatabaseModule, $cIncludePath;
+			$cDatabaseModule, $cIncludePath, $cLoggerName, $gLogger;
 
 		set_exception_handler(array("Hotel","exceptionHandler"));
-			
+
 		session_start();
 	
 		// check all the required PHP extensions are enabled on this SAPI
@@ -107,6 +107,9 @@ HTML;
 		require_once($cIncludePath . "/_Exceptions.php");
 		
 		spl_autoload_register("Hotel::autoLoader");
+
+		$gLogger = new $cLoggerName;
+		$gLogger->log("Initialising logger!");
 			
 		if(!extension_loaded($cDatabaseModule))
 		{

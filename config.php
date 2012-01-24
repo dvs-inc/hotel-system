@@ -18,6 +18,8 @@ $cDatabaseConnectionString = 'mysql:host=dbmaster.helpmebot.org.uk;dbname=dvs_ho
 $cDatabaseModule = "pdo_mysql";
 $cMyDotCnfFile = ".my.cnf";
 
+$cLoggerName="FakeLogger";
+
 // array of global scripts to be included
 // Global scripts are included first, then local scripts second
 $cGlobalScripts = array(
