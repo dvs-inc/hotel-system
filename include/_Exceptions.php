@@ -9,3 +9,5 @@ class SmartyTemplateNotFoundException extends SmartyException{}
 class ArgumentException extends Exception{}
 
 class SaveFailedException extends Exception{}
+
+class LoginFailedException extends Exception{}

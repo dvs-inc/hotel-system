@@ -28,13 +28,31 @@ class InternalUser extends DataObject
 		$statement->execute();
 
 		$resultObject = $statement->fetchObject("InternalUser");
-		$resultObject->isNew = false;
+		if($resultObject != false)
+		{
+			$resultObject->isNew = false;
+		}
 		return $resultObject;
 	}
 
 	public static function getByName($name)
 	{
+		global $gLogger;
+		$gLogger->log("InternalUser: getting $name from database");
+		global $gDatabase;
+		$statement = $gDatabase->prepare("SELECT * FROM internaluser WHERE username = :username LIMIT 1;");
+		$statement->bindParam(":username", $name);
 
+		$statement->execute();
+
+		$resultObject = $statement->fetchObject("InternalUser");
+		if($resultObject != false)
+		{
+			$gLogger->log("InternalUser::getByName: $name exists");
+			$resultObject->isNew = false;
+		}
+
+		return $resultObject;
 	}
 
 	/**
@@ -43,7 +61,10 @@ class InternalUser extends DataObject
 	 */
 	public function authenticate($password)
 	{
-		return ( $this->password == encryptPassword($this->username, $password));
+		global $gLogger;
+		$encpass = self::encryptPassword($this->username, $password);
+		$gLogger->log("InternalUser::authenticate: Comparing {$this->password} to {$encpass}");
+		return ( $this->password == $encpass);
 	}
 
 	// let's not make a decrypt method.... we don't need it.
