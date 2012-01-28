@@ -11,6 +11,7 @@
 	width: 12em;
 }
 #footer {
+	width:100%;
 	border-width: 1px;
 	border-color: #000000;
 	clear: both;
@@ -28,11 +29,12 @@
 	width: 12em;
 }
 #title {
-	padding: 9px;
+	padding: 9px 15px;
 	position: absolute;
 	height: 60px;
 	top: 0px;
 	left: 12em;
+	width:600px;
 }
 #title h1 {
 	display: inline;
@@ -104,5 +106,25 @@
 	border-style: solid;
 	border-width: 1px;
 	margin: -1px 2px 2px 2px;
-		padding:5px;
+	padding:10px;
+	display:inline-block;
+	min-width:400px;
+}
+#content table td{
+	padding-right:20px;
+}
+.infield{
+	width:350px;
+	display:block;
+}
+.infield input{
+	display:inline;
+	float:right;
+	width:180px;
+}
+.floatleft{
+	float:left;
+}
+#submitbutton{
+	margin-top:20px;
 }

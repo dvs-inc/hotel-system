@@ -35,6 +35,9 @@ body{
 	margin-right:7px;
 	color:DimGray;
 }
+#loginparts .datainput{
+	width:150px;
+}
 #submitbutton {
 	color:DimGray;
 }
@@ -142,44 +145,82 @@ h2{
 }
 
 .twocolumn .columnone, .twocolumn  .columntwo{
-	width:455px;
+	width:425px;
 	display:inline;
 	margin-bottom:50px;
-	background-color:pink;
 }
 
 .twocolumn .columnone{
 	float:left;
-	margin-left:10px;
-	float:left;
+	margin-left:30px;
 }
-.twocolumn  .columntwo{
+.twocolumn .columnone label{
+	margin-top:15px;
+}
+.twocolumn .columntwo{
 	float:right;
 }
-
+.twocolumn .columntwo label{
+	display:inline-block;
+	width:370px;
+}
+.twocolumn .columntwo label input{
+	float:right;
+	width:200px;
+}
+.twocolumn .columntwo #submitbutton{
+	float:right;
+	margin-right:60px;
+}
 .twocolumn h2{
 	padding-bottom:6px;
 	border-bottom:2px solid green;
 }
+.twocolumn .columnone input{
+	width:250px;
+}
 .tcuneven .columnone{
 	width:500px;
-	padding-right:63px;
+	padding-right:52px;
 }
 .tcuneven .columntwo{
 	width:300px;
 }
-
+.tcuneven .columnone h2{
+	width:auto;
+}
+.tcuneven .columntwo h2{
+	width:260px;
+}
+.tcuneven .columntwo label{
+	display:block;
+	width:auto;
+}
+.tcuneven .columntwo label input{
+	float:none;
+}
+.tcuneven .columntwo #submitbutton{
+	margin-top:20px;
+	float:left;
+}
 .columnone{
 	height:300px;
 	border-right:1px solid black;
 }
-.columntwo label{
+.columnone label, .columntwo label{
 	margin-top:10px;
 	color:DimGray;
 	font-size:20px;
 }
+.twocolumn .columnone .adultchild, .tcuneven .columntwo .adultchild
+{
+	width:50px;
+}
+.columnone h2{
+	width:370px;
+}
 .columntwo h2{
-	width:250px;
+	width:370px;
 }
 
 #footer{
@@ -200,4 +241,16 @@ input.datainput{
 	background-repeat:repeat-x;
 	box-shadow:2px 2px 3px Gray;
 	border-style:hidden;
+}
+
+.promo{
+	float:left;
+	display:inline-block;
+	padding-top:15px;
+}
+
+.twocolumn .promo .datainput{
+	float:right;
+	width:100px;
+	margin-left:10px;
 }

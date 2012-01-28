@@ -12,9 +12,9 @@
 	<label>{message name="address"}<input name="qbAddress" class="datainput" /></label>
 	<label>{message name="city"}<input name="qbCity" class="datainput" /></label>
 	<label>{message name="postcode"}<input name="qbPostcode" class="datainput" /></label>
-	<label>{message name="country"}<select name="qbCountry" class="datainput" /></label>
-	<label>{message name="email"}<select name="qbEmail" class="datainput" /></label>
-	<input type="submit" id="submitbutton" style="margin-top:20px" value="{message name="check-availability"}"/>
+	<label>{message name="country"}<select name="qbCountry"/></label>
+	<label>{message name="email"}<select name="qbEmail"/></label>
+	<input type="submit" id="submitbutton" value="{message name="check-availability"}"/>
 {/block}
 
 {block name="twocolpre"}
