@@ -116,15 +116,16 @@
 .infield{
 	width:350px;
 	display:block;
+	float:left;
 }
 .infield input{
 	display:inline;
 	float:right;
 	width:180px;
 }
-.floatleft{
-	float:left;
-}
 #submitbutton{
 	margin-top:20px;
+}
+#constraint{
+	width:400px;
 }
