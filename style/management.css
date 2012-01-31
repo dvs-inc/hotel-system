@@ -11,11 +11,14 @@
 	width: 12em;
 }
 #footer {
-	width:100%;
+	width:auto;
+	min-width:960px;
 	border-width: 1px;
 	border-color: #000000;
 	clear: both;
 	border-top-style: solid;
+	font-size:13px;
+	text-align:center;
 }
 #contentwrapper {
 	position: relative;
@@ -50,7 +53,7 @@
 
 }
 #nav ul li a {
-	padding: 8px;
+	padding: 9px 8px 7px;
 	width: 11em;
 	background-color: #787878;
 	text-decoration: none;
@@ -72,12 +75,13 @@
 #nav ul li ul li a {
 	border-width: 1px;
 	border-color: #000000;
-	padding-top: 4px;
-	padding-bottom: 4px;
+	padding-top: 6px;
+	padding-bottom: 2px;
 	width: 10em;
 	background-color: #C0C0C0;
 	color: #000000;
 	border-bottom-style: solid;
+	border-color: #ffffff;
 }
 #subnav {
 }
@@ -89,14 +93,16 @@
 }
 #subnav ul li {
 	display: inline;
-	border-style: solid solid none solid;
+	border-style: solid;
 	border-width: 1px;
-	margin: 4px;
+	margin:4px;
+	padding:0px 5px 0px 2px;
+	background:#FFFFFF;
 }
 #subnav ul li a {
 	padding: 3px 5px 0px 5px;
 	background-color: white;
-	text-decoration: none;
+	text-decoration:none;
 	font-size: 10pt;
 	color: #000000;
 	margin-right: -4px;
@@ -108,24 +114,44 @@
 	margin: -1px 2px 2px 2px;
 	padding:10px;
 	display:inline-block;
-	min-width:400px;
+	width:auto;
+	min-width:740px;
+}
+#content label{
+	font-weight:bold;
 }
 #content table td{
-	padding-right:20px;
+	padding-right:30px;
+}
+#userlist{
+	border-collapse:collapse;
+}
+#userlist tr:hover{
+	background:DimGray;
+	color:white;
+	border-color:DimGray;	
+}
+#userlist td a{
+	text-decoration:none;
+	color:inherit;
 }
 .infield{
-	width:350px;
+	width:450px;
 	display:block;
 	float:left;
+	margin-top:5px;
 }
 .infield input{
 	display:inline;
 	float:right;
-	width:180px;
+	width:230px;
 }
 #submitbutton{
 	margin-top:20px;
 }
 #constraint{
-	width:400px;
+	width:500px;
+}
+#minWidth{
+	min-width:150px;
 }

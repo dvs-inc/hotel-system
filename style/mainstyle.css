@@ -3,7 +3,6 @@ body{
 }
 
 #globalwrapper{
-	background:red;
 	background-image: url("../images/bg.gif");
 	width:960px;
 	margin-left:auto;
@@ -36,7 +35,7 @@ body{
 	color:DimGray;
 }
 #loginparts .datainput{
-	width:150px;
+	width:180px;
 }
 #submitbutton {
 	color:DimGray;
@@ -44,9 +43,10 @@ body{
 #loginlinks{
 	width:150px;
 	display:block;
-	margin-top:1px;
+	margin-top:2px;
 	top:52px;
 	position:absolute;
+	margin-left:2px;
 }
 #loginlinks ul{
 	margin-top:0px;
@@ -56,6 +56,9 @@ body{
 }
 #loginlinks ul li a{
 	font-size:12px;
+	color:#006600;
+	text-decoration:none;
+	font-weight:bold;
 }
 
 #nav{
@@ -74,10 +77,10 @@ body{
 }
 
 #nav1{
-		margin-left:auto;
-		margin-right:auto;
-		width:550px;
-		display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:700px;
+	display:block;
 }
 #nav1 ul{
 	display:block;
@@ -87,18 +90,17 @@ body{
 	border-left:1px solid #e4e4e4;
 	border-right:1px solid #d2d2d2;
 	padding:0px;
+	height:50px
 }
 #nav1 ul li a{
-	padding-left:20px;
-	padding-right:20px;
-	padding-top:15px;
-	padding-bottom:15px;
-	margin:0px;
+	text-align:center;
+	padding:15px 20px;
 	height:20px;	
 	display:block;
 	text-decoration:none;
 	color:#686868;
 	font-weight:bold;
+	width:70px;
 }
 #nav1 ul li a.current{
 	color:#006600;
@@ -108,9 +110,8 @@ body{
 }
 
 #langlinks{
-	display:block;
-	margin-right:14px;
 	float:right;
+	margin-right:14px;
 }
 #langlinks ul li{
 	margin-left:2px;
@@ -147,7 +148,7 @@ h2{
 .twocolumn .columnone, .twocolumn  .columntwo{
 	width:425px;
 	display:inline;
-	margin-bottom:50px;
+	margin-bottom:25px;
 }
 
 .twocolumn .columnone{
@@ -197,6 +198,7 @@ h2{
 	width:auto;
 }
 .tcuneven .columntwo label input{
+	width:210px;
 	float:none;
 }
 .tcuneven .columntwo #submitbutton{
@@ -204,8 +206,8 @@ h2{
 	float:left;
 }
 .columnone{
-	height:300px;
-	border-right:1px solid black;
+	height:330px;
+	border-right:2px solid DimGray;
 }
 .columnone label, .columntwo label{
 	margin-top:10px;
@@ -228,8 +230,11 @@ h2{
 	width:960px;
 	height:50px;
 	background-image: url("../images/g.gif");
+	font-size:13px;
+	text-align:center;
+	color:DimGray;
+	line-height:50px;
 }
-
 label{
 	display:block;
 }
@@ -241,12 +246,13 @@ input.datainput{
 	background-repeat:repeat-x;
 	box-shadow:2px 2px 3px Gray;
 	border-style:hidden;
+	height:20px;
 }
 
 .promo{
 	float:left;
 	display:inline-block;
-	padding-top:15px;
+	padding-top:5px;
 }
 
 .twocolumn .promo .datainput{
