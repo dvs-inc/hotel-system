@@ -7,6 +7,7 @@ class InternalUser extends DataObject
 
 	protected $username;
 	protected $password;
+	protected $accessLevel;
 
 	public static function getIdList()
 	{
@@ -84,9 +85,10 @@ class InternalUser extends DataObject
 
 		if($this->isNew)
 		{ // insert
-			$statement = $gDatabase->prepare("INSERT INTO internaluser VALUES (null, :username, :password);");
+			$statement = $gDatabase->prepare("INSERT INTO internaluser VALUES (null, :username, :password, :accesslvl);");
 			$statement->bindParam(":username", $this->username);
 			$statement->bindParam(":password", $this->password);
+			$statement->bindParam(":accesslvl", $this->accessLevel);
 			if($statement->execute())
 			{
 				$this->isNew = false;
@@ -99,9 +101,10 @@ class InternalUser extends DataObject
 		}
 		else
 		{ // update
-			$statement = $gDatabase->prepare("UPDATE internaluser SET username = :username, password = :password WHERE id = :id LIMIT 1;");
+			$statement = $gDatabase->prepare("UPDATE internaluser SET username = :username, password = :password, accessLevel = :accesslvl WHERE id = :id LIMIT 1;");
 			$statement->bindParam(":username", $this->username);
 			$statement->bindParam(":password", $this->password);
+			$statement->bindParam(":accesslvl", $this->accessLevel);
 			$statement->bindParam(":id", $this->id);
 
 			if(!$statement->execute())
@@ -125,6 +128,20 @@ class InternalUser extends DataObject
 	{
 		$this->username = $username;
 	}
+
+	public function getAccessLevel()
+	{
+		return $this->accessLevel;
+	}
+
+	public function setAccessLevel($value)
+	{
+		if(is_numeric($value))
+		{
+			$this->accessLevel = $value;
+		}
+	}
+
 
 	public function delete()
 	{

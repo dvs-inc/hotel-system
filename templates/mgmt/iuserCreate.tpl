@@ -6,6 +6,7 @@
 <label class="infield">{message name="login-username"}<input type="text" name="username" /></label>
 <label class="infield">{message name="login-password"}<input type="password" name="pass" /></label>
 <label class="infield">{message name="confirmpassword"}<input type="password" name="pass2" /></label>
+<label class="infield">{message name="useraccesslevel"}<input type="text" name="accesslevel" /></label>
 <input id="submitbutton" type="submit"/>
 </div>
 </form>

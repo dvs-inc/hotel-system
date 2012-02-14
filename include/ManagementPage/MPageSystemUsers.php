@@ -50,9 +50,11 @@ class MPageSystemUsers extends ManagementPageBase
 
 				$password = WebRequest::post("pass");
 				$username = WebRequest::post("username");
+				$level = WebRequest::postInt("accesslevel");
 				$user = new InternalUser();
 				$user->setUsername($username);
 				$user->setPassword($password);
+				$user->setAccessLevel($level);
 				$user->save();
 
 				global $cScriptPath;
