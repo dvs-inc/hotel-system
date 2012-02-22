@@ -117,17 +117,25 @@ abstract class PageBase
 	
 	public function execute()
 	{
+		Hooks::run("PreSetupPage");
+	
 		// set up the page
 		$this->setupPage();
 
+		Hooks::run("PreRunPage");
+		
 		// "run" the page - allow the user to make any customisations to the
 		// current state
 		$this->runPage();
 
+		Hooks::run("PostRunPage");
+		
 		// perform any final setup for the page, overwriting any user 
 		// customisations which aren't allowed, and anything that potentially 
 		// needs to be rebuilt/updated.
 		$this->finalSetup();
+
+		Hooks::run("PostFinalSetup");
 
 		try
 		{
@@ -203,6 +211,8 @@ abstract class PageBase
 			
 			if(get_parent_class($pageobject) == "PageBase")
 			{
+				Hooks::run("CreatePage", array($pageobject));
+				
 				return $pageobject;
 			}
 			else
