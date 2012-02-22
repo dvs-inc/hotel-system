@@ -111,10 +111,10 @@ abstract class ManagementPageBase extends PageBase
 			count($pathinfo) >= 1 &&
 			$pathinfo[0] != "" &&  // not empty
 			(!ereg("[^a-zA-Z0-9]", $pathinfo[0])) // contains only alphanumeric chars
-		)
-		{
+			)
+		{  //if
 			$page = $pathinfo[0];
-		}
+		} // fi
 		
 		// okay, the page title should be reasonably safe now, let's try and make the page
 		
@@ -124,7 +124,9 @@ abstract class ManagementPageBase extends PageBase
 		$filepath = $cIncludePath . "/ManagementPage/" . $pagename . ".php";
 		
 		if(file_exists($filepath))
+		{
 			require_once($filepath);
+		}
 		else
 		{	// oops, couldn't find the requested page, let's fail gracefully.
 			$pagename = "MPage404";
@@ -155,11 +157,17 @@ abstract class ManagementPageBase extends PageBase
 					}
 				}
 			}
-			else	// defined, but doesn't inherit properly, so we can't guarentee stuff will work.
+			else
+			{
+				// defined, but doesn't inherit properly, so we can't guarentee stuff will work.
 				throw new Exception();
+			}
 		}
-		else // file exists, but the class "within" doesn't, this is a problem as stuff isn't where it should be.
+		else 
+		{
+			// file exists, but the class "within" doesn't, this is a problem as stuff isn't where it should be.
 			throw new Exception();
+		}
 	}
 
 	protected function error($messageTag)
