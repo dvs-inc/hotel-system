@@ -22,7 +22,7 @@ class Hooks
 	 * First item in the parameters array is the return value of the last hook 
 	 * to be run - should be used as the value to be processed by the hook
 	 */
-	public static function run($hook, $parameters)
+	public static function run($hook, $parameters = array(""))
 	{
 		if(isset(self::$registeredHandlers[$hook]))
 		{
