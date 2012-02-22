@@ -33,6 +33,10 @@ abstract class ManagementPageBase extends PageBase
 					"title" => "mpage-systemusers",
 					"link" => "/SystemUsers",
 					),
+				"MPageAccess" => array(
+					"title" => "mpage-access",
+					"link" => "/Access",
+					),
 				"MPageLanguages" => array(
 					"title" => "mpage-languages",
 					"link" => "/Languages",
