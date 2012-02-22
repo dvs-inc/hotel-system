@@ -187,7 +187,9 @@ abstract class PageBase
 		$filepath = $cIncludePath . "/Page/" . $pagename . ".php";
 		
 		if(file_exists($filepath))
+		{
 			require_once($filepath);
+		}
 		else
 		{	// oops, couldn't find the requested page, let's fail gracefully.
 			$pagename = "Page404";
@@ -200,11 +202,19 @@ abstract class PageBase
 			$pageobject = new $pagename;
 			
 			if(get_parent_class($pageobject) == "PageBase")
+			{
 				return $pageobject;
-			else	// defined, but doesn't inherit properly, so we can't guarentee stuff will work.
+			}
+			else
+			{
+				// defined, but doesn't inherit properly, so we can't guarentee stuff will work.
 				throw new Exception();
+			}
 		}
-		else // file exists, but the class "within" doesn't, this is a problem as stuff isn't where it should be.
+		else
+		{
+			// file exists, but the class "within" doesn't, this is a problem as stuff isn't where it should be.
 			throw new Exception();
+		}
 	}
 }
