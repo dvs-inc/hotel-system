@@ -30,6 +30,9 @@ class MPageSystemUsers extends ManagementPageBase
 			case "create":
 				$this->showCreateUserPage();
 				break;
+			case "changeaccess":
+				$this->showChangeAccessPage();
+				break;
 			case "list":
 			default:
 				$this->showListUserPage();
@@ -69,6 +72,38 @@ class MPageSystemUsers extends ManagementPageBase
 		else
 		{
 			$this->mBasePage="mgmt/iuserCreate.tpl";
+		}
+	}
+
+	private function showChangeAccessPage()
+	{
+		if(WebRequest::wasPosted())
+		{
+			try{
+				$userid = WebRequest::getInt("id");
+				$level = WebRequest::postInt("accesslevel");
+				$user = InternalUser::getById($userid);
+				if($user == null)
+				{
+					throw new Exception("User does not exist");
+				}
+
+				$user->setAccessLevel($level);
+				$user->save();
+
+				global $cScriptPath;
+				$this->mHeaders[] = "Location: {$cScriptPath}/SystemUsers";
+			}
+			catch (CreateUserException $ex)
+			{
+				$this->mBasePage="mgmt/iuserSetAccess.tpl";
+				$this->error($ex->getMessage());
+			}
+		}
+		else
+		{
+			$this->mSmarty->assign("userid", WebRequest::getInt("id"));
+			$this->mBasePage="mgmt/iuserSetAccess.tpl";
 		}
 	}
 
