@@ -1,6 +1,6 @@
 <div class="pager">
 	<ul>
-		<li><a href="?showall">ALL</a></li>
+		<li><a href="?showall=true">ALL</a></li>
 		<li><a href="?prefix=a">a</a></li>
 		<li><a href="?prefix=b">b</a></li>
 		<li><a href="?prefix=c">c</a></li>

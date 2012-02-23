@@ -17,7 +17,24 @@ class MPageLanguages extends ManagementPageBase
 	
 		$this->mBasePage="mgmt/lang.tpl";
 		
-		$keys = Message::getMessageKeys();
+		$keys = array();
+		if(WebRequest::get("showall"))
+		{
+			$keys = Message::getMessageKeys();
+		}
+		else
+		{
+			if(WebRequest::get("prefix"))
+			{
+				$keys = Message::getMessageKeys();
+				$keys = array_filter($keys, function($value){
+					$prefix = WebRequest::get("prefix");
+					return (substr($value, 0, strlen($prefix)) == $prefix);
+				});
+			}
+		}		
+		
+		
 		
 		global $cAvailableLanguages;
 		
