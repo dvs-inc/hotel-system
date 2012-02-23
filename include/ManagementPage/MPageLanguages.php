@@ -6,6 +6,9 @@ class MPageLanguages extends ManagementPageBase
 {
 	protected function runPage()
 	{
+		global $cWebPath;
+		$this->mStyles[] = $cWebPath . "/style/pager.css";
+	
 		if(WebRequest::wasPosted())
 		{
 			$this->save();
