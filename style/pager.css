@@ -1,0 +1,26 @@
+.pager
+{
+	clear:both;
+}
+
+.pager ul
+{
+	margin:0px;
+	padding:0px;
+	list-style-type:none;
+}
+
+.pager ul li
+{
+	float:left;
+}
+
+.pager ul li a
+{
+	width:25px;
+	height:25px;
+	border:1px solid black;
+	text-align:center;
+	display:block;
+	margin-right:-1px;
+}
