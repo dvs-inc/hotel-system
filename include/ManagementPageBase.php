@@ -5,9 +5,9 @@ if(!defined("HMS")) die("Invalid entry point");
 abstract class ManagementPageBase extends PageBase
 {
 	// is this page a protected by login page?
-	// defaults to true, so we protect everything and have to explicitly 
+	// defaults to 1, so we protect everything and have to explicitly 
 	// unprotect if desired.
-	protected $mIsProtectedPage = true;
+	protected $mIsProtectedPage = false;
 
 	// message containing the title of the page
 	protected $mPageTitle = "management-title";
@@ -15,6 +15,8 @@ abstract class ManagementPageBase extends PageBase
 	// base template to use
 	protected $mBasePage = "mgmt/base.tpl";
 
+	protected $mAccessName = "public";
+	
 	// main module menu
 	protected $mMainMenu = array(
 		"MPageHome" => array(
@@ -58,6 +60,11 @@ abstract class ManagementPageBase extends PageBase
 	public function isProtected()
 	{
 		return $this->mIsProtectedPage;
+	}
+	
+	public function getAccessName()
+	{
+		return $this->mAccessName;
 	}
 	
 	protected function addSystemCssJs()
@@ -140,6 +147,8 @@ abstract class ManagementPageBase extends PageBase
 			
 			if(get_parent_class($pageobject) == "ManagementPageBase")
 			{
+				Hooks::run("CreatePage", array($pageobject));
+			
 				if(! $pageobject->isProtected())
 				{
 					return $pageobject;
@@ -148,6 +157,10 @@ abstract class ManagementPageBase extends PageBase
 				{
 					if(Session::isLoggedIn())
 					{
+						Hooks::register("AuthorisedCreatePage", ManagementPageBase::checkPageAccessLevel);
+					
+						Hooks::run("AuthorisedCreatePage", array($pageobject));
+					
 						return $pageobject;
 					}
 					else
@@ -174,5 +187,26 @@ abstract class ManagementPageBase extends PageBase
 	{
 		$this->mSmarty->assign("showError", "yes");
 		$this->mSmarty->assign("errortext", $messageTag);
+	}
+	
+	private static function checkPageAccessLevel($parameters)
+	{
+		$page = $parameters[0];
+		
+		$userAccessLevel = InternalUser::getById(Session::getLoggedInUser())->getAccessLevel();
+		$actionName=$page->getAccessName();
+		if($actionName == "public")
+		{
+			$pageAccessLevel = 0;
+		}
+		else
+		{
+			$pageAccessLevel = StaffAccess::getByAction()->getLevel();
+		}
+				
+		if($userAccessLevel < $pageAccessLevel)
+		{
+			
+		}
 	}
 }

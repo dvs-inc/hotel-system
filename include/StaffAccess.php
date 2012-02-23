@@ -46,6 +46,11 @@ class StaffAccess extends DataObject
 		{
 			$resultObject->isNew = false;
 		}
+		else
+		{
+			$resultObject->action = $action;
+			$resultObject->level = 99;
+		}
 		return $resultObject;
 	}
 
