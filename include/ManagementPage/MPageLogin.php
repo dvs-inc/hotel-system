@@ -57,7 +57,7 @@ class MPageLogin extends ManagementPageBase
 				$gLogger->log("Login: OK");
 
 				$success = true;
-				$_SESSION["uid"] = $userAccount->getId();
+				Session::setLoggedInUser($userAccount->getId());
 			}
 			else
 			{
@@ -78,7 +78,7 @@ class MPageLogin extends ManagementPageBase
 		if(WebRequest::postString("bypass") == "bypass")
 		{
 			$success=true;
-			$_SESSION['uid'] = "0";
+			Session::setLoggedInUser(0);
 			$gLogger->log("LOGIN BYPASSED!");
 		}
 

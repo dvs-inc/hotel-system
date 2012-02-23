@@ -77,10 +77,10 @@ abstract class ManagementPageBase extends PageBase
 	{
 		global $gLogger;
 		$gLogger->log("MPage final setup");
-		if(isset($_SESSION['uid']))
+		if(Session::getLoggedInUser())
 		{
 			$gLogger->log("uid is set");
-			$uid = $_SESSION['uid'];
+			$uid = Session::getLoggedInUser();
 			if($uid!=0)
 			{
 				$gLogger->log("uid is $uid");
@@ -146,7 +146,7 @@ abstract class ManagementPageBase extends PageBase
 				}
 				else
 				{
-					if(isset($_SESSION['uid']))
+					if(Session::isLoggedIn())
 					{
 						return $pageobject;
 					}

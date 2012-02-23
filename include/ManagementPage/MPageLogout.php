@@ -6,7 +6,7 @@ class MPageLogout extends ManagementPageBase
 {
 	protected function runPage()
 	{
-		session_destroy();
+		Session::destroy();
 		
 		global $cWebPath;
 		$this->mHeaders[] = "HTTP/1.1 303 See Other";
