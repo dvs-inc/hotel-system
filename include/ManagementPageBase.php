@@ -159,7 +159,7 @@ abstract class ManagementPageBase extends PageBase
 					{
 						Hooks::register("AuthorisedCreatePage", ManagementPageBase::checkPageAccessLevel);
 					
-						Hooks::run("AuthorisedCreatePage", array($pageobject));
+						$pageobject = Hooks::run("AuthorisedCreatePage", array($pageobject));
 					
 						return $pageobject;
 					}
