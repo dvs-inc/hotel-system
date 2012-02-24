@@ -86,7 +86,12 @@ class Message extends DataObject
 	
 	public static function getMessage($name)
 	{
-		return self::getByName($name, self::getActiveLanguage())->getContent();
+		$lang = self::getActiveLanguage();
+	
+		if($lang==false)
+			throw new Exception("No active language!");
+	
+		return self::getByName($name, $lang)->getContent();
 	}
 	
 	/**
