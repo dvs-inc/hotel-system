@@ -162,12 +162,18 @@ abstract class ManagementPageBase extends PageBase
 			
 				if(! $pageobject->isProtected())
 				{
+					$gLogger->log("MPage object not protected.");
+				
 					return $pageobject;
 				}
 				else
 				{
+					$gLogger->log("MPage object IS protected.");
+				
 					if(Session::isLoggedIn())
-					{
+					{	
+						$gLogger->log("Session is logged in");
+
 						Hooks::register("PreRunPage", 
 							function($parameters)
 							{
@@ -181,6 +187,8 @@ abstract class ManagementPageBase extends PageBase
 					}
 					else
 					{ // not logged in
+						$gLogger->log("Session NOT logged in");
+
 						require_once($cIncludePath . "/ManagementPage/MPageLogin.php");
 						return new MPageLogin();
 					}
