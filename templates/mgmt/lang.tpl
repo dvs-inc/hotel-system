@@ -2,6 +2,7 @@
 {block name="body"}
 {message name="mlanguage-editor"}
 {include file="mgmt/lang-pager.tpl"}
+{if $showtable == 1}
 <form method="post" action="?submit">
 <table>
 	<tr>
@@ -27,4 +28,7 @@
 </table>
 <input {$readonly} type="submit" value="{message name="save"}" />
 </form>
+{else}
+{message name="mgmt-messageeditor-noprefix"}
+{/if}
 {/block}

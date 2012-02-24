@@ -61,27 +61,34 @@ class MPageLanguages extends ManagementPageBase
 		}		
 		
 		
-		
-		global $cAvailableLanguages;
-		
-		// retrieve the message table as an array (of message keys) of arrays 
-		// (of languages) of arrays (of id/current content)
-		$messagetable = array();
-		foreach($keys as $mkey)
+		if(count($keys) > 0)
 		{
-			$messagetable[$mkey] = array();
-			foreach($cAvailableLanguages as $lang => $langname)
+			$this->mSmarty->assign("showtable", 1);
+			global $cAvailableLanguages;
+			
+			// retrieve the message table as an array (of message keys) of arrays 
+			// (of languages) of arrays (of id/current content)
+			$messagetable = array();
+			foreach($keys as $mkey)
 			{
-				$message = Message::getByName($mkey, $lang);
-				$messagetable[$mkey][$lang] = array(
-					"id" => $message->getId(),
-					"content" => $message->getContent()
-					);
+				$messagetable[$mkey] = array();
+				foreach($cAvailableLanguages as $lang => $langname)
+				{
+					$message = Message::getByName($mkey, $lang);
+					$messagetable[$mkey][$lang] = array(
+						"id" => $message->getId(),
+						"content" => $message->getContent()
+						);
+				}
 			}
+			
+			$this->mSmarty->assign("languagetable", $messagetable);
+			$this->mSmarty->assign("languages",$cAvailableLanguages);
 		}
-		
-		$this->mSmarty->assign("languagetable", $messagetable);
-		$this->mSmarty->assign("languages",$cAvailableLanguages);
+		else
+		{
+			$this->mSmarty->assign("showtable", 0);
+		}
 	}
 
 	private function save()
