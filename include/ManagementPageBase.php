@@ -59,6 +59,10 @@ abstract class ManagementPageBase extends PageBase
 					),
 				)
 			),
+		"MPagePublicSite" => array(
+			"title" => "mpage-publicsite",
+			"link" => "/PublicSite",
+			),
 		"MPageLogout" => array(
 			"title" => "mpage-logout",
 			"link" => "/Logout",
