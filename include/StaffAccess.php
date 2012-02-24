@@ -50,6 +50,7 @@ class StaffAccess extends DataObject
 		{
 			$resultObject->action = $action;
 			$resultObject->level = 99;
+			$resultObject->save();
 		}
 		return $resultObject;
 	}

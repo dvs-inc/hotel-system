@@ -167,7 +167,12 @@ abstract class ManagementPageBase extends PageBase
 				{
 					if(Session::isLoggedIn())
 					{
-						Hooks::register("AuthorisedCreatePage", ManagementPageBase::checkPageAccessLevel);
+						Hooks::register("PreRunPage", 
+							function($parameters)
+							{
+								ManagementPageBase::checkAccess($parameters[1]->getAccessName());
+								return $parameters[0];
+							});
 					
 						$pageobject = Hooks::run("AuthorisedCreatePage", array($pageobject));
 					
@@ -199,24 +204,31 @@ abstract class ManagementPageBase extends PageBase
 		$this->mSmarty->assign("errortext", $messageTag);
 	}
 	
-	private static function checkPageAccessLevel($parameters)
+	public static function checkAccess($actionName)
 	{
-		$page = $parameters[0];
-		
+		global $gLogger;
+		$gLogger->log("Entering checkPageAccessLevel");
+			
 		$userAccessLevel = InternalUser::getById(Session::getLoggedInUser())->getAccessLevel();
-		$actionName=$page->getAccessName();
+		
+		$gLogger->log("checkPageAccessLevel: user access is $userAccessLevel, page action name is $actionName");
+
+		
 		if($actionName == "public")
 		{
 			$pageAccessLevel = 0;
 		}
 		else
 		{
-			$pageAccessLevel = StaffAccess::getByAction()->getLevel();
+			$actionObject = StaffAccess::getByAction($actionName);
+			$pageAccessLevel = $actionObject->getLevel();
+			$gLogger->log("checkPageAccessLevel: page access is " . $pageAccessLevel);
+
 		}
 				
 		if($userAccessLevel < $pageAccessLevel)
 		{
-			
+			throw new AccessDeniedException();
 		}
 	}
 }

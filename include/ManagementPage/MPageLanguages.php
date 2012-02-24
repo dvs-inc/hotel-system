@@ -4,6 +4,11 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class MPageLanguages extends ManagementPageBase
 {
+	public function __construct()
+	{
+		$this->mAccessName = "edit-language-messages";
+	}
+
 	protected function runPage()
 	{
 		global $cWebPath;
