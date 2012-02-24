@@ -94,6 +94,12 @@ class Message extends DataObject
 	 */
 	public static function getError( $name,  $language)
 	{
+		if(strlen($name) == 0)
+			throw new Exception("Cannot create an error Message object with no name!");
+	
+		if(strlen($language) == 0)
+			throw new Exception("Cannot create an error Message object with no language!");
+	
 		$em = new Message();
 		$em->code = $language;
 		$em->name = $name;
@@ -202,6 +208,12 @@ class Message extends DataObject
 			global $gDatabase;
 			$statement = $gDatabase->prepare("INSERT INTO message (name, code, content) VALUES (:name, :code, :content);");
 
+			if($this->name == "")
+				throw new SaveFailedException("No name set!");
+			
+			if($this->code == "")
+				throw new SaveFailedException("No code set!");
+			
 			$statement->bindParam(":name", $this->name);
 			$statement->bindParam(":code", $this->code);
 			$statement->bindParam(":content", $this->content);
