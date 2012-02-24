@@ -18,13 +18,13 @@
 				{if $message@key eq 'zxx'}
 					{$message.content}
 				{else}
-					<textarea name="lang{$message.id}msg" cols="40" rows="5" xml:space="preserve">{$message.content|escape}</textarea>
+					<textarea {$readonly} name="lang{$message.id}msg" cols="40" rows="5" xml:space="preserve">{$message.content|escape}</textarea>
 				{/if}
 			</td>
 			{/foreach}
 		</tr>
 	{/foreach}
 </table>
-<input type="submit" value="{message name="save"}" />
+<input {$readonly} type="submit" value="{message name="save"}" />
 </form>
 {/block}

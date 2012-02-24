@@ -6,16 +6,34 @@ class MPageLanguages extends ManagementPageBase
 {
 	public function __construct()
 	{
-		$this->mAccessName = "edit-language-messages";
+		$this->mAccessName = "view-language-messages";
 	}
 
 	protected function runPage()
 	{
+		// try to get more access than we may have.
+		try
+		{
+			self::checkAccess('edit-language-messages');
+			$this->mSmarty->assign("readonly", '');
+		}
+		catch(AccessDeniedException $ex) // nope, catch the error and handle gracefully
+		{
+			// caution: if you're copying this, this is a hack to make sure 
+			//			users know they don't have the access to do this, not
+			// 			to actually stop them from doing it, though it will have
+			// 			that effect to the non-tech-savvy.
+			$this->mSmarty->assign("readonly", 'disabled="disabled"');
+		}
+		
+	
 		global $cWebPath;
 		$this->mStyles[] = $cWebPath . "/style/pager.css";
 	
 		if(WebRequest::wasPosted())
 		{
+			self::checkAccess("edit-language-messages");
+		
 			$this->save();
 			global $cWebPath;
 			$this->mHeaders[] = "HTTP/1.1 303 See Other";
