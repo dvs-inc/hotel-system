@@ -4,6 +4,11 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class MPageSystemUsers extends ManagementPageBase
 {
+	public function __construct()
+	{
+		$this->mAccessName = "view-systemuser";
+	}
+
 	protected function runPage()
 	{
 		$this->mSubMenu = array(
@@ -22,15 +27,19 @@ class MPageSystemUsers extends ManagementPageBase
 		switch($action)
 		{
 			case "changepw":
+				self::checkAccess("edit-systemuser-password");
 				$this->showChangePasswordPage();
 				break;
 			case "del":
+				self::checkAccess("delete-systemuser");
 				$this->doDeleteUserAction();
 				break;
 			case "create":
+				self::checkAccess("create-systemuser");
 				$this->showCreateUserPage();
 				break;
 			case "changeaccess":
+				self::checkAccess("edit-systemuser-access");
 				$this->showChangeAccessPage();
 				break;
 			case "list":
