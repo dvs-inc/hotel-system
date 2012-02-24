@@ -9,10 +9,13 @@ class Hooks
 	
 	public static function register($name, $callback)
 	{
+		global $gLogger;
 		if(!isset(self::$registeredHandlers[$name]))
 		{
+			$gLogger->log("Registering hook $name");
 			self::$registeredHandlers[$name]=array();
 		}
+		$gLogger->log("Registering callback for hook $name");
 		array_push(self::$registeredHandlers[$name],$callback);
 	}
 
@@ -24,8 +27,12 @@ class Hooks
 	 */
 	public static function run($hook, $parameters = array(""))
 	{
+		global $gLogger;
+		$gLogger->log("Checking hook registry for $hook");
 		if(isset(self::$registeredHandlers[$hook]))
 		{
+			$gLogger->log("Running callbacks for hook $hook");
+		
 			if(! (isset($parameters) && is_array($parameters)))
 			{
 				$parameters = array("");
@@ -39,6 +46,10 @@ class Hooks
 					$parameters[0] = $retval;
 				}
 			}
+		}
+		else
+		{
+			$gLogger->log("Hook $hook is not registered!");
 		}
 		
 		return $parameters[0];

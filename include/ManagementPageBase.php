@@ -137,7 +137,7 @@ abstract class ManagementPageBase extends PageBase
 		
 		$pagename = "MPage" . $page;
 		
-		global $cIncludePath;
+		global $cIncludePath, $gLogger;
 		$filepath = $cIncludePath . "/ManagementPage/" . $pagename . ".php";
 		
 		if(file_exists($filepath))
@@ -158,6 +158,7 @@ abstract class ManagementPageBase extends PageBase
 			if(get_parent_class($pageobject) == "ManagementPageBase")
 			{
 				Hooks::run("CreatePage", array($pageobject));
+				$gLogger->log("MPage object created.");
 			
 				if(! $pageobject->isProtected())
 				{
