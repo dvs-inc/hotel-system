@@ -152,6 +152,9 @@ HTML;
 	{
 		// discard any extra content
 		ob_end_clean();
+		
+		global $gLogger;
+		$gLogger->log("Shutting down system...");
 	}
 	
 	protected function main()
