@@ -157,7 +157,7 @@ class Message extends DataObject
 				self::$requestLanguage = $cookie;
 			
 				// use this value.
-				return $getParam;
+				return $cookie;
 			}
 		
 		}
