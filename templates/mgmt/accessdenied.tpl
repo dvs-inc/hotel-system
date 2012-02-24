@@ -1,4 +1,4 @@
 {extends file="mgmt/base.tpl"}
 {block name="body"}
-{message name="mgmt-accessdenied"}
+<b>{message name="mgmt-accessdenied"}</b>
 {/block}
