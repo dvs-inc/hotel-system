@@ -15,6 +15,8 @@ abstract class ManagementPageBase extends PageBase
 	// base template to use
 	protected $mBasePage = "mgmt/base.tpl";
 
+	protected $mAccessName = "public";
+	
 	// main module menu
 	protected $mMainMenu = array(
 		"MPageHome" => array(
@@ -68,6 +70,11 @@ abstract class ManagementPageBase extends PageBase
 	public function isProtected()
 	{
 		return $this->mIsProtectedPage;
+	}
+	
+	public function getAccessName()
+	{
+		return $this->mAccessName;
 	}
 	
 	protected function addSystemCssJs()
@@ -130,7 +137,7 @@ abstract class ManagementPageBase extends PageBase
 		
 		$pagename = "MPage" . $page;
 		
-		global $cIncludePath;
+		global $cIncludePath, $gLogger;
 		$filepath = $cIncludePath . "/ManagementPage/" . $pagename . ".php";
 		
 		if(file_exists($filepath))
@@ -150,18 +157,38 @@ abstract class ManagementPageBase extends PageBase
 			
 			if(get_parent_class($pageobject) == "ManagementPageBase")
 			{
+				Hooks::run("CreatePage", array($pageobject));
+				$gLogger->log("MPage object created.");
+			
 				if(! $pageobject->isProtected())
 				{
+					$gLogger->log("MPage object not protected.");
+				
 					return $pageobject;
 				}
 				else
 				{
+					$gLogger->log("MPage object IS protected.");
+				
 					if(Session::isLoggedIn())
-					{
+					{	
+						$gLogger->log("Session is logged in");
+
+						Hooks::register("PreRunPage", 
+							function($parameters)
+							{
+								ManagementPageBase::checkAccess($parameters[1]->getAccessName());
+								return $parameters[0];
+							});
+					
+						$pageobject = Hooks::run("AuthorisedCreatePage", array($pageobject));
+					
 						return $pageobject;
 					}
 					else
 					{ // not logged in
+						$gLogger->log("Session NOT logged in");
+
 						require_once($cIncludePath . "/ManagementPage/MPageLogin.php");
 						return new MPageLogin();
 					}
@@ -184,5 +211,33 @@ abstract class ManagementPageBase extends PageBase
 	{
 		$this->mSmarty->assign("showError", "yes");
 		$this->mSmarty->assign("errortext", $messageTag);
+	}
+	
+	public static function checkAccess($actionName)
+	{
+		global $gLogger;
+		$gLogger->log("Entering checkPageAccessLevel");
+			
+		$userAccessLevel = InternalUser::getById(Session::getLoggedInUser())->getAccessLevel();
+		
+		$gLogger->log("checkPageAccessLevel: user access is $userAccessLevel, page action name is $actionName");
+
+		
+		if($actionName == "public")
+		{
+			$pageAccessLevel = 0;
+		}
+		else
+		{
+			$actionObject = StaffAccess::getByAction($actionName);
+			$pageAccessLevel = $actionObject->getLevel();
+			$gLogger->log("checkPageAccessLevel: page access is " . $pageAccessLevel);
+
+		}
+				
+		if($userAccessLevel < $pageAccessLevel)
+		{
+			throw new AccessDeniedException();
+		}
 	}
 }

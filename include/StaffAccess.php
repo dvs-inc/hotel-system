@@ -35,16 +35,27 @@ class StaffAccess extends DataObject
 	}
 	public static function getByAction($action)
 	{
-		global $gDatabase;
+		global $gDatabase, $gLogger;
 		$statement = $gDatabase->prepare("SELECT * FROM staffAccess WHERE action = :id LIMIT 1;");
 		$statement->bindParam(":id", $action);
 
+		$gLogger->log("StaffAccess::getByAction($action)");
+		
 		$statement->execute();
 
 		$resultObject = $statement->fetchObject("StaffAccess");
 		if($resultObject != false)
 		{
 			$resultObject->isNew = false;
+			$gLogger->log("StaffAccess::getByAction($action) object exists.");
+		}
+		else
+		{
+			$resultObject = new StaffAccess();
+			$resultObject->action = $action;
+			$resultObject->level = 99;
+			$gLogger->log("StaffAccess::getByAction($action) object missing... creating...");
+			$resultObject->save();
 		}
 		return $resultObject;
 	}

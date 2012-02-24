@@ -115,6 +115,11 @@ abstract class PageBase
 		$this->mScripts[] = $cWebPath . '/scripts/imageslider.js';
 	}
 	
+	protected function handleAccessDeniedException($ex)
+	{
+		throw $ex; // urm, this shouldn't really happen
+	}
+	
 	public function execute()
 	{
 		Hooks::run("PreSetupPage");
@@ -122,13 +127,21 @@ abstract class PageBase
 		// set up the page
 		$this->setupPage();
 
-		Hooks::run("PreRunPage");
-		
-		// "run" the page - allow the user to make any customisations to the
-		// current state
-		$this->runPage();
+		try{
+			if(!Hooks::run("PreRunPage", array(/* stop! */ false, $this)))
+			{
+				// "run" the page - allow the user to make any customisations to the
+				// current state
+				$this->runPage();
 
-		Hooks::run("PostRunPage");
+				Hooks::run("PostRunPage");
+			}
+		}
+		catch(AccessDeniedException $ex)
+		{
+			$this->handleAccessDeniedException($ex);
+		}
+		
 		
 		// perform any final setup for the page, overwriting any user 
 		// customisations which aren't allowed, and anything that potentially 

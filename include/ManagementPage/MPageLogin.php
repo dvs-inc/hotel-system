@@ -73,15 +73,6 @@ class MPageLogin extends ManagementPageBase
 
 		}
 
-		// TODO: remove this after login username agreed with group
-		// --stw 23/01/2011
-		if(WebRequest::postString("bypass") == "bypass")
-		{
-			$success=true;
-			Session::setLoggedInUser(0);
-			$gLogger->log("LOGIN BYPASSED!");
-		}
-
 		if($success)
 		{
 			global $cWebPath;
