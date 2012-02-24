@@ -51,6 +51,7 @@ class StaffAccess extends DataObject
 		}
 		else
 		{
+			$resultObject = new StaffAccess();
 			$resultObject->action = $action;
 			$resultObject->level = 99;
 			$gLogger->log("StaffAccess::getByAction($action) object missing... creating...");

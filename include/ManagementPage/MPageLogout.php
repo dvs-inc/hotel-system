@@ -4,6 +4,11 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class MPageLogout extends ManagementPageBase
 {
+	public function __construct()
+	{
+		$this->mIsProtectedPage = false;
+	}
+
 	protected function runPage()
 	{
 		Session::destroy();
