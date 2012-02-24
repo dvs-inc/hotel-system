@@ -5,9 +5,9 @@ if(!defined("HMS")) die("Invalid entry point");
 abstract class ManagementPageBase extends PageBase
 {
 	// is this page a protected by login page?
-	// defaults to 1, so we protect everything and have to explicitly 
+	// defaults to true, so we protect everything and have to explicitly 
 	// unprotect if desired.
-	protected $mIsProtectedPage = false;
+	protected $mIsProtectedPage = true;
 
 	// message containing the title of the page
 	protected $mPageTitle = "management-title";
