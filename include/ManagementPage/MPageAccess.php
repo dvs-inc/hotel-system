@@ -4,10 +4,33 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class MPageAccess extends ManagementPageBase
 {
+	public function __construct()
+	{
+		$this->mAccessName = "view-access-levels";
+	}
+
 	protected function runPage()
 	{
+		try
+		{
+			self::checkAccess('edit-access-levels');
+			$this->mSmarty->assign("readonly", '');
+		}
+		catch(AccessDeniedException $ex)
+		{
+			// caution: if you're copying this, this is a hack to make sure 
+			//			users know they don't have the access to do this, not
+			// 			to actually stop them from doing it, though it will have
+			// 			that effect to the non-tech-savvy.
+			$this->mSmarty->assign("readonly", 'disabled="disabled"');
+		}
+		
+	
 		if(WebRequest::wasPosted())
 		{
+			// make SURE we have the right access level for this operation
+			self::checkAccess('edit-access-levels');
+		
 			foreach(WebRequest::getPostKeys() as $k)
 			{
 				$entry = StaffAccess::getById($k);
