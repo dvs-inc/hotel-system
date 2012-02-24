@@ -7,6 +7,7 @@ class MPageGit extends ManagementPageBase
 	protected function runPage()
 	{
 		$this->mBasePage="mgmt/git.tpl";
-		$this->mSmarty->assign("softwareVersion", exec("git describe --always --dirty"));
+		$this->mSmarty->assign("softwareVersion", exec("git describe --always --dirty" ));
+		$this->mSmarty->assign("softwareBranch", exec('git branch | grep "*" | cut -f 2 -d " "'));
 	}
 }
