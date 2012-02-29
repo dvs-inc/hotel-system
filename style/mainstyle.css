@@ -167,13 +167,8 @@ h2{
 .twocolumn .columntwo label{
 	display:inline-block;
 	width:370px;
-	margin:4px;
 }
 .twocolumn .columntwo label input{
-	float:right;
-	width:200px;
-}
-.twocolumn .columntwo label select{
 	float:right;
 	width:200px;
 }
@@ -194,7 +189,6 @@ h2{
 }
 .tcuneven .columntwo{
 	width:300px;
-	margin-top:10px;
 }
 .tcuneven .columnone h2{
 	width:auto;
@@ -211,7 +205,6 @@ h2{
 	float:none;
 }
 .tcuneven .columntwo #submitbutton{
-	margin-top:20px;
 	float:left;
 }
 .columnone{
@@ -226,6 +219,14 @@ h2{
 .twocolumn .columnone .adultchild, .tcuneven .columntwo .adultchild
 {
 	width:50px;
+}
+#adult{
+	float:left;
+	margin-right:30px;
+}
+.twocolumn .columntwo label select{
+	float:right;
+	width:200px;
 }
 .columnone h2{
 	width:370px;
