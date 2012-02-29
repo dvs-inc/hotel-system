@@ -4,7 +4,7 @@
 {include file="mgmt/lang-pager.tpl"}
 {if $showtable == 1}
 <form method="post" action="?submit">
-<table>
+<table style="margin-top:100px">
 	<tr>
 		{foreach from="$languages" item="lang"}
 			<th>
@@ -26,7 +26,7 @@
 		</tr>
 	{/foreach}
 </table>
-<input {$readonly} type="submit" value="{message name="save"}" />
+<input {$readonly} id="submitbuttonLang" type="submit" value="{message name="save"}" />
 </form>
 {else}
 {message name="mgmt-messageeditor-noprefix"}

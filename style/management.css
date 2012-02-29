@@ -127,17 +127,13 @@
 	border-collapse:collapse;
 	text-align:center;
 }
-#header:hover{
-	background:white !Important;
-	color:black !Important;
-}
 #userlist tr:hover{
-	background:DimGray;
-	color:white;
+	background:#eeeeee;
+	color:#737373;
 	border-color:DimGray;
 }
 #userlist td a:hover{
-	color:#ffff00;
+	color:#000080;
 }
 #userlist td a{
 	text-decoration:none;
@@ -155,7 +151,17 @@
 	width:230px;
 }
 #submitbutton{
+	min-width:80px;
 	margin-top:20px;
+	margin-left:170px;
+}
+#submitbuttonLang{
+	height:28px;
+	min-width:100px;
+	margin-top:40px;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
 }
 #constraint{
 	width:500px;
@@ -164,4 +170,8 @@
 	min-width:150px;
 	text-align:left;
 	text-indent:30px;
+}
+#thNONE:hover{
+	background-color:white !important;
+	color:black !important;
 }

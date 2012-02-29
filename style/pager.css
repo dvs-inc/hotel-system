@@ -1,6 +1,7 @@
 .pager
 {
 	clear:both;
+	width:900px;
 }
 
 .pager ul
@@ -19,8 +20,30 @@
 {
 	width:25px;
 	height:25px;
-	border:1px solid black;
+	padding:3.5px;
+	border:1px solid #dddddd;
 	text-align:center;
 	display:block;
 	margin-right:-1px;
+	color:rgb(0, 136, 204);
+	text-decoration:none;
+}
+
+.pager ul li:hover
+{
+	background-color:#eeeeee;
+}
+
+.pager ul li a:hover
+{
+	color:#000080;
+}
+
+.disable a{
+	color:#cacaca !important;
+	pointer-events: none;
+    cursor: default;
+}
+.disable{
+	background-color:#eeeeee;
 }

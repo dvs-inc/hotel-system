@@ -15,6 +15,6 @@
 	</tr>
 {/foreach}
 </table>
-<input type="submit" {$readonly} value="{message name="save"}" />
+<input id="submitbutton" type="submit" {$readonly} value="{message name="save"}" />
 </form>
 {/block}
