@@ -13,7 +13,7 @@
 	<label>{message name="city"}<input name="qbCity" class="datainput" /></label>
 	<label>{message name="postcode"}<input name="qbPostcode" class="datainput" /></label>
 	<label>{message name="country"}<select name="qbCountry"></select></label>
-	<label>{message name="email"}<input name="qbEmail"/></label>
+	<label>{message name="email"}<input name="qbEmail" class="datainput"/></label>
 	<input type="submit" id="submitbutton" value="{message name="check-availability"}"/>
 {/block}
 

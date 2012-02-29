@@ -39,6 +39,7 @@ body{
 }
 #submitbutton {
 	color:DimGray;
+	margin-top:20px;
 }
 #loginlinks{
 	width:150px;
@@ -166,8 +167,13 @@ h2{
 .twocolumn .columntwo label{
 	display:inline-block;
 	width:370px;
+	margin:4px;
 }
 .twocolumn .columntwo label input{
+	float:right;
+	width:200px;
+}
+.twocolumn .columntwo label select{
 	float:right;
 	width:200px;
 }
@@ -188,6 +194,7 @@ h2{
 }
 .tcuneven .columntwo{
 	width:300px;
+	margin-top:10px;
 }
 .tcuneven .columnone h2{
 	width:auto;
