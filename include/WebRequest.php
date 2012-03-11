@@ -62,6 +62,12 @@ class WebRequest
 		$x = self::post($variable);
 		return is_numeric($x) && intval($x)==$x ? intval($x) : false;
 	}
+	
+	public static function postFloat($variable)
+	{
+		$x = self::post($variable);
+		return is_numeric($x) && ($x == (string)(float)$x) ? $x : false;
+	}
 
 	public static function getInt($variable)
 	{
