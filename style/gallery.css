@@ -1,0 +1,62 @@
+#thumbnails
+{
+	position:relative;
+	width:945px;
+	left:-15px;
+}
+
+#thumbnails .thumbcontainer
+{
+	margin-top:15px;
+	width:945px;
+	clear:both;
+}
+
+#thumbnails .thumb
+{
+	margin-left:15px;
+	margin-top:15px;
+	margin-right:0px;
+	margin-bottom:0px;
+	float:left;
+	width:300px;
+	height:200px;
+	background:red;
+}
+
+#thumbnails .thumb img
+{
+	width:300px;
+	height:200px;
+	display:none;
+}
+
+#thumbnails .thero img
+{
+	width:615px !important;
+	height:415px !important;
+}
+
+#thumbnails .thumbcontainer .therounit
+{
+	float:left;
+	width:615px;
+	height:415px;
+}
+
+#thumbnails .therounit .thumb
+{
+	float:left;
+	width:615px;
+	height:415px;
+	background:greenyellow;
+}
+
+#thumbnails .theroside
+{
+	padding-left:15px;
+	width:315px;
+	height:415px;
+	float:left;
+	padding-bottom:15px;
+}
