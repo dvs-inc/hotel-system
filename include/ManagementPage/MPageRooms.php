@@ -32,7 +32,7 @@ class MPageRooms extends ManagementPageBase
 				break;
 			case "edit":
 				self::checkAccess("edit-room");
-				//$this->doDeleteRoomAction();
+				$this->showEditRoomPage();
 				break;
 			case "create":
 				self::checkAccess("create-room");
@@ -108,6 +108,94 @@ class MPageRooms extends ManagementPageBase
 		else
 		{
 			$this->mBasePage="mgmt/roomCreate.tpl";
+		}
+		
+		$this->mSmarty->assign("rtlist", RoomType::$data);
+	}	
+	
+	private function showEditRoomPage()
+	{
+		if(WebRequest::wasPosted())
+		{
+			try{
+				// get variables
+				$rname = WebRequest::post("rname");
+				$rtype = WebRequest::postInt("rtype");
+				$rmin = WebRequest::postInt("rmin");
+				$rmax = WebRequest::postInt("rmax");
+				$rprice = WebRequest::postFloat("rprice");
+				$id = WebRequest::getInt("id");
+				
+				// data validation
+				if($rname == "")
+				{
+					throw new CreateRoomException("blank-roomname");
+				}	
+				
+				if($rtype == 0)
+				{
+					throw new CreateRoomException("blank-roomtype");
+				}
+				
+				if($rmax < 1 || $rmin < 0)
+				{
+					throw new CreateRoomException("room-capacity-too-small");
+				}
+				
+				if($rmin > $rmax)
+				{
+					throw new CreateRoomException("room-capacity-min-gt-max");
+				}
+				
+				if($rprice != abs($rprice))
+				{
+					throw new CreateRoomException("room-price-negative");
+				}
+				
+				
+				$room = Room::getById($id);
+				
+				if($room == null)
+				{
+					throw new Exception("Room does not exist");
+				}
+				
+				// set values
+				$room->setName($rname);
+				$room->setType($rtype);
+				$room->setMinPeople($rmin);
+				$room->setMaxPeople($rmax);
+				$room->setPrice($rprice);
+				
+				
+				$room->save();
+
+				global $cScriptPath;
+				$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+			}
+			catch (CreateRoomException $ex)
+			{
+				$this->mBasePage="mgmt/roomEdit.tpl";
+				$this->error($ex->getMessage());
+			}
+		}
+		else
+		{
+			$this->mBasePage="mgmt/roomEdit.tpl";
+			
+			$room = Room::getById(WebRequest::getInt("id")) ;
+			
+			if($room == null)
+			{
+				throw new Exception("Room does not exist");
+			}
+			
+			$this->mSmarty->assign("roomid", $room->getId());
+			$this->mSmarty->assign("rname", $room->getName());
+			$this->mSmarty->assign("rmin", $room->getMinPeople());
+			$this->mSmarty->assign("rmax", $room->getMaxPeople());
+			$this->mSmarty->assign("rprice", $room->getPrice());
+			$this->mSmarty->assign("rtype", $room->getType()->getId());
 		}
 		
 		$this->mSmarty->assign("rtlist", RoomType::$data);
