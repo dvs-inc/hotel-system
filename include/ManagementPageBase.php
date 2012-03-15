@@ -27,11 +27,15 @@ abstract class ManagementPageBase extends PageBase
 			"title" => "mpage-hotel",
 			"link" => "/Hotel",
 			"items" => array(
+				"MPageCustomers" => array(
+					"title" => "mpage-customers",
+					"link" => "/Customers",
+					),
 				"MPageRooms" => array(
 					"title" => "mpage-rooms",
 					"link" => "/Rooms",
 					),
-				)
+				),
 			),
 		"MPageSystem" => array(
 			"title" => "mpage-system",
