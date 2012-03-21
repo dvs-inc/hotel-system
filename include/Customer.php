@@ -83,7 +83,7 @@ class Customer extends DataObject
 		global $gDatabase;
 		
 		if($this->isNew)
-		{ // insert (Why are these values different to the SQL Query?!)
+		{ // insert
 			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :firstname, :surname, :address, :email, :language");
 			$statement->bindParam(":adults", $this->firstname );
 			$statement->bindParam(":children",$this->surname );
