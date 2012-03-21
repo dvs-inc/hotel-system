@@ -44,9 +44,16 @@ class MPageLanguages extends ManagementPageBase
 		$this->mBasePage="mgmt/lang.tpl";
 		
 		$keys = array();
+		$filterUnset = false;
 		if(WebRequest::get("showall"))
 		{
+			if(WebRequest::get("showall") == "unset")
+			{
+				$filterUnset = true;
+			}
+			
 			$keys = Message::getMessageKeys();
+
 		}
 		else
 		{
@@ -71,14 +78,27 @@ class MPageLanguages extends ManagementPageBase
 			$messagetable = array();
 			foreach($keys as $mkey)
 			{
+				$completelySet = true;
 				$messagetable[$mkey] = array();
 				foreach($cAvailableLanguages as $lang => $langname)
-				{
+				{				
 					$message = Message::getByName($mkey, $lang);
+					if($message->getContent() == "&lt;$lang:$mkey&gt;")
+					{
+						if($lang==Message::getActiveLanguage())
+						{
+							$completelySet = false;
+						}
+					}
 					$messagetable[$mkey][$lang] = array(
 						"id" => $message->getId(),
 						"content" => $message->getContent()
 						);
+				}
+				
+				if($filterUnset && $completelySet)
+				{
+					unset($messagetable[$mkey]);
 				}
 			}
 			
