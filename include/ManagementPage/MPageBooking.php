@@ -2,7 +2,7 @@
 // check for invalid entry point
 if(!defined("HMS")) die("Invalid entry point");
 
-class MPageBooking extends ManagementPageBase
+class MPageBookings extends ManagementPageBase
 {
 	public function __construct()
 	{
@@ -12,13 +12,13 @@ class MPageBooking extends ManagementPageBase
 	protected function runPage()
 	{
 		$this->mSubMenu = array(
-			"MPageBookingList" => array(
-				"title" => "mpage-booking-list",
-				"link" => "/Booking?action=list",
+			"MPageBookingsList" => array(
+				"title" => "mpage-bookings-list",
+				"link" => "/Bookings?action=list",
 				),
-			"MPageBookingCreate" => array(
-				"title" => "mpage-booking-create",
-				"link" => "/Booking?action=create",
+			"MPageBookingsCreate" => array(
+				"title" => "mpage-bookings-create",
+				"link" => "/Bookings?action=create",
 				),
 
 		);
@@ -28,92 +28,88 @@ class MPageBooking extends ManagementPageBase
 		{
 			case "del":
 				self::checkAccess("delete-booking");
-				//$this->doDeleteRoomAction();
+				//$this->doDeleteBookingAction();
 				break;
 			case "edit":
 				self::checkAccess("edit-booking");
-				//$this->showEditRoomPage();
+				//$this->showEditBookingPage();
 				break;
 			case "create":
 				self::checkAccess("create-booking");
-				//$this->showCreateRoomPage();
+				//$this->showCreateBookingPage();
 				break;
 			case "list":
 			default:
-				$this->showListBookingPage();
+				$this->showListBookingsPage();
 				break;
 		}
 	}
 /*
-	private function showCreateRoomPage()
+	private function showCreateBookingPage()
 	{
 		if(WebRequest::wasPosted())
 		{
 			try{
 				// get variables
-				$rname = WebRequest::post("rname");
-				$rtype = WebRequest::postInt("rtype");
-				$rmin = WebRequest::postInt("rmin");
-				$rmax = WebRequest::postInt("rmax");
-				$rprice = WebRequest::postFloat("rprice");
+				$adults = WebRequest::postInt("adults");
+				$children = WebRequest::postInt("children");
+				$startdate = WebRequest::post("startdate");
+				$enddate = WebRequest::post("enddate");
+				$promocode = WebRequest::postInt("promocode");
+				$customer = WebRequest::postInt("customer");
 			
 				// data validation
-				if($rname == "")
+				if($adults == 0)
 				{
-					throw new CreateRoomException("blank-roomname");
+					throw new CreateBookingException("no-adults");
 				}	
 				
-				if($rtype == 0)
+				if($startdate == "")
 				{
-					throw new CreateRoomException("blank-roomtype");
+					throw new CreateBookingException("no-start-date");
 				}
 				
-				if($rmax < 1 || $rmin < 0)
+				if($enddate == "")
 				{
-					throw new CreateRoomException("room-capacity-too-small");
+					throw new CreateBookingException("no-end-date");
 				}
 				
-				if($rmin > $rmax)
+				if(customer == 0)
 				{
-					throw new CreateRoomException("room-capacity-min-gt-max");
-				}
+					throw new CreateBookingException("no-customer-for-booking");
+				}				
 				
-				if($rprice != abs($rprice))
-				{
-					throw new CreateRoomException("room-price-negative");
-				}
-				
-				
-				$room = new Room();
+				$booking = new Booking();
 				
 				// set values
-				$room->setName($rname);
-				$room->setType($rtype);
-				$room->setMinPeople($rmin);
-				$room->setMaxPeople($rmax);
-				$room->setPrice($rprice);
+				$booking->setAdults($adults);
+				$booking->setChildren($children);
+				$booking->setStartDate($startdate);
+				$booking->setEndDate($enddate);
+				$booking->setPromocode($promocode);
+				$booking->setCustomer($customer);
 				
 				
 				$room->save();
 
 				global $cScriptPath;
-				$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+				$this->mHeaders[] = "Location: {$cScriptPath}/Bookings";
 			}
-			catch (CreateRoomException $ex)
+			catch (CreateBookingException $ex)
 			{
-				$this->mBasePage="mgmt/roomCreate.tpl";
+				$this->mBasePage="mgmt/bookingCreate.tpl";
 				$this->error($ex->getMessage());
 			}
 		}
 		else
 		{
-			$this->mBasePage="mgmt/roomCreate.tpl";
+			$this->mBasePage="mgmt/bookingCreate.tpl";
 		}
 		
 		$this->mSmarty->assign("rtlist", RoomType::$data);
 	}	
 	
-	private function showEditRoomPage()
+	private function showEditBookingPage()
 	{
 		if(WebRequest::wasPosted())
 		{
@@ -201,15 +197,15 @@ class MPageBooking extends ManagementPageBase
 		$this->mSmarty->assign("rtlist", RoomType::$data);
 	}	
 */
-	private function showListBookingPage()
+	private function showListBookingsPage()
 	{
 		$idList = Booking::getIdList();
 
-		$custList = array();
+		$bookingsList = array();
 
 		foreach($idList as $id)
 		{
-			$custList[] = Booking::getById($id);
+			$bookingsList[] = Booking::getById($id);
 		}
 
 		$this->mSmarty->assign("bookingList", $bookingList);
@@ -217,7 +213,7 @@ class MPageBooking extends ManagementPageBase
 		$this->mBasePage="mgmt/bookingList.tpl";
 	}
 /*
-	private function doDeleteRoomAction()
+	private function doDeleteBookingAction()
 	{
 		$rid=WebRequest::getInt("id");
 		if($rid < 1)
