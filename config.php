@@ -33,6 +33,7 @@ $cAvailableLanguages = array(
 	'zxx' => "(Language Tag Codes)",
 	'en-GB' => "English (British)",
 	'fi' => "Suomi",
+	'fr' => "Francais",
 	);
 	
 // change this before using it on a live system! this is for test purposes only.
