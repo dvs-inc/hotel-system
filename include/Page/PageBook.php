@@ -8,6 +8,11 @@ class PageBook extends PageBase
 	{
 		$this->mBasePage = "book.tpl";
 		
+		global $cWebPath;
+		
+		$this->mStyles[] = $cWebPath . '/style/jsDatePick_ltr.min.css';
+		$this->mScripts[] = $cWebPath . '/scripts/jsDatePick.full.1.3.js';
+		
 		// set up the default values for the 
 		if(WebRequest::wasPosted())
 		{

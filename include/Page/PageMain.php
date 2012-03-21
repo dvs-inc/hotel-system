@@ -13,5 +13,10 @@ class PageMain extends PageBase
 		$this->mSmarty->assign("valQbAdults", "");
 		$this->mSmarty->assign("valQbChildren", "");
 		$this->mSmarty->assign("valQbPromoCode", "");
+		
+		global $cWebPath;
+		
+		$this->mStyles[] = $cWebPath . '/style/jsDatePick_ltr.min.css';
+		$this->mScripts[] = $cWebPath . '/scripts/jsDatePick.full.1.3.js';
 	}
 }
