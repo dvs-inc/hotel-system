@@ -145,6 +145,8 @@ body{
 
 h2{
 	margin-top:0;
+	padding-bottom:6px;
+	border-bottom:2px solid green;
 }
 
 .twocolumn{
