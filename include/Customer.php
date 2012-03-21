@@ -5,7 +5,7 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class Customer extends DataObject
 {
-	private $title
+	private $title;
 	private $firstname;
 	private $surname;
 	private $address;
