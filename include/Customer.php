@@ -5,62 +5,105 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class Customer extends DataObject
 {
+	private $title
 	private $firstname;
 	private $surname;
 	private $address;
 	private $email;
+	private $password;
+	private $creditcard;
 	private $language;
+	private $mailconfirm;
+	
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	public function getTitle()
+	{
+		return $this->title;
+	}
 	
 	public function getFirstname()
 	{
 		return $this->firstname;
 	}
-	
+
 	public function getSurname()
 	{
 		return $this->surname;
 	}
-	
+
 	public function getAddress()
 	{ //get address from Address Class
-		Address::getById($this->address);
+		return Address::getById($this->address);
 	}
-	
+
 	public function getEmail()
 	{
 		return $this->email;
 	}
-	
+
+	public function getCreditCard()
+	{
+		return CreditCard::getById($this->creditcard);
+	}
+
 	public function getLanguage()
 	{
 		return $this->language;
 	}
-	
+
+	public function getMailConfirm()
+	{
+		return $this->mailconfirm;
+	}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+	public function setTitle($value)
+	{
+		$this->title = $value;
+	}
+
 	public function setFirstname($value)
 	{
 		$this->firstname = $value;
 	}
-	
+
 	public function setSurname($value)
 	{
 		$this->surname = $value;
 	}
-	
+
 	public function setAddress($value)
 	{
 		$this->address = $value;
 	}
-	
+
 	public function setEmail($value)
 	{
 		$this->email = $value;
 	}
-	
+
+	public function setPassword($newPassword)
+	{
+		$this->password = self::encryptPassword($this->email, $newPassword);
+	}
+
+	public function setCreditCard($value)
+	{
+		$this->creditcard = $value->getId();
+	}
+
 	public function setLanguage($value)
 	{
 		$this->language = $value;
 	}
-	
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
 	public static function getById($id)
 	{
 		global $gDatabase;
@@ -135,5 +178,30 @@ class Customer extends DataObject
 		$result = $statement->fetchAll(PDO::FETCH_COLUMN,0);
 
 		return $result;
+	}
+/////////////////////////////////////////////////////////////////////////////
+
+
+	/**
+	 * Check the stored password against the provided password
+	 * @returns true if the password is correct
+	 */
+	public function authenticate($password)
+	{
+		global $gLogger;
+		$encpass = self::encryptPassword($this->email, $password);
+		$gLogger->log("Customer::authenticate: Comparing {$this->password} to {$encpass}");
+		return ( $this->password == $encpass);
+	}
+
+	// let's not make a decrypt method.... we don't need it.
+	protected static function encryptPassword($email, $password)
+	{
+		// simple encryption. MD5 is very easy to compute, and very hard to reverse.
+		// As it's easy to compute, people make tables of possible values to decrypt
+		// it (see: Rainbow Tables). We completely nerf that by adding a known 
+		// changable factor to the hash, known as a salt. This makes rainbow
+		// tables practically useless against this set of passwords.
+		return md5(md5($email . md5($password)));
 	}
 }
