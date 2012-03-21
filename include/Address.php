@@ -22,7 +22,7 @@ class Address extends DataObject
 	
 	public function getCity()
 	{
-		return $this->city
+		return $this->city;
 	}
 	
 	public function getPostcode()

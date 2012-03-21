@@ -125,4 +125,15 @@ class Customer extends DataObject
 		$this->id=0;
 		$this->isNew=true;
 	}
+	
+	public static function getIdList()
+	{
+		global $gDatabase;
+		$statement = $gDatabase->prepare("SELECT id FROM customer;");
+		$statement->execute();
+
+		$result = $statement->fetchAll(PDO::FETCH_COLUMN,0);
+
+		return $result;
+	}
 }
