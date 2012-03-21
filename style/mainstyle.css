@@ -288,14 +288,7 @@ input.datainput{
 	width:35px;
 	display:inline-block;
 }
-.cal embed{
-	width:30px;
-	display:inline-block;
-	pointer-events:all;
-}
 .cal input{
-	position:relative;
-	top:23px;
 	background:url('../images/cal.svg');
 	background-size:30px;
 	background-repeat:no-repeat;
