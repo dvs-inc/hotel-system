@@ -291,8 +291,6 @@ input.datainput{
 .cal embed{
 	width:30px;
 	display:inline-block;
-	position:relative;
-	top:29px;
 	pointer-events:all;
 }
 .cal input{
