@@ -256,6 +256,8 @@ label{
 }
 label input{
 	display:block;
+	text-indent:5px;
+	font-family:"Trebuchet MS", Helvetica, sans-serif;
 }
 input.datainput{
 	background-image:url("../images/gg.jpg");
@@ -292,7 +294,7 @@ input.datainput{
 .cal input{
 	position:relative;
 	top:23px;
-	background: transparent url('../images/cal.svg');
+	background:url('../images/cal.svg');
 	background-size:30px;
 	background-repeat:no-repeat;
 	height:28px;
@@ -306,4 +308,14 @@ input.datainput{
 }
 .twocolumn .columnone .cal{
 	margin-right:100px;
+}
+#dropDownCountry{
+	background-image:url("../images/gg.jpg");
+	background-repeat:repeat-x;
+	background-color:#eaeaea;
+	box-shadow:2px 2px 3px Gray;
+	border-style:hidden;
+	padding-left:5px;
+	height:20px;
+	font-family:"Trebuchet MS", Helvetica, sans-serif;
 }
