@@ -37,6 +37,10 @@ body{
 #loginparts .datainput{
 	width:180px;
 }
+
+#loginparts #submitbutton{
+	margin-top:0px;
+}
 #submitbutton {
 	color:DimGray;
 	margin-top:20px;
