@@ -292,6 +292,7 @@ input.datainput{
 }
 .cal input{
 	background:url('../images/cal.svg');
+	position:relative;
 	bottom:2px;
 	background-size:30px;
 	background-repeat:no-repeat;
