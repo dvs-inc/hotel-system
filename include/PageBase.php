@@ -25,7 +25,7 @@ abstract class PageBase
 				"title" => "Message name to display",
 				"link" => "Link to show",
 				),
-			*/		
+			*/
 		"PageMain" => array(
 			"title" => "page-home",
 			"link" => "/",
@@ -95,8 +95,11 @@ abstract class PageBase
 		global $cWebPath, $cScriptPath;
 		$this->mSmarty->assign("cWebPath", $cWebPath);
 		$this->mSmarty->assign("cScriptPath", $cScriptPath);
+
+		// the current page path
+		$this->mSmarty->assign("currentPagePath", "");
 	}
-	
+
 	/**
 	 * Adds the "global" CSS / JS for this part of the system.
 	 *

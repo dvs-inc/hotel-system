@@ -1,7 +1,8 @@
 <div id="header">
 	<div id="logo"><img alt="{message name="logo-alt"}"  src="{$cWebPath}/images/bflogo.png" /></div>
+	{block name="accountarea"}
 	<div id="login">
-		<form action="" method="post">
+		<form action="{$cWebPath}/index.php/Login?returnto={$currentPagePath}" method="post">
 			<div id="loginparts">
 				<label>
 					{message name="login-email"}
@@ -24,4 +25,5 @@
 			</ul>
 		</div>
 	</div>
+	{/block}
 </div>
