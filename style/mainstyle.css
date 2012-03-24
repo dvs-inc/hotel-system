@@ -141,8 +141,12 @@
 
 #content{
 	padding:15px;
+	margin-top:10px;
+	margin-left:30px;
 }
-
+#content h2{
+	width:860px;
+}
 h2{
 	margin-top:0;
 	padding-bottom:6px;
@@ -151,7 +155,6 @@ h2{
 
 .twocolumn{
 	background:#ff8888;
-	margin-top:10px;
 }
 
 .twocolumn .columnone, .twocolumn  .columntwo{
@@ -162,7 +165,6 @@ h2{
 
 .twocolumn .columnone{
 	float:left;
-	margin-left:30px;
 }
 .twocolumn .columnone label{
 	margin-top:15px;
@@ -199,10 +201,10 @@ h2{
 	width:300px;
 }
 .tcuneven .columnone h2{
-	width:auto;
+	width:auto !important;
 }
 .tcuneven .columntwo h2{
-	width:260px;
+	width:260px !important;
 }
 .tcuneven .columntwo label{
 	display:inline-block;
@@ -241,10 +243,10 @@ h2{
 	width:200px;
 }
 .columnone h2{
-	width:370px;
+	width:370px !important;
 }
 .columntwo h2{
-	width:370px;
+	width:370px !important;
 }
 
 #footer{
