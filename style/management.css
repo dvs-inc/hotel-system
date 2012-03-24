@@ -123,21 +123,25 @@
 #content table td{
 	padding-right:30px;
 }
-#userlist{
+#content table{
 	border-collapse:collapse;
 	text-align:center;
 }
-#userlist tr:hover{
+#content table tr:hover{
 	background:#eeeeee;
 	color:#737373;
 	border-color:DimGray;
 }
-#userlist td a:hover{
+#content table td a:hover{
 	color:#000080;
 }
-#userlist td a{
+#content table td a{
 	text-decoration:none;
 	color:inherit;
+}
+#content table th{
+	background-color:white !important;
+	color:black !important;
 }
 .infield{
 	width:450px;
@@ -149,6 +153,10 @@
 	display:inline;
 	float:right;
 	width:230px;
+}
+.infield select{
+	float:right;
+	margin-right:167px;
 }
 #submitbutton{
 	min-width:80px;
@@ -171,7 +179,9 @@
 	text-align:left;
 	text-indent:30px;
 }
-#thNONE:hover{
-	background-color:white !important;
-	color:black !important;
+#roomlist th{
+	width:110px;
+}
+#link{
+	width:50px !important;
 }
