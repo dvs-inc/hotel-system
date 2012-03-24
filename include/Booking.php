@@ -23,7 +23,7 @@ class Booking extends DataObject
 	
 	public function getStartDate()
 	{
-		return $this->startDate
+		return $this->startDate;
 	}
 	
 	public function getEndDate()
