@@ -194,7 +194,7 @@ class MPageBookings extends ManagementPageBase
 		
 	}	
 
-	private function showListBookings()
+	private function showListBookingsPage()
 	{
 		$idList = Booking::getIdList();
 
