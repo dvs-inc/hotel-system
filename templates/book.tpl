@@ -7,6 +7,7 @@
 
 {block name="columntwo"}
 	<h2>{message name="yourdetails"}</h2>
+	<label>{message name ="title"}<input name = "qbTitle" class = "datainput" /></label>
 	<label>{message name="firstname"}<input name="qbFirstname" class="datainput" /></label>
 	<label>{message name="lastname"}<input name="qbLastname" class="datainput" /></label>
 	<label>{message name="address"}<input name="qbAddress" class="datainput" /></label>
