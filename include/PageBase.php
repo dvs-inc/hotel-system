@@ -247,4 +247,5 @@ abstract class PageBase
 	{
 		$this->mSmarty->assign("showError", "yes");
 		$this->mSmarty->assign("errortext", $messageTag);
+	}
 }
