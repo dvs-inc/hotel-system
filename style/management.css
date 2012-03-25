@@ -188,3 +188,8 @@
 #link{
 	width:50px !important;
 }
+
+.uncertain
+{
+	font-style:italic;
+}
