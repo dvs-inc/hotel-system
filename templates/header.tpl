@@ -24,6 +24,11 @@
 				<li><a href="{$cScriptPath}/Signup">{message name="login-signup"}</a></li>
 			</ul>
 		</div>
+		{if $lgerror != ""}
+			<div id="loginerror">
+				{message name="lgerror-{$lgerror}"}
+			</div>
+		{/if}
 	</div>
 	{/block}
 </div>

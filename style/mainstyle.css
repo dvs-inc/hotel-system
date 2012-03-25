@@ -329,3 +329,9 @@ input.datainput{
 	height:20px;
 	font-family:"Trebuchet MS", Helvetica, sans-serif;
 }
+
+#loginerror
+{
+	margin-left:190px;
+	width:200px;
+}

@@ -71,4 +71,18 @@ class PageLogin extends PageBase
 		return;
 	}
 
+	// this is a hook function
+	// a global hook
+	// don't break it.
+	// (yeah, that means it's called on EVERY page load)
+	public static function getErrorDisplay($arguments)
+	{
+		$smarty = $arguments[1];
+	
+		$error = WebRequest::get("lgerror") or "" ;
+
+		$smarty->assign("lgerror", $error);
+		
+		return true;
+	}
 }

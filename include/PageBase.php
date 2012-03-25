@@ -137,7 +137,7 @@ abstract class PageBase
 				// current state
 				$this->runPage();
 
-				Hooks::run("PostRunPage");
+				Hooks::run("PostRunPage", array("", $this->mSmarty));
 			}
 		}
 		catch(AccessDeniedException $ex)

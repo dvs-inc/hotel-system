@@ -4,8 +4,13 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class Hooks
 {
-	// array of arrays
-	private static $registeredHandlers = array();
+	// array of arrays (doubles as the globally-registered hooks).
+	private static $registeredHandlers = array(
+		"PostRunPage" => array(
+			"PageLogin::getErrorDisplay",
+		),
+	
+	);
 	
 	public static function register($name, $callback)
 	{
