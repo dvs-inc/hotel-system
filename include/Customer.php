@@ -15,6 +15,11 @@ class Customer extends DataObject
 	private $language;
 	private $mailconfirm;
 	
+	public function __construct()
+	{
+		$this->language = "en-GB";
+	}
+	
 //////////////////////////////////////////////////////////////////////////////////////////
 
 	public function getTitle()
@@ -41,7 +46,7 @@ class Customer extends DataObject
 	{ //get address from Address Class
 		return Address::getById($this->address);
 	}
-
+	
 	public function getEmail()
 	{
 		return $this->email;
@@ -82,9 +87,14 @@ class Customer extends DataObject
 
 	public function setAddress($value)
 	{
-		$this->address = $value;
+		$this->address = $value->getId();;
+	}	
+	
+	public function setCity($value)
+	{
+		$this->city = $value;
 	}
-
+	
 	public function setEmail($value)
 	{
 		$this->email = $value;
@@ -132,12 +142,17 @@ class Customer extends DataObject
 		
 		if($this->isNew)
 		{ // insert
-			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :firstname, :surname, :address, :email, :language");
-			$statement->bindParam(":adults", $this->firstname );
-			$statement->bindParam(":children",$this->surname );
-			$statement->bindParam(":startDate", $this->address );
-			$statement->bindParam(":endDate", $this->email );
-			$statement->bindParam(":promocode", $this->language );
+			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :title, :firstname, :surname, :address, :email, :password, :creditcard, :language, :mailconfirm);");
+			$statement->bindParam(":title", $this->title );
+			$statement->bindParam(":firstname", $this->firstname );
+			$statement->bindParam(":surname",$this->surname );
+			$statement->bindParam(":address", $this->address );
+			$statement->bindParam(":email", $this->email );
+			$statement->bindParam(":password", $this->password );
+			$statement->bindParam(":creditcard", $this->creditcard );
+			$statement->bindParam(":language", $this->language );
+			$statement->bindParam(":mailconfirm", $this->mailconfirm );
+			
 			if($statement->execute())
 			{
 				$this->isNew = false;
@@ -150,12 +165,16 @@ class Customer extends DataObject
 		}
 		else
 		{ // update
-			$statement = $gDatabase->prepare("UPDATE customer SET firstname= :firstname,surname= :surname,address= :address, email=:email, language=:language WHERE id=:id LIMIT 1;");
+			$statement = $gDatabase->prepare("UPDATE customer SET title = :title, firstname= :firstname,surname= :surname,address= :address,email=:email, password=:password, creditcard=:creditcard, language=:language, mailconfirm=:mailconfirm WHERE id=:id LIMIT 1;");
+			$statement->bindParam(":title", $this->title );
 			$statement->bindParam(":firstname", $this->firstname );
 			$statement->bindParam(":surname",$this->surname );
 			$statement->bindParam(":address", $this->address );
 			$statement->bindParam(":email", $this->email );
+			$statement->bindParam(":password", $this->password );
+			$statement->bindParam(":creditcard", $this->creditcard );
 			$statement->bindParam(":language", $this->language );
+			$statement->bindParam(":mailconfirm", $this->mailconfirm );
 			$statement->bindParam(":id", $this->id );
 			if(!$statement->execute())
 			{

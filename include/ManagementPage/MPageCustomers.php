@@ -36,7 +36,7 @@ class MPageCustomers extends ManagementPageBase
 				break;
 			case "create":
 				self::checkAccess("create-customer");
-				//$this->showCreateRoomPage();
+				$this->showCreateCustomerPage();
 				break;
 			case "list":
 			default:
@@ -44,75 +44,73 @@ class MPageCustomers extends ManagementPageBase
 				break;
 		}
 	}
-/*
-	private function showCreateRoomPage()
+
+	private function showCreateCustomerPage()
 	{
 		if(WebRequest::wasPosted())
 		{
 			try{
 				// get variables
-				$rname = WebRequest::post("rname");
-				$rtype = WebRequest::postInt("rtype");
-				$rmin = WebRequest::postInt("rmin");
-				$rmax = WebRequest::postInt("rmax");
-				$rprice = WebRequest::postFloat("rprice");
-			
+				$suTitle = WebRequest::post("suTitle");
+				$suFirstname = WebRequest::post("suFirstname");
+				$suLastname = WebRequest::post("suLastname");
+				$suAddress = WebRequest::post("suAddress");
+				$suCity = WebRequest::post("suCity");
+				$suPostcode = WebRequest::post("suPostcode");
+				$suCountry = WebRequest::post("suCountry");
+				$suEmail = WebRequest::post("suEmail");
+				$suPassword = WebRequest::post("suPassword");
+				$suConfirm = WebRequest::post("suConfirm");
+				
 				// data validation
-				if($rname == "")
-				{
-					throw new CreateRoomException("blank-roomname");
-				}	
-				
-				if($rtype == 0)
-				{
-					throw new CreateRoomException("blank-roomtype");
-				}
-				
-				if($rmax < 1 || $rmin < 0)
-				{
-					throw new CreateRoomException("room-capacity-too-small");
-				}
-				
-				if($rmin > $rmax)
-				{
-					throw new CreateRoomException("room-capacity-min-gt-max");
-				}
-				
-				if($rprice != abs($rprice))
-				{
-					throw new CreateRoomException("room-price-negative");
-				}
-				
-				
-				$room = new Room();
+				if($suTitle == ""){throw new CreateCustomerException("suTitle not specified");}
+				if($suFirstname == ""){throw new CreateCustomerException("suFirstname not specified");}
+				if($suLastname == ""){throw new CreateCustomerException("suLastname not specified");}
+				if($suAddress == ""){throw new CreateCustomerException("suAddress not specified");}
+				if($suCity == ""){throw new CreateCustomerException("suCity not specified");}
+				if($suPostcode == ""){throw new CreateCustomerException("suPostcode not specified");}
+				if($suCountry == ""){throw new CreateCustomerException("suCountry not specified");}
+				if($suEmail == ""){throw new CreateCustomerException("suEmail not specified");}
+				if($suPassword == ""){throw new CreateCustomerException("suPassword not specified");}
+				if($suConfirm == ""){throw new CreateCustomerException("suConfirm not specified");}
+				if($suPassword != $suConfirm){throw new CreateCustomerException("Password mismatch");}
+
+				$customer = new Customer();
 				
 				// set values
-				$room->setName($rname);
-				$room->setType($rtype);
-				$room->setMinPeople($rmin);
-				$room->setMaxPeople($rmax);
-				$room->setPrice($rprice);
+				$customer->setTitle($suTitle);
+				$customer->setFirstname($suFirstname);
+				$customer->setSurname($suLastname);
+
+				$address = new Address();
+				$address->setLine1($suAddress);
+				$address->setCity($suCity);
+				$address->setPostcode($suPostcode);
+				$address->setCountry($suCountry);
+				$address->save();
 				
+				$customer->setAddress($address);
+				$customer->setEmail($suEmail);
+				$customer->setPassword($suPassword);
 				
-				$room->save();
+				// save it
+				$customer->save();
 
 				global $cScriptPath;
-				$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+				$this->mHeaders[] = "Location: {$cScriptPath}/Customers";
 			}
-			catch (CreateRoomException $ex)
+			catch (CreateCustomerException $ex)
 			{
-				$this->mBasePage="mgmt/roomCreate.tpl";
+				$this->mBasePage="mgmt/custCreate.tpl";
 				$this->error($ex->getMessage());
 			}
 		}
 		else
 		{
-			$this->mBasePage="mgmt/roomCreate.tpl";
+			$this->mBasePage="mgmt/custCreate.tpl";
 		}
-		
-		$this->mSmarty->assign("rtlist", RoomType::$data);
 	}	
-	
+/*	
 	private function showEditRoomPage()
 	{
 		if(WebRequest::wasPosted())
