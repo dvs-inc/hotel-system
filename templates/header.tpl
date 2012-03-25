@@ -1,7 +1,7 @@
 <div id="header">
 	<div id="logo"><img alt="{message name="logo-alt"}"  src="{$cWebPath}/images/bflogo.png" /></div>
-	{block name="accountarea"}
 	<div id="login">
+	{if $loginoverride eq ""}
 		<form action="{$cWebPath}/index.php/Login?returnto={$currentPagePath}" method="post">
 			<div id="loginparts">
 				<label>
@@ -29,6 +29,9 @@
 				{message name="lgerror-{$lgerror}"}
 			</div>
 		{/if}
+	{else}
+		{include file="{$loginoverride}.tpl"}
+	{/if}
 	</div>
-	{/block}
+	
 </div>

@@ -8,6 +8,7 @@ class Hooks
 	private static $registeredHandlers = array(
 		"PostRunPage" => array(
 			"PageLogin::getErrorDisplay",
+			"PageLogin::loginModuleOverride",
 		),
 	
 	);

@@ -85,4 +85,17 @@ class PageLogin extends PageBase
 		
 		return true;
 	}
+	
+	public static function loginModuleOverride($arguments)
+	{
+		$smarty = $arguments[1];
+
+		$smarty->assign("loginoverride", "");
+		
+		if(/* logged in */false)
+		{
+			$smarty->assign("loginoverride", "userpanel");
+			$smarty->assign("userRealName", "USERNAME!");
+		}
+	}
 }
