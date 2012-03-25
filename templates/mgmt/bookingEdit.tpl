@@ -4,6 +4,7 @@
 <form method="post" action="{$cScriptPath}/Bookings?action=edit&id={$roomid}">
 <div id="constraint">
 {include file="mgmt/bookingEditForm.tpl"}
+<input id="submitbutton" type="submit"/>
 </div>
 </form>
 {/block}

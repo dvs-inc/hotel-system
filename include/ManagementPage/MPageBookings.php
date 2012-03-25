@@ -28,15 +28,15 @@ class MPageBookings extends ManagementPageBase
 		{
 			case "del":
 				self::checkAccess("delete-booking");
-				//$this->doDeleteBookingAction();
+				$this->doDeleteBookingAction();
 				break;
 			case "edit":
 				self::checkAccess("edit-booking");
-				//$this->showEditBookingPage();
+				$this->showEditBookingPage();
 				break;
 			case "create":
 				self::checkAccess("create-booking");
-				//$this->showCreateBookingPage();
+				$this->showCreateBookingPage();
 				break;
 			case "list":
 			default:
@@ -194,7 +194,7 @@ class MPageBookings extends ManagementPageBase
 		
 	}	
 
-	private function showListBookingsPage()
+	private function showListBookings<input id="submitbutton" type="submit"/>editPage()
 	{
 		$idList = Booking::getIdList();
 
