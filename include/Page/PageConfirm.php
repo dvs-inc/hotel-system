@@ -12,7 +12,7 @@ class PageConfirm extends PageBase
 		
 			// data validation
 
-			$customer = Customer::getById();
+			$customer = Customer::getById($id);
 			
 			if($customer==null)
 			{
