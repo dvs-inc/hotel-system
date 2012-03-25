@@ -245,10 +245,10 @@ class Customer extends DataObject
 
 	public function sendMailConfirm()
 	{
-		global $cWebPath;
+		global $cScriptPath;
 		$message = Message::getMessage("signup-mailconfirm");
-		$link = $cWebPath.'/Confirm?id='.$this->getId().'&hash='.$this->getMailConfirm();
-		$message = str_replace('$1', '<a href="'.$link.'">'.$link.'</a>', $message);
+		$link = $cScriptPath.'/Confirm?id='.$this->getId().'&hash='.$this->getMailConfirm();
+		$message = str_replace('$1', $link, $message);
 		mail($this->getEmail(),Message::getMessage("signup-mailconfirm-subject"),$message);
 	}
 
