@@ -243,4 +243,9 @@ abstract class PageBase
 			throw new Exception();
 		}
 	}
+		protected function error($messageTag)
+	{
+		$this->mSmarty->assign("showError", "yes");
+		$this->mSmarty->assign("errortext", $messageTag);
+	}
 }
