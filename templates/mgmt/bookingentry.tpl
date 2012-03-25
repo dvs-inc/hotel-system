@@ -1,5 +1,5 @@
 <tr>
-	<td>{message name="$booking->getCustomer()->getFullName()"}</td>
+	<td>{$booking->getCustomer()->getFullName()}</td>
 	<td>{$booking->getAdults()}</td>
 	<td>{$booking->getChildren()}</td>
 	<td>{$booking->getStartDate()}</td>

@@ -204,10 +204,10 @@ class MPageBookings extends ManagementPageBase
 
 		foreach($idList as $id)
 		{
-			$bookingsList[] = Booking::getById($id);
+			$bookinglist[] = Booking::getById($id);
 		}
 
-		$this->mSmarty->assign("bookingList", $bookingList);
+		$this->mSmarty->assign("bookingList", $bookinglist);
 
 		$this->mBasePage="mgmt/bookingList.tpl";
 	}
