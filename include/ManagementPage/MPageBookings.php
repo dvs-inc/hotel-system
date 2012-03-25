@@ -180,7 +180,7 @@ class MPageBookings extends ManagementPageBase
 			
 			if($booking == null)
 			{
-				throw new CreateBookingException("Booking does not exist");
+				throw new Exception("Booking does not exist");
 			}
 			
 			$this->mSmarty->assign("bookingid", $booking->getId());
@@ -191,12 +191,12 @@ class MPageBookings extends ManagementPageBase
 			$this->mSmarty->assign("bend", $booking->getEndDate());
 			$this->mSmarty->assign("bpromo", $booking->getPromocode());
 			
-			catch (CreateBookingException $ex)
+		}
+		catch (Exception $ex)
 			{
 				$this->mBasePage="mgmt/bookingEdit.tpl";
 				$this->error($ex->getMessage());
 			}
-		}
 		
 	}	
 
