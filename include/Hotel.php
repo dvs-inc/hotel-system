@@ -107,8 +107,6 @@ HTML;
 			$cDatabaseModule, $cIncludePath, $cLoggerName, $gLogger;
 
 		set_exception_handler(array("Hotel","exceptionHandler"));
-
-		session_start();
 	
 		// check all the required PHP extensions are enabled on this SAPI
 		$this->checkPhpExtensions();
@@ -125,6 +123,8 @@ HTML;
 		require_once($cIncludePath . "/_Exceptions.php");
 		
 		spl_autoload_register("Hotel::autoLoader");
+
+		Session::start();
 
 		$gLogger = new $cLoggerName;
 		$gLogger->log("Initialising logger!");

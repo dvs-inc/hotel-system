@@ -9,6 +9,28 @@ class Session
 		session_start();
 	}
 	
+	public static function setLoggedInCustomer($id)
+	{
+		$_SESSION['cid'] = $id;
+	}
+	
+	public static function getLoggedInCustomer()
+	{
+		if(isset($_SESSION['cid']))
+		{
+			return $_SESSION['cid'];
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static function isCustomerLoggedIn()
+	{
+		return isset($_SESSION['cid']);
+	}
+	
 	public static function setLoggedInUser($id)
 	{
 		$_SESSION['uid'] = $id;

@@ -39,8 +39,7 @@ class PageLogin extends PageBase
 			// seems to be ok.
 
 			// set up the session
-			
-			
+			Session::setLoggedInCustomer($cust->getId());
 			
 			// redirect back to the main page.
 			$this->redirect();
@@ -92,10 +91,11 @@ class PageLogin extends PageBase
 
 		$smarty->assign("loginoverride", "");
 		
-		if(/* logged in */false)
+		if(Session::isCustomerLoggedIn())
 		{
+			$customer = Customer::getById(Session::getLoggedInCustomer());
 			$smarty->assign("loginoverride", "userpanel");
-			$smarty->assign("userRealName", "USERNAME!");
+			$smarty->assign("userRealName", $customer->getFirstname() . " " . $customer->getSurname());
 		}
 	}
 }

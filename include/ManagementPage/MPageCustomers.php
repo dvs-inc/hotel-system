@@ -89,6 +89,7 @@ class MPageCustomers extends ManagementPageBase
 				$address->setCountry($suCountry);
 				$address->save();
 				
+				$customer->setAddress($address);
 				
 				$customer->setEmail($suEmail);
 				$customer->setPassword($suPassword);
