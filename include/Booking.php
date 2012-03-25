@@ -5,7 +5,6 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class Booking extends DataObject
 {
-	private $id;
 	private $adults;
 	private $children;
 	private $startDate;
