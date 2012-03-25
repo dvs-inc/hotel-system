@@ -22,6 +22,18 @@ class WebRequest
 		}
 	}
 
+	public static function httpHost()
+	{
+		if(isset($_SERVER["HTTP_HOST"]))
+		{
+			return $_SERVER["HTTP_HOST"];
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	/**
 	 * Retrieves a GET variable, if it is set.
 	 */

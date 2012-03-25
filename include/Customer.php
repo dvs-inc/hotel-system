@@ -247,7 +247,7 @@ class Customer extends DataObject
 	{
 		global $cWebPath;
 		$message = Message::getMessage("signup-mailconfirm");
-		$link = $cWebPath.'index.php/Confirm?id='.$this->getId().'&hash='.$this->getMailConfirm();
+		$link = 'http://'.WebRequest::httpHost().$cWebPath.'/index.php/Confirm?id='.$this->getId().'&hash='.$this->getMailConfirm();
 		$message = str_replace('$1', $link, $message);
 		mail($this->getEmail(),Message::getMessage("signup-mailconfirm-subject"),$message);
 	}
