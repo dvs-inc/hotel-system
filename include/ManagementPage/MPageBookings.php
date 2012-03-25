@@ -185,7 +185,7 @@ class MPageBookings extends ManagementPageBase
 				}
 			
 				$this->mSmarty->assign("bookingid", $booking->getId());
-				$this->mSmarty->assign("bcust", $booking->getCustomerId());
+				$this->mSmarty->assign("bcust", $booking->getCustomer()->getId());
 				$this->mSmarty->assign("badults", $booking->getAdults());
 				$this->mSmarty->assign("bchildren", $booking->getChildren());
 				$this->mSmarty->assign("bstart", $booking->getStartDate());
