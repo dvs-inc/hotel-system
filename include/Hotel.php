@@ -67,7 +67,25 @@ HTML;
 	private static function autoLoader($class_name)
 	{
 		global $cIncludePath;
-		require_once($cIncludePath . "/" . $class_name . ".php");
+		if(file_exists($cIncludePath . "/" . $class_name . ".php"))
+		{
+			require_once($cIncludePath . "/" . $class_name . ".php");
+			return;
+		}
+		
+		if(file_exists($cIncludePath . "/Page/" . $class_name . ".php"))
+		{
+			require_once($cIncludePath . "/Page/" . $class_name . ".php");
+			return;
+		}
+
+		if(file_exists($cIncludePath . "/ManagementPage/" . $class_name . ".php"))
+		{
+			require_once($cIncludePath . "/ManagementPage/" . $class_name . ".php");
+			return;
+		}
+		
+		throw new Exception("File not found");
 	}	
 
 	private function checkPhpExtensions()
