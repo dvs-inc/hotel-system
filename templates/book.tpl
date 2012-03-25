@@ -7,13 +7,13 @@
 
 {block name="columntwo"}
 	<h2>{message name="yourdetails"}</h2>
-	<label>{message name ="title"}<input name = "qbTitle" class = "datainput" /></label>
+	<label>{message name="title"}<select name="qbTitle" id="dropDownCountry">{include file="titles.tpl" selectedVal=""}</select></label>
 	<label>{message name="firstname"}<input name="qbFirstname" class="datainput" /></label>
 	<label>{message name="lastname"}<input name="qbLastname" class="datainput" /></label>
 	<label>{message name="address"}<input name="qbAddress" class="datainput" /></label>
 	<label>{message name="city"}<input name="qbCity" class="datainput" /></label>
 	<label>{message name="postcode"}<input name="qbPostcode" class="datainput" /></label>
-	<label>{message name="country"}<select name="qbCountry" id="dropDownCountry">{include file="countries.tpl"}</select></label>
+	<label>{message name="country"}<select name="qbCountry" id="dropDownCountry">{include file="countries.tpl" selectedVal=" "}</select></label>
 	<label>{message name="email"}<input name="qbEmail" class="datainput"/></label>
 	<input type="submit" id="submitbutton" value="{message name="check-availability"}"/>
 {/block}
