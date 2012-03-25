@@ -28,7 +28,7 @@ class MPageCustomers extends ManagementPageBase
 		{
 			case "del":
 				self::checkAccess("delete-customer");
-				//$this->doDeleteRoomAction();
+				$this->doDeleteRoomAction();
 				break;
 			case "edit":
 				self::checkAccess("edit-customer");
@@ -216,20 +216,20 @@ class MPageCustomers extends ManagementPageBase
 
 		$this->mBasePage="mgmt/custList.tpl";
 	}
-/*
-	private function doDeleteRoomAction()
+
+	private function doDeleteCustomerAction()
 	{
-		$rid=WebRequest::getInt("id");
-		if($rid < 1)
-				throw new Exception("RoomId too small");
+		$cid=WebRequest::getInt("id");
+		if($cid < 1)
+				throw new Exception("CustomerId too small");
 
-		if(Room::getById($rid) == null)
-				throw new Exception("Room does not exist");
+		if(Customer::getById($cid) == null)
+				throw new Exception("CustomerId does not exist");
 
-		Room::getById($rid)->delete();
+		Customer::getById($cid)->delete();
 
 		global $cScriptPath;
-		$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+		$this->mHeaders[] = "Location: {$cScriptPath}/Customers";
 	}
-*/
+
 }
