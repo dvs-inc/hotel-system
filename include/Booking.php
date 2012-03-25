@@ -12,11 +12,6 @@ class Booking extends DataObject
 	private $promocode;
 	private $customer;
 	
-	public function getId()
-	{
-		return $this->id;
-	}
-	
 	public function getAdults()
 	{
 		return $this->adults;
