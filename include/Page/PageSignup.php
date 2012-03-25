@@ -68,10 +68,11 @@ class PageSignup extends PageBase
 				// save it
 				$customer->save();
 				
+				$customer->sendMailConfirm();
+				
 				global $cScriptPath;
 				
-				Session::setLoggedInCustomer($customer->getId());
-				$this->mHeaders[] = "Location: {cScriptPath}";
+				$this->mHeaders[] = "Location: {$cScriptPath}";
 			}
 			catch (CreateCustomerException $ex)
 			{
@@ -83,10 +84,5 @@ class PageSignup extends PageBase
 		{
 			$this->mBasePage="signup.tpl";
 		}
-	}
-	
-	private function signupCustomer()
-	{
-
 	}
 }

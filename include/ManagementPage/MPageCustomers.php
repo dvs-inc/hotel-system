@@ -30,6 +30,9 @@ class MPageCustomers extends ManagementPageBase
 				self::checkAccess("delete-customer");
 				$this->doDeleteCustomerAction();
 				break;
+			case "rsconfirm":
+				$this->doResendCustomerAction();
+				break;
 			case "edit":
 				self::checkAccess("edit-customer");
 				$this->showEditCustomerPage();
@@ -93,6 +96,8 @@ class MPageCustomers extends ManagementPageBase
 				
 				$customer->setEmail($suEmail);
 				$customer->setPassword($suPassword);
+				
+				$customer->setMailconfirm("Confirmed");
 				
 				// save it
 				$customer->save();
@@ -230,6 +235,25 @@ class MPageCustomers extends ManagementPageBase
 
 		Customer::getById($cid)->delete();
 
+		global $cScriptPath;
+		$this->mHeaders[] = "Location: {$cScriptPath}/Customers";
+	}
+	
+	private function doResendCustomerAction()
+	{
+		$cid=WebRequest::getInt("id");
+		if($cid < 1)
+				throw new Exception("CustomerId too small");
+
+		$customer = Customer::getById($cid);
+		if($customer == null)
+				throw new Exception("CustomerId does not exist");
+
+		$customer->setEmail($customer->getEmail());
+		$customer->save();
+		$customer->sendMailConfirm();
+		
+		
 		global $cScriptPath;
 		$this->mHeaders[] = "Location: {$cScriptPath}/Customers";
 	}

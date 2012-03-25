@@ -14,10 +14,12 @@ class Customer extends DataObject
 	private $creditcard;
 	private $language;
 	private $mailconfirm;
+	private $mailchecksum;
 	
 	public function __construct()
 	{
 		$this->language = "en-GB";
+		
 	}
 	
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +63,21 @@ class Customer extends DataObject
 	{
 		return $this->mailconfirm;
 	}
+	
+	public function getMailChecksum()
+	{
+		return $this->mailchecksum;
+	}
 
+	public function isMailConfirmed()
+	{
+		return $this->mailconfirm == "Confirmed";
+	}
+
+	public function generateMailChecksum()
+	{
+		$this->mailchecksum = self::generateHash($this->email);
+	}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,6 +109,7 @@ class Customer extends DataObject
 	public function setEmail($value)
 	{
 		$this->email = $value;
+		$this->mailconfirm = self::generateHash($this->email);
 	}
 
 	public function setPassword($newPassword)
@@ -110,6 +127,19 @@ class Customer extends DataObject
 		$this->language = $value;
 	}
 
+	public function confirmEmail($hash)
+	{
+		global $gLogger;
+		
+		$gLogger->log("MC is " . $this->mailconfirm . ", hash is $hash .");
+		
+		if($this->mailconfirm == $hash)
+		{
+			$gLogger->log("Successfully confirmed email address");
+			$this->mailconfirm = "Confirmed";
+			$this->save();
+		}
+	}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -154,7 +184,7 @@ class Customer extends DataObject
 		
 		if($this->isNew)
 		{ // insert
-			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :title, :firstname, :surname, :address, :email, :password, :creditcard, :language, :mailconfirm);");
+			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :title, :firstname, :surname, :address, :email, :password, :creditcard, :language, :mailconfirm, :mailchecksum);");
 			$statement->bindParam(":title", $this->title );
 			$statement->bindParam(":firstname", $this->firstname );
 			$statement->bindParam(":surname",$this->surname );
@@ -163,7 +193,8 @@ class Customer extends DataObject
 			$statement->bindParam(":password", $this->password );
 			$statement->bindParam(":creditcard", $this->creditcard );
 			$statement->bindParam(":language", $this->language );
-			$statement->bindParam(":mailconfirm", $this->mailconfirm );
+			$statement->bindParam(":mailconfirm", $this->mailconfirm );	
+			$statement->bindParam(":mailchecksum", $this->mailchecksum );
 			
 			if($statement->execute())
 			{
@@ -177,7 +208,7 @@ class Customer extends DataObject
 		}
 		else
 		{ // update
-			$statement = $gDatabase->prepare("UPDATE customer SET title = :title, firstname= :firstname,surname= :surname,address= :address,email=:email, password=:password, creditcard=:creditcard, language=:language, mailconfirm=:mailconfirm WHERE id=:id LIMIT 1;");
+			$statement = $gDatabase->prepare("UPDATE customer SET title = :title, firstname= :firstname,surname= :surname,address= :address,email=:email, password=:password, creditcard=:creditcard, language=:language, mailconfirm=:mailconfirm, mailchecksum=:mailchecksum WHERE id=:id LIMIT 1;");
 			$statement->bindParam(":title", $this->title );
 			$statement->bindParam(":firstname", $this->firstname );
 			$statement->bindParam(":surname",$this->surname );
@@ -187,6 +218,7 @@ class Customer extends DataObject
 			$statement->bindParam(":creditcard", $this->creditcard );
 			$statement->bindParam(":language", $this->language );
 			$statement->bindParam(":mailconfirm", $this->mailconfirm );
+			$statement->bindParam(":mailchecksum", $this->mailchecksum );
 			$statement->bindParam(":id", $this->id );
 			if(!$statement->execute())
 			{
@@ -217,6 +249,14 @@ class Customer extends DataObject
 	}
 /////////////////////////////////////////////////////////////////////////////
 
+	public function sendMailConfirm()
+	{
+		global $cWebPath;
+		$message = Message::getMessage("signup-mailconfirm");
+		$link = 'http://'.WebRequest::httpHost().$cWebPath.'/index.php/Confirm?id='.$this->getId().'&hash='.$this->getMailConfirm();
+		$message = str_replace('$1', $link, $message);
+		mail($this->getEmail(),Message::getMessage("signup-mailconfirm-subject"),$message);
+	}
 
 	/**
 	 * Check the stored password against the provided password
@@ -239,5 +279,26 @@ class Customer extends DataObject
 		// changable factor to the hash, known as a salt. This makes rainbow
 		// tables practically useless against this set of passwords.
 		return md5(md5($email . md5($password)));
+	}
+	
+	protected static function generateHash($email)
+	{
+		// do some time-sensitive stuff related to the specified email address.
+		// (the idea being that the same hash won't be generated twice by two 
+		//        different servers serving an identical request)
+		
+		$mt = microtime(); // microseconds past the epoch
+		$mts = sha1($mt);
+
+		$key = sha1($email);
+		
+		$rand = mt_rand(); // random number
+		
+		$mt2 = microtime();
+		$mts2 = sha1($mt2);
+
+		$result = sha1($rand . md5($mts . $key) . $mts2);
+		
+		return $result;
 	}
 }
