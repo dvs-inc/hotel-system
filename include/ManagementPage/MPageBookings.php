@@ -151,6 +151,11 @@ class MPageBookings extends ManagementPageBase
 				{
 					throw new CreateBookingException("Booking does not exist");
 				}
+				catch (CreateBookingException $ex)
+				{
+					$this->mBasePage="mgmt/bookingEdit.tpl";
+					$this->error($ex->getMessage());
+				}
 				
 				// set values
 				$booking->setCustomer($bcust);
@@ -180,9 +185,13 @@ class MPageBookings extends ManagementPageBase
 			
 			if($booking == null)
 			{
-				throw new Exception("Booking does not exist");
+				throw new CreateBookingException("Booking does not exist");
 			}
-			
+			catch (CreateBookingException $ex)
+			{
+				$this->mBasePage="mgmt/bookingEdit.tpl";
+				$this->error($ex->getMessage());
+			}
 			$this->mSmarty->assign("bookingid", $booking->getId());
 			$this->mSmarty->assign("bcust", $booking->getCustomerID());
 			$this->mSmarty->assign("badults", $booking->getAdults());
@@ -192,11 +201,6 @@ class MPageBookings extends ManagementPageBase
 			$this->mSmarty->assign("bpromo", $booking->getPromocode());
 			
 		}
-		catch (Exception $ex)
-			{
-				$this->mBasePage="mgmt/bookingEdit.tpl";
-				$this->error($ex->getMessage());
-			}
 		
 	}	
 
