@@ -149,7 +149,7 @@ class MPageBookings extends ManagementPageBase
 				
 				if($booking == null)
 				{
-					throw new CreateBookingException("Booking does not exist");
+					throw new Exception("Booking does not exist");
 				}
 				
 				// set values
@@ -166,7 +166,11 @@ class MPageBookings extends ManagementPageBase
 				global $cScriptPath;
 				$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
 			}
-
+			catch (CreateBookingException $ex)
+			{
+				$this->mBasePage="mgmt/bookingEdit.tpl";
+				$this->error($ex->getMessage());
+			}
 		}
 		else
 		{
@@ -176,7 +180,7 @@ class MPageBookings extends ManagementPageBase
 			
 			if($booking == null)
 			{
-				throw new CreateBookingException("Booking does not exist");
+				throw new Exception("Booking does not exist");
 			}
 
 			$this->mSmarty->assign("bookingid", $booking->getId());
@@ -188,11 +192,7 @@ class MPageBookings extends ManagementPageBase
 			$this->mSmarty->assign("bpromo", $booking->getPromocode());
 			
 		}
-		catch (CreateBookingException $ex)
-		{
-			$this->mBasePage="mgmt/bookingEdit.tpl";
-			$this->error($ex->getMessage());
-		}
+		
 	}	
 
 	private function showListBookingsPage()
