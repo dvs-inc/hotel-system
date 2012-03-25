@@ -72,7 +72,7 @@ class PageSignup extends PageBase
 				
 				global $cScriptPath;
 				
-				$this->mHeaders[] = "Location: {cScriptPath}";
+				$this->mHeaders[] = "Location: {$cScriptPath}";
 			}
 			catch (CreateCustomerException $ex)
 			{
