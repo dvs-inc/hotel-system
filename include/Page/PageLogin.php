@@ -11,28 +11,40 @@ class PageLogin extends PageBase
 			if(! ($email = WebRequest::postString("lgEmail")))
 			{
 				// no email address specified
+				$this->redirect("noemail");
+				return;
 			}
 			if(! ($password = WebRequest::postString("lgPasswd")))
 			{
-				// no email address specified
+				// no password specified
+				$this->redirect("nopass");
+				return;
 			}
 
 			$cust = Customer::getByEmail($email);
 			if($cust == null)
 			{
 				// customer doesn't exist. offer to signup or retry?
+				$this->redirect("invalid");
+				return;
 			}
 
 			if(! $cust->authenticate($password) )
 			{
 				// not a valid password
+				$this->redirect("invalid");
+				return;
 			}
 
 			// seems to be ok.
 
 			// set up the session
+			
+			
+			
+			// redirect back to the main page.
+			$this->redirect();
 
-			// redirect back home
 		}
 		else
 		{
@@ -42,4 +54,21 @@ class PageLogin extends PageBase
 			$this->mHeaders[] = "Location: " . $cWebPath . "/index.php";
 		}
 	}
+
+	private function redirect($error = null)
+	{
+		$append = "";
+		if($error)
+		{
+			$append = "?lgerror=" . $error;
+		}
+		
+		global $cWebPath;
+		
+		// redirect back to the main page.
+		$this->mHeaders[] = "HTTP/1.1 303 See Other";
+		$this->mHeaders[] = "Location: " . $cWebPath . "/index.php" . WebRequest::get("returnto") . $append;
+		return;
+	}
+
 }

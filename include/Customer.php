@@ -125,6 +125,23 @@ class Customer extends DataObject
 		}
 		return $resultObject;
 	}
+
+	public static function getByEmail($email)
+	{
+		global $gDatabase;
+		$statement = $gDatabase->prepare("SELECT * FROM customer WHERE email = :email LIMIT 1;");
+		
+		$statement->bindParam(":email", $email);
+		
+		$statement->execute();
+		
+		$resultObject = $statement->fetchObject("Customer");
+		if($resultObject != false)
+		{
+			$resultObject->isNew = false;
+		}
+		return $resultObject;
+	}
 	
 	public function save()
 	{	

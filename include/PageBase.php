@@ -97,7 +97,7 @@ abstract class PageBase
 		$this->mSmarty->assign("cScriptPath", $cScriptPath);
 
 		// the current page path
-		$this->mSmarty->assign("currentPagePath", "");
+		$this->mSmarty->assign("currentPagePath", WebRequest::pathInfo());
 	}
 
 	/**
