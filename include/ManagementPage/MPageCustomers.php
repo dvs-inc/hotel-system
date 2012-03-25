@@ -250,7 +250,9 @@ class MPageCustomers extends ManagementPageBase
 				throw new Exception("CustomerId does not exist");
 
 		$customer->setEmail($customer->getEmail());
+		$customer->save();
 		$customer->sendMailConfirm();
+		
 		
 		global $cScriptPath;
 		$this->mHeaders[] = "Location: {$cScriptPath}/Customers";
