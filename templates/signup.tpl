@@ -2,6 +2,7 @@
 
 {* {block name="prebody"}{if $showError == "yes"}{include file="errorbar.tpl"}{/if}{/block} *}
 {block name="body"}
+{if $showError == "yes"}{include file="errorbar.tpl"}{/if}<br>
 <h2>{message name="page-signup-title"}</h2>
 <p>{message name="page-signup-desc"}</p><br>
 <div id="signupform"><form method="post" action="{$cScriptPath}/Signup">
