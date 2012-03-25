@@ -174,22 +174,28 @@ class MPageBookings extends ManagementPageBase
 		}
 		else
 		{
-			$this->mBasePage="mgmt/bookingEdit.tpl";
+			try{
+				$this->mBasePage="mgmt/bookingEdit.tpl";
 			
-			$room = Booking::getById(WebRequest::getInt("id")) ;
+				$booking = Booking::getById(WebRequest::getInt("id")) ;
 			
-			if($booking == null)
+				if($booking == null)
+				{
+					throw new Exception("Booking does not exist");
+				}
+			
+				$this->mSmarty->assign("bookingid", $booking->getId());
+				$this->mSmarty->assign("bcust", $booking->getCustomer());
+				$this->mSmarty->assign("badults", $booking->getAdults());
+				$this->mSmarty->assign("bchildren", $booking->getChildren());
+				$this->mSmarty->assign("bstart", $booking->getStartDate());
+				$this->mSmarty->assign("bend", $booking->getEndDate());
+				$this->mSmarty->assign("bpromo", $booking->getPromocode());
+			} catch (Exception $ex)
 			{
-				throw new Exception("Booking does not exist");
+				$this->mBasePage="mgmt/bookingEdit.tpl";
+				$this->error($ex->getMessage());
 			}
-			
-			$this->mSmarty->assign("bookingid", $booking->getId());
-			$this->mSmarty->assign("bcust", $booking->getCustomer());
-			$this->mSmarty->assign("badults", $booking->getAdults());
-			$this->mSmarty->assign("bchildren", $booking->getChildren());
-			$this->mSmarty->assign("bstart", $booking->getStartDate());
-			$this->mSmarty->assign("bend", $booking->getEndDate());
-			$this->mSmarty->assign("bpromo", $booking->getPromocode());
 		}
 		
 	}	
