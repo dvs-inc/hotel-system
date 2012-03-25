@@ -335,3 +335,8 @@ input.datainput{
 	margin-left:190px;
 	width:200px;
 }
+
+.uncertain
+{
+	font-style:italic;
+}
