@@ -36,11 +36,6 @@ class Customer extends DataObject
 	{
 		return $this->surname;
 	}
-	
-	public function getFullname()
-	{
-		return ($this->firstname, $this->surname);
-	}
 
 	public function getAddress()
 	{ //get address from Address Class
