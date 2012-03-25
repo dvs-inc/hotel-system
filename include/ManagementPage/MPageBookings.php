@@ -149,7 +149,7 @@ class MPageBookings extends ManagementPageBase
 				
 				if($booking == null)
 				{
-					throw new Exception("Booking does not exist");
+					throw new CreateBookingException("Booking does not exist");
 				}
 				
 				// set values
@@ -184,7 +184,7 @@ class MPageBookings extends ManagementPageBase
 			}
 			
 			$this->mSmarty->assign("bookingid", $booking->getId());
-			$this->mSmarty->assign("bcust", $booking->getCustomer()->getFullName());
+			$this->mSmarty->assign("bcust", $booking->getCustomerID());
 			$this->mSmarty->assign("badults", $booking->getAdults());
 			$this->mSmarty->assign("bchildren", $booking->getChildren());
 			$this->mSmarty->assign("bstart", $booking->getStartDate());
