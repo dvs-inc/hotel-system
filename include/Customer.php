@@ -132,6 +132,7 @@ class Customer extends DataObject
 		if($this->mailconfirm == $hash)
 		{
 			$this->mailconfirm = "Confirmed";
+			$this->save();
 		}
 	}
 
