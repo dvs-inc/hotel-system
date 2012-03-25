@@ -1,5 +1,6 @@
 {extends file="base.tpl"}
 
+{block name="prebody"}{if $showError == "yes"}{include file="errorbar.tpl"}{/if}{/block}
 {block name="body"}
 <h2>{message name="page-signup-title"}</h2>
 <p>{message name="page-signup-desc"}</p><br>
