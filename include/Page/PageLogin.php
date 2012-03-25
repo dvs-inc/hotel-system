@@ -29,6 +29,13 @@ class PageLogin extends PageBase
 				return;
 			}
 
+			if(! $cust->isMailConfirmed())
+			{
+				// customer hasn't confirmed their email
+				$this->redirect("noconfirm");
+				return;
+			}
+			
 			if(! $cust->authenticate($password) )
 			{
 				// not a valid password
