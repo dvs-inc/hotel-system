@@ -107,7 +107,6 @@ class MPageBookings extends ManagementPageBase
 			$this->mBasePage="mgmt/bookingCreate.tpl";
 		}
 		
-		//$this->mSmarty->assign("rtlist", RoomType::$data);
 	}	
 	
 	private function showEditBookingPage()
@@ -193,21 +192,20 @@ class MPageBookings extends ManagementPageBase
 			$this->mSmarty->assign("bpromo", $booking->getPromocode());
 		}
 		
-		//$this->mSmarty->assign("rtlist", RoomType::$data);
 	}	
 
 	private function showListBookingsPage()
 	{
 		$idList = Booking::getIdList();
 
-		$bookingsList = array();
+		$bookingList = array();
 
 		foreach($idList as $id)
 		{
-			$bookinglist[] = Booking::getById($id);
+			$bookingList[] = Booking::getById($id);
 		}
 
-		$this->mSmarty->assign("bookingList", $bookinglist);
+		$this->mSmarty->assign("bookingList", $bookingList);
 
 		$this->mBasePage="mgmt/bookingList.tpl";
 	}
