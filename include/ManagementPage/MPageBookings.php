@@ -129,17 +129,17 @@ class MPageBookings extends ManagementPageBase
 					throw new CreateBookingException("no-adults");
 				}	
 				
-				if($bstart == "")
+				if($bstart == null)
 				{
 					throw new CreateBookingException("no-start-date");
 				}
 				
-				if($bend == "")
+				if($bend == null)
 				{
 					throw new CreateBookingException("no-end-date");
 				}
 				
-				if($bcust == 0)
+				if($bcust == null)
 				{
 					throw new CreateBookingException("no-customer-for-booking");
 				}
@@ -161,10 +161,10 @@ class MPageBookings extends ManagementPageBase
 				$booking->setPromocode($bpromo);
 				
 				
-				$room->save();
+				$booking->save();
 
 				global $cScriptPath;
-				$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+				$this->mHeaders[] = "Location: {$cScriptPath}/Bookings";
 			}
 			catch (CreateBookingException $ex)
 			{
@@ -185,7 +185,7 @@ class MPageBookings extends ManagementPageBase
 				}
 			
 				$this->mSmarty->assign("bookingid", $booking->getId());
-				$this->mSmarty->assign("bcust", $booking->getCustomer());
+				$this->mSmarty->assign("bcust", $booking->getCustomerId());
 				$this->mSmarty->assign("badults", $booking->getAdults());
 				$this->mSmarty->assign("bchildren", $booking->getChildren());
 				$this->mSmarty->assign("bstart", $booking->getStartDate());
