@@ -23,7 +23,7 @@ class Booking extends DataObject
 	
 	public function getStartDate()
 	{
-		return $this->startDate
+		return $this->startDate;
 	}
 	
 	public function getEndDate()
@@ -38,9 +38,9 @@ class Booking extends DataObject
 	
 	public function getCustomer()
 	{
-		return $this->customer;
+		return Customer::getById($this->customer);
 	}
-	
+
 	public function setAdults($value)
 	{
 		$this->adults = $value;

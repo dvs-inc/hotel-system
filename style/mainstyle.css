@@ -141,8 +141,16 @@
 
 #content{
 	padding:15px;
+	margin-top:10px;
+	margin-left:30px;
+	width:860px;
 }
-
+#content h2{
+	width:860px;
+}
+#content p{
+	text-align:justify;
+}
 h2{
 	margin-top:0;
 	padding-bottom:6px;
@@ -151,18 +159,20 @@ h2{
 
 .twocolumn{
 	background:#ff8888;
-	margin-top:10px;
-}
-
-.twocolumn .columnone, .twocolumn  .columntwo{
-	width:425px;
-	display:inline;
-	margin-bottom:25px;
 }
 
 .twocolumn .columnone{
+	width:430px;
+	display:inline;
+	margin-bottom:25px;
+}
+.twocolumn  .columntwo{
+	width:375px;
+	display:inline;
+	margin-bottom:25px;
+}
+.twocolumn .columnone{
 	float:left;
-	margin-left:30px;
 }
 .twocolumn .columnone label{
 	margin-top:15px;
@@ -181,7 +191,6 @@ h2{
 }
 .twocolumn .columntwo #submitbutton{
 	float:right;
-	margin-right:60px;
 }
 .twocolumn h2{
 	padding-bottom:6px;
@@ -196,13 +205,13 @@ h2{
 	padding-right:52px;
 }
 .tcuneven .columntwo{
-	width:300px;
+	width:270px;
 }
 .tcuneven .columnone h2{
-	width:auto;
+	width:auto !important;
 }
 .tcuneven .columntwo h2{
-	width:260px;
+	width:260px !important;
 }
 .tcuneven .columntwo label{
 	display:inline-block;
@@ -241,10 +250,10 @@ h2{
 	width:200px;
 }
 .columnone h2{
-	width:370px;
+	width:370px !important;
 }
 .columntwo h2{
-	width:370px;
+	width:370px !important;
 }
 
 #footer{
@@ -280,7 +289,9 @@ input.datainput{
 	width:auto;
 	margin-right:100px;
 }
-
+.twocolumn label.promo{
+	width:255px;
+}
 .twocolumn .promo .datainput{
 	float:right;
 	width:100px;
