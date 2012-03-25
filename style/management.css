@@ -182,6 +182,9 @@
 #roomlist th{
 	width:110px;
 }
+#bookinglist th{
+	width:110px;
+}
 #link{
 	width:50px !important;
 }
