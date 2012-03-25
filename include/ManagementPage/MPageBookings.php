@@ -194,7 +194,7 @@ class MPageBookings extends ManagementPageBase
 		
 	}	
 
-	private function showListBookings<input id="submitbutton" type="submit"/>editPage()
+	private function showListBookings()
 	{
 		$idList = Booking::getIdList();
 
