@@ -6,7 +6,7 @@ class PageSignup extends PageBase
 {
 	protected function runPage()
 	{
-		$showError;
+		$showError = "";
 		$this->mBasePage = "signup.tpl";
 		
 		if(Session::isCustomerLoggedIn() ){
