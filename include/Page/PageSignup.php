@@ -76,7 +76,7 @@ class PageSignup extends PageBase
 			catch (CreateCustomerException $ex)
 			{
 				$this->mBasePage="signup.tpl";
-				$this->error($ex->getMessage());
+				//$this->error($ex->getMessage());
 			}
 		}
 		else
