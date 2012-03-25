@@ -83,7 +83,7 @@ class Address extends DataObject
 		
 		if($this->isNew)
 		{ // insert
-			$statement = $gDatabase->prepare("INSERT INTO address VALUES (null, :line1, :line2, :city, :postcode, :country");
+			$statement = $gDatabase->prepare("INSERT INTO address VALUES (null, :line1, :line2, :city, :postcode, :country);");
 			$statement->bindParam(":line1", $this->line1 );
 			$statement->bindParam(":line2", $this->line2 );
 			$statement->bindParam(":city", $this->city );

@@ -28,15 +28,15 @@ class MPageCustomers extends ManagementPageBase
 		{
 			case "del":
 				self::checkAccess("delete-customer");
-				//$this->doDeleteRoomAction();
+				$this->doDeleteCustomerAction();
 				break;
 			case "edit":
 				self::checkAccess("edit-customer");
-				//$this->showEditRoomPage();
+				$this->showEditCustomerPage();
 				break;
 			case "create":
 				self::checkAccess("create-customer");
-				//$this->showCreateRoomPage();
+				$this->showCreateCustomerPage();
 				break;
 			case "list":
 			default:
@@ -44,136 +44,136 @@ class MPageCustomers extends ManagementPageBase
 				break;
 		}
 	}
-/*
-	private function showCreateRoomPage()
+
+	private function showCreateCustomerPage()
 	{
 		if(WebRequest::wasPosted())
 		{
 			try{
 				// get variables
-				$rname = WebRequest::post("rname");
-				$rtype = WebRequest::postInt("rtype");
-				$rmin = WebRequest::postInt("rmin");
-				$rmax = WebRequest::postInt("rmax");
-				$rprice = WebRequest::postFloat("rprice");
-			
+				$suTitle = WebRequest::post("suTitle");
+				$suFirstname = WebRequest::post("suFirstname");
+				$suLastname = WebRequest::post("suLastname");
+				$suAddress = WebRequest::post("suAddress");
+				$suCity = WebRequest::post("suCity");
+				$suPostcode = WebRequest::post("suPostcode");
+				$suCountry = WebRequest::post("suCountry");
+				$suEmail = WebRequest::post("suEmail");
+				$suPassword = WebRequest::post("suPassword");
+				$suConfirm = WebRequest::post("suConfirm");
+				
 				// data validation
-				if($rname == "")
-				{
-					throw new CreateRoomException("blank-roomname");
-				}	
-				
-				if($rtype == 0)
-				{
-					throw new CreateRoomException("blank-roomtype");
-				}
-				
-				if($rmax < 1 || $rmin < 0)
-				{
-					throw new CreateRoomException("room-capacity-too-small");
-				}
-				
-				if($rmin > $rmax)
-				{
-					throw new CreateRoomException("room-capacity-min-gt-max");
-				}
-				
-				if($rprice != abs($rprice))
-				{
-					throw new CreateRoomException("room-price-negative");
-				}
-				
-				
-				$room = new Room();
+				if($suTitle == ""){throw new CreateCustomerException("suTitle not specified");}
+				if($suFirstname == ""){throw new CreateCustomerException("suFirstname not specified");}
+				if($suLastname == ""){throw new CreateCustomerException("suLastname not specified");}
+				if($suAddress == ""){throw new CreateCustomerException("suAddress not specified");}
+				if($suCity == ""){throw new CreateCustomerException("suCity not specified");}
+				if($suPostcode == ""){throw new CreateCustomerException("suPostcode not specified");}
+				if($suCountry == ""){throw new CreateCustomerException("suCountry not specified");}
+				if($suEmail == ""){throw new CreateCustomerException("suEmail not specified");}
+				if($suPassword == ""){throw new CreateCustomerException("suPassword not specified");}
+				if($suConfirm == ""){throw new CreateCustomerException("suConfirm not specified");}
+				if($suPassword != $suConfirm){throw new CreateCustomerException("Password mismatch");}
+
+				$customer = new Customer();
 				
 				// set values
-				$room->setName($rname);
-				$room->setType($rtype);
-				$room->setMinPeople($rmin);
-				$room->setMaxPeople($rmax);
-				$room->setPrice($rprice);
+				$customer->setTitle($suTitle);
+				$customer->setFirstname($suFirstname);
+				$customer->setSurname($suLastname);
+
+				$address = new Address();
+				$address->setLine1($suAddress);
+				$address->setCity($suCity);
+				$address->setPostcode($suPostcode);
+				$address->setCountry($suCountry);
+				$address->save();
 				
 				
-				$room->save();
+				$customer->setEmail($suEmail);
+				$customer->setPassword($suPassword);
+				
+				// save it
+				$customer->save();
 
 				global $cScriptPath;
-				$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+				$this->mHeaders[] = "Location: {$cScriptPath}/Customers";
 			}
-			catch (CreateRoomException $ex)
+			catch (CreateCustomerException $ex)
 			{
-				$this->mBasePage="mgmt/roomCreate.tpl";
+				$this->mBasePage="mgmt/custCreate.tpl";
 				$this->error($ex->getMessage());
 			}
 		}
 		else
 		{
-			$this->mBasePage="mgmt/roomCreate.tpl";
+			$this->mBasePage="mgmt/custCreate.tpl";
 		}
-		
-		$this->mSmarty->assign("rtlist", RoomType::$data);
 	}	
-	
-	private function showEditRoomPage()
+
+	private function showEditCustomerPage()
 	{
 		if(WebRequest::wasPosted())
 		{
 			try{
 				// get variables
-				$rname = WebRequest::post("rname");
-				$rtype = WebRequest::postInt("rtype");
-				$rmin = WebRequest::postInt("rmin");
-				$rmax = WebRequest::postInt("rmax");
-				$rprice = WebRequest::postFloat("rprice");
+				$suTitle = WebRequest::post("suTitle");
+				$suFirstname = WebRequest::post("suFirstname");
+				$suLastname = WebRequest::post("suLastname");
+				$suAddress = WebRequest::post("suAddress");
+				$suCity = WebRequest::post("suCity");
+				$suPostcode = WebRequest::post("suPostcode");
+				$suCountry = WebRequest::post("suCountry");
+				$suEmail = WebRequest::post("suEmail");
+				$suPassword = WebRequest::post("suPassword");
+				$suConfirm = WebRequest::post("suConfirm");
+				
 				$id = WebRequest::getInt("id");
 				
 				// data validation
-				if($rname == "")
-				{
-					throw new CreateRoomException("blank-roomname");
-				}	
+				if($suTitle == ""){throw new CreateCustomerException("suTitle not specified");}
+				if($suFirstname == ""){throw new CreateCustomerException("suFirstname not specified");}
+				if($suLastname == ""){throw new CreateCustomerException("suLastname not specified");}
+				if($suAddress == ""){throw new CreateCustomerException("suAddress not specified");}
+				if($suCity == ""){throw new CreateCustomerException("suCity not specified");}
+				if($suPostcode == ""){throw new CreateCustomerException("suPostcode not specified");}
+				if($suCountry == ""){throw new CreateCustomerException("suCountry not specified");}
+				if($suEmail == ""){throw new CreateCustomerException("suEmail not specified");}
+
+				$customer = Customer::getById($id);
 				
-				if($rtype == 0)
+				if($customer == null)
 				{
-					throw new CreateRoomException("blank-roomtype");
+					throw new Exception("Custoemr does not exist");
 				}
 				
-				if($rmax < 1 || $rmin < 0)
+				if($suPassword != "" && $suPassword == $suConfirm)
 				{
-					throw new CreateRoomException("room-capacity-too-small");
-				}
-				
-				if($rmin > $rmax)
-				{
-					throw new CreateRoomException("room-capacity-min-gt-max");
-				}
-				
-				if($rprice != abs($rprice))
-				{
-					throw new CreateRoomException("room-price-negative");
-				}
-				
-				
-				$room = Room::getById($id);
-				
-				if($room == null)
-				{
-					throw new Exception("Room does not exist");
+					$customer->setPassword($suPassword);
 				}
 				
 				// set values
-				$room->setName($rname);
-				$room->setType($rtype);
-				$room->setMinPeople($rmin);
-				$room->setMaxPeople($rmax);
-				$room->setPrice($rprice);
+				$customer->setTitle($suTitle);
+				$customer->setFirstname($suFirstname);
+				$customer->setSurname($suLastname);
+
+				$address = $customer->getAddress();
+				$address->setLine1($suAddress);
+				$address->setCity($suCity);
+				$address->setPostcode($suPostcode);
+				$address->setCountry($suCountry);
 				
 				
-				$room->save();
+				$customer->setEmail($suEmail);
+				
+				// save it
+				$address->save();
+				$customer->save();
 
 				global $cScriptPath;
-				$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+				$this->mHeaders[] = "Location: {$cScriptPath}/Customers";
 			}
-			catch (CreateRoomException $ex)
+			catch (CreateCustomerException $ex)
 			{
 				$this->mBasePage="mgmt/roomEdit.tpl";
 				$this->error($ex->getMessage());
@@ -181,26 +181,27 @@ class MPageCustomers extends ManagementPageBase
 		}
 		else
 		{
-			$this->mBasePage="mgmt/roomEdit.tpl";
+			$this->mBasePage="mgmt/custEdit.tpl";
 			
-			$room = Room::getById(WebRequest::getInt("id")) ;
+			$customer = Customer::getById(WebRequest::getInt("id")) ;
 			
-			if($room == null)
+			if($customer == null)
 			{
-				throw new Exception("Room does not exist");
+				throw new Exception("Customer does not exist");
 			}
 			
-			$this->mSmarty->assign("roomid", $room->getId());
-			$this->mSmarty->assign("rname", $room->getName());
-			$this->mSmarty->assign("rmin", $room->getMinPeople());
-			$this->mSmarty->assign("rmax", $room->getMaxPeople());
-			$this->mSmarty->assign("rprice", $room->getPrice());
-			$this->mSmarty->assign("rtype", $room->getType()->getId());
+			$this->mSmarty->assign("custid",$customer->getId());
+			$this->mSmarty->assign("suTitle",$customer->getTitle());
+			$this->mSmarty->assign("suFirstname",$customer->getFirstName());
+			$this->mSmarty->assign("suLastname",$customer->getSurname());
+			$this->mSmarty->assign("suAddress",$customer->getAddress()->getLine1());
+			$this->mSmarty->assign("suCity",$customer->getAddress()->getCity());
+			$this->mSmarty->assign("suPostcode",$customer->getAddress()->getPostcode());
+			$this->mSmarty->assign("suCountry",$customer->getAddress()->getCountry());
+			$this->mSmarty->assign("suEmail",$customer->getEmail());
 		}
-		
-		$this->mSmarty->assign("rtlist", RoomType::$data);
 	}	
-*/
+
 	private function showListCustomerPage()
 	{
 		$idList = Customer::getIdList();
@@ -216,20 +217,20 @@ class MPageCustomers extends ManagementPageBase
 
 		$this->mBasePage="mgmt/custList.tpl";
 	}
-/*
-	private function doDeleteRoomAction()
+
+	private function doDeleteCustomerAction()
 	{
-		$rid=WebRequest::getInt("id");
-		if($rid < 1)
-				throw new Exception("RoomId too small");
+		$cid=WebRequest::getInt("id");
+		if($cid < 1)
+				throw new Exception("CustomerId too small");
 
-		if(Room::getById($rid) == null)
-				throw new Exception("Room does not exist");
+		if(Customer::getById($cid) == null)
+				throw new Exception("CustomerId does not exist");
 
-		Room::getById($rid)->delete();
+		Customer::getById($cid)->delete();
 
 		global $cScriptPath;
-		$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+		$this->mHeaders[] = "Location: {$cScriptPath}/Customers";
 	}
-*/
+
 }

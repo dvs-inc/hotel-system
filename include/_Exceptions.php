@@ -14,6 +14,7 @@ class LoginFailedException extends Exception{}
 
 class CreateUserException extends Exception{}
 class CreateRoomException extends Exception{}
+class CreateCustomerException extends Exception{}
 
 class AccessDeniedException extends Exception{}
 
