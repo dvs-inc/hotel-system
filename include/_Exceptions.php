@@ -15,6 +15,7 @@ class LoginFailedException extends Exception{}
 class CreateUserException extends Exception{}
 class CreateRoomException extends Exception{}
 class CreateCustomerException extends Exception{}
+class CreateBookingException extends Exception{}
 
 class NonexistantObjectException extends Exception{}
 
