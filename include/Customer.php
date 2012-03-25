@@ -129,8 +129,13 @@ class Customer extends DataObject
 
 	public function confirmEmail($hash)
 	{
+		global $gLogger;
+		
+		$gLogger->log("MC is " . $this->mailconfirm . ", hash is $hash .");
+		
 		if($this->mailconfirm == $hash)
 		{
+			$gLogger->log("Successfully confirmed email address");
 			$this->mailconfirm = "Confirmed";
 			$this->save();
 		}
