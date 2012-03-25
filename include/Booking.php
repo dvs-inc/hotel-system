@@ -95,13 +95,14 @@ class Booking extends DataObject
 		
 		if($this->isNew)
 		{ // insert
-			$statement = $gDatabase->prepare("INSERT INTO booking VALUES (null, :adults, :children, :startDate, :endDate, :promocode, :customer");
+			$statement = $gDatabase->prepare("INSERT INTO booking VALUES (null, :adults, :children, :startDate, :endDate, :promocode, :customer);");
 			$statement->bindParam(":adults", $this->adults );
 			$statement->bindParam(":children",$this->children );
 			$statement->bindParam(":startDate", $this->startDate );
 			$statement->bindParam(":endDate", $this->endDate );
 			$statement->bindParam(":promocode", $this->promocode );
 			$statement->bindParam(":customer", $this->customer );
+			
 			if($statement->execute())
 			{
 				$this->isNew = false;
