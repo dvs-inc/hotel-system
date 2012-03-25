@@ -5,12 +5,18 @@ if(!defined("HMS")) die("Invalid entry point");
 
 class Booking extends DataObject
 {
+	private $id;
 	private $adults;
 	private $children;
 	private $startDate;
 	private $endDate;
 	private $promocode;
 	private $customer;
+	
+	public function getId()
+	{
+		return $this->id;
+	}
 	
 	public function getAdults()
 	{
