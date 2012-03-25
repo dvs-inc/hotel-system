@@ -5,7 +5,7 @@
 <tr id="thNONE"><th>{message name="booking-customer"}</th><th>{message name="booking-adults"}</th><th>{message name="booking-children"}</th>
 <th>{message name="booking-start"}</th><th>{message name="booking-end"}</th><th>{message name="booking-promocode"}</th><th id ="link" /><th id="link" /></tr>
 {foreach from="$bookingList" item="booking"}
-	{include file="mgmt/boookingentry.tpl" booking="$booking"}
+	{include file="mgmt/bookingentry.tpl" booking="$booking"}
 {/foreach}
 </table>
 {/block}
