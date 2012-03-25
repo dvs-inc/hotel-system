@@ -39,7 +39,7 @@ class Customer extends DataObject
 	
 	public function getFullname()
 	{
-		return array ($this->firstname, $this->surname);
+		return ($this->firstname, $this->surname);
 	}
 
 	public function getAddress()
