@@ -18,7 +18,8 @@
   		var key = theEvent.keyCode || theEvent.which;
   		key = String.fromCharCode( key );
   		var regex = /[0-9]/;
-  		if( key!="\b" && theEvent.keyCode!=37 && theEvent.keyCode!=39 && theEvent.keyCode!=46 && theEvent.keyCode!=117 && key!="\t" && !regex.test(key) ) {
+		alert(!regex.test(key));
+  		if( key!="\b" && theEvent.keyCode!=37 && theEvent.keyCode!=39 && theEvent.keyCode!=46 && (theEvent.keyCode < 112 || theEvent.keyCode > 123) && key!="\t" && !regex.test(key) ) {
     		theEvent.returnValue = false;
     		if(theEvent.preventDefault) theEvent.preventDefault();
   		}
