@@ -43,7 +43,7 @@
 	
 	if (checkin==null || checkin=="")
 	{
-		z+="{message name="book-error-nocheckin\n\n"}";
+		z+="{message name="book-error-nocheckin"}\n\n";
 		checkinInvalid = 1;
 	}
 	else
@@ -67,24 +67,24 @@
 	
 	if (checkout==null || checkout=="")
 	{
-		z+="{message name="book-error-nocheckout"}Check out date must be filled out.\n\n";
+		z+="{message name="book-error-nocheckout"}\n\n";
 		checkoutInvalid = 1;
 	}
 	else
 	{
 		if (checkout.substring(6) < yyyy)
 		{
-			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}\n\n";
 			checkoutInvalid = 1;
 		}
 		else if (checkout.substring(6) == yyyy && checkout.substring(3,5) < mm)
 		{
-			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}\n\n";
 			checkoutInvalid = 1;
 		}
 		else if (checkout.substring(6) == yyyy && checkout.substring(3,5) == mm && checkout.substring(0,2) < dd)
 		{
-			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}\n\n";
 			checkoutInvalid = 1;
 		}
 	}
@@ -93,25 +93,25 @@
 	{
 		if (checkin.substring(6) > checkout.substring(6))
 		{
-			z+="Cannot checkout before checked in.\n\n";
+			z+="{message name="book-error-checkout-before-checked-in"}\n\n";
 			checkinInvalid = 1;
 			checkoutInvalid = 1;
 		}
 		else if (checkin.substring(6) == checkout.substring(6) && checkin.substring(3,5) > checkout.substring(3,5))
 		{
-			z+="Cannot checkout before checked in.\n\n";
+			z+="{message name="book-error-checkout-before-checked-in"}\n\n";
 			checkinInvalid = 1;
 			checkoutInvalid = 1;
 		}
 		else if (checkin.substring(6) == checkout.substring(6) && checkin.substring(3,5) == checkout.substring(3,5) && checkin.substring(0,2) > checkout.substring(0,2))
 		{
-			z+="Cannot checkout before checked in.\n\n";
+			z+="{message name="book-error-checkout-before-checked-in"}\n\n";
 			checkinInvalid = 1;
 			checkoutInvalid = 1;
 		}
 		else if (checkin.substring(0,2) == checkout.substring(0,2))
 		{
-			z+="Cannot check in and out on the same day.\n\n";
+			z+="{message name="book-error-checkin-out-same-day"}\n\n";
 			checkinInvalid = 1;
 			checkoutInvalid = 1;	
 		}
@@ -139,14 +139,14 @@
 	
 	if (adultNum==null || adultNum=="")
 	{
-		z+="Adults field must be filled out.\n\n";
+		z+="{message name="book-error-noadult"}\n\n";
 		$("#adult").css("margin-top","6px");
 		$("#adultInput").css("border-color","red");
 		$("#adultInput").css("border-style","solid");
 	}
 	else if (adultNum < 1)
 	{
-		z+="Invalid adult entry.\n\n";
+		z+="{message name="book-error-invalid-adultentry"}\n\n";
 		$("#adultInput").css("border-color","red");
 		$("#adultInput").css("border-style","solid");
 	}
