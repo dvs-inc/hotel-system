@@ -99,7 +99,6 @@ abstract class ManagementPageBase extends PageBase
 	{
 		parent::setupPage();
 
-		$this->mSmarty->assign("showError", "no");
 	}
 
 	protected function finalSetup()
@@ -219,12 +218,6 @@ abstract class ManagementPageBase extends PageBase
 		}
 	}
 
-	protected function error($messageTag)
-	{
-		$this->mSmarty->assign("showError", "yes");
-		$this->mSmarty->assign("errortext", $messageTag);
-	}
-	
 	public static function checkAccess($actionName)
 	{
 		global $gLogger;
