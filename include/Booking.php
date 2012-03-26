@@ -36,12 +36,12 @@ class Booking extends DataObject
 	{
 		return $this->promocode;
 	}
-	
+		
 	public function getCustomer()
 	{
 		return Customer::getById($this->customer);
 	}
-
+	
 	public function setAdults($value)
 	{
 		$this->adults = $value;

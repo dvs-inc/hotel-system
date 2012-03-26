@@ -6,6 +6,11 @@ class Mail
 {
 	public static function send($to, $subject, $content)
 	{
+		$headers = 
+			"From: Blackfish Hotel <noreply@" . WebRequest::httpHost() . ">" . "\r\n\"
+			
+			;
+		
 		mail($to, $subject, $content);
 	}
 }

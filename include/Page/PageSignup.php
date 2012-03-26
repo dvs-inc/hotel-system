@@ -6,6 +6,8 @@ class PageSignup extends PageBase
 {
 	protected function runPage()
 	{
+		$showError = "";
+		$error = "";
 		$this->mBasePage = "signup.tpl";
 		
 		if(Session::isCustomerLoggedIn() ){
@@ -77,7 +79,7 @@ class PageSignup extends PageBase
 			catch (CreateCustomerException $ex)
 			{
 				$this->mBasePage="signup.tpl";
-				echo $ex->getMessage();
+				$this->error($ex->getMessage());
 			}
 		}
 		else

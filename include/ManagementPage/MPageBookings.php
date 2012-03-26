@@ -129,17 +129,17 @@ class MPageBookings extends ManagementPageBase
 					throw new CreateBookingException("no-adults");
 				}	
 				
-				if($bstart == "")
+				if($bstart == null)
 				{
 					throw new CreateBookingException("no-start-date");
 				}
 				
-				if($bend == "")
+				if($bend == null)
 				{
 					throw new CreateBookingException("no-end-date");
 				}
 				
-				if($bcust == 0)
+				if($bcust == null)
 				{
 					throw new CreateBookingException("no-customer-for-booking");
 				}
@@ -149,7 +149,7 @@ class MPageBookings extends ManagementPageBase
 				
 				if($booking == null)
 				{
-					throw new Exception("Booking does not exist");
+					throw new CreateBookingException("Booking does not exist");
 				}
 				
 				// set values
@@ -161,10 +161,10 @@ class MPageBookings extends ManagementPageBase
 				$booking->setPromocode($bpromo);
 				
 				
-				$room->save();
+				$booking->save();
 
 				global $cScriptPath;
-				$this->mHeaders[] = "Location: {$cScriptPath}/Rooms";
+				$this->mHeaders[] = "Location: {$cScriptPath}/Bookings";
 			}
 			catch (CreateBookingException $ex)
 			{
@@ -174,22 +174,28 @@ class MPageBookings extends ManagementPageBase
 		}
 		else
 		{
-			$this->mBasePage="mgmt/bookingEdit.tpl";
+			try{
+				$this->mBasePage="mgmt/bookingEdit.tpl";
 			
-			$room = Booking::getById(WebRequest::getInt("id")) ;
+				$booking = Booking::getById(WebRequest::getInt("id")) ;
 			
-			if($booking == null)
+				if($booking == null)
+				{
+					throw new Exception("Booking does not exist");
+				}
+			
+				$this->mSmarty->assign("bookingid", $booking->getId());
+				$this->mSmarty->assign("bcust", $booking->getCustomer()->getId());
+				$this->mSmarty->assign("badults", $booking->getAdults());
+				$this->mSmarty->assign("bchildren", $booking->getChildren());
+				$this->mSmarty->assign("bstart", $booking->getStartDate());
+				$this->mSmarty->assign("bend", $booking->getEndDate());
+				$this->mSmarty->assign("bpromo", $booking->getPromocode());
+			} catch (Exception $ex)
 			{
-				throw new Exception("Booking does not exist");
+				$this->mBasePage="mgmt/bookingEdit.tpl";
+				$this->error($ex->getMessage());
 			}
-			
-			$this->mSmarty->assign("bookingid", $booking->getId());
-			$this->mSmarty->assign("bcust", $booking->getCustomer()->getFullName());
-			$this->mSmarty->assign("badults", $booking->getAdults());
-			$this->mSmarty->assign("bchildren", $booking->getChildren());
-			$this->mSmarty->assign("bstart", $booking->getStartDate());
-			$this->mSmarty->assign("bend", $booking->getEndDate());
-			$this->mSmarty->assign("bpromo", $booking->getPromocode());
 		}
 		
 	}	
