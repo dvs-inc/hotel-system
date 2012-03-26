@@ -8,32 +8,32 @@ class PageForgotPassword extends PageBase
 	{
 		$this->mBasePage= "forgottenpassword.tpl";
 		
-			if(WebRequest::wasPosted())
-			{
-				try{
-				$suEmail=WebRequest::post("suEmail");
+		//	if(WebRequest::wasPosted())
+		//	{
+		//		try{
+		//		$suEmail=WebRequest::post("suEmail");
 			
 				// validation
 
-				if($suEmail=="")
-				{
-					throw new CreateCustomerException("Email not specified");
-				}
+		//		if($suEmail=="")
+		//		{
+		//			throw new CreateCustomerException("Email not specified");
+		//		}
 			
-				$customer->sendForgetPasswordMail();
-				}
+		//		$customer->sendForgetPasswordMail();
+		//		}
 				
-				catch (CreateCustomerException $ex)
-				{
-					$this->mBasePage="forgottenpassword.tpl";
-					$this->error($ex->getMessage());
-				}
-			}
+		//		catch (CreateCustomerException $ex)
+		//		{
+		//			$this->mBasePage="forgottenpassword.tpl";
+		//			$this->error($ex->getMessage());
+		//		}
+		//	}
 			
-			else
-			{	
-				$this->mBasePage="forgottenpassword.tpl";
-			}
+		//	else
+		//	{	
+		//		$this->mBasePage="forgottenpassword.tpl";
+		//	}
 		
 		
 	}
