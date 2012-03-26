@@ -297,6 +297,7 @@ input.datainput{
 	float:right;
 	width:100px;
 	margin-left:10px;
+	text-transform:uppercase;
 }
 .cal{
 	width:35px;
