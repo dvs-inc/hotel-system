@@ -93,25 +93,25 @@
 	{
 		if (checkin.substring(6) > checkout.substring(6))
 		{
-			z+="Cannot checkout before checked in.\n\n";
+			z+="{message name="book-error-checkout-before-checked-in"}\n\n";
 			checkinInvalid = 1;
 			checkoutInvalid = 1;
 		}
 		else if (checkin.substring(6) == checkout.substring(6) && checkin.substring(3,5) > checkout.substring(3,5))
 		{
-			z+="Cannot checkout before checked in.\n\n";
+			z+="{message name="book-error-checkout-before-checked-in"}\n\n";
 			checkinInvalid = 1;
 			checkoutInvalid = 1;
 		}
 		else if (checkin.substring(6) == checkout.substring(6) && checkin.substring(3,5) == checkout.substring(3,5) && checkin.substring(0,2) > checkout.substring(0,2))
 		{
-			z+="Cannot checkout before checked in.\n\n";
+			z+="{message name="book-error-checkout-before-checked-in"}\n\n";
 			checkinInvalid = 1;
 			checkoutInvalid = 1;
 		}
 		else if (checkin.substring(0,2) == checkout.substring(0,2))
 		{
-			z+="Cannot check in and out on the same day.\n\n";
+			z+="{message name="book-error-checkin-out-same-day"}\n\n";
 			checkinInvalid = 1;
 			checkoutInvalid = 1;	
 		}
