@@ -26,6 +26,7 @@ abstract class ManagementPageBase extends PageBase
 		"MPageHotel" => array(
 			"title" => "mpage-hotel",
 			"link" => "/Hotel",
+			"description" => "mpage-hotel-desc",
 			"items" => array(
 				"MPageCustomers" => array(
 					"title" => "mpage-customers",
@@ -44,6 +45,7 @@ abstract class ManagementPageBase extends PageBase
 		"MPageSystem" => array(
 			"title" => "mpage-system",
 			"link" => "/System",
+			"description" => "mpage-system-desc",
 			"items" => array(
 				"MPagePhpInfo" => array(
 					"title" => "mpage-phpinfo",
