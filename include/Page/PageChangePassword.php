@@ -12,7 +12,7 @@ protected function runPage()
 	try{
 
 		$email = WebRequest::get("email");
-		$hash = WebRequest::get("hash");
+		// $hash = WebRequest::get("hash");
 
 		$customer = Customer::getByEmail($email);
 
