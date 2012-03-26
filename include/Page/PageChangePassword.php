@@ -49,13 +49,13 @@ protected function runPage()
 				$this->mBasePage="changePassword.tpl";
 				$this->error($ex->getMessage());
 			}
-	
+		}
+	}
 
 	catch (NonexistantObjectException $ex)
 	{
 		global $cScriptPath;
 		$this->mHeaders[] = "Location: {$cScriptPath}";
 	}
-}
 }
 }
