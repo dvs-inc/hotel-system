@@ -258,6 +258,16 @@ class Customer extends DataObject
 		Mail::send($this->getEmail(),Message::getMessage("signup-mailconfirm-subject"),$message);
 	}
 
+	// Function to send an email with a link to the change password page
+	public function sendForgotPasswordMail()
+	{
+		global $cWebPath;
+		$message = Message::getMessage("forgotPassword-mail");
+		$link = 'http://'.WebRequest::httpHost().$cWebPath.'/index.php/ChangePassword?email='.$suEmail.'&hash='.$this->getMailChecksum();
+		$message = str_replace('$1', $link, $message);
+		Mail::send($this->getEmail(),Message::getMessage("forgotPassword-mail-subject"),$message);
+	}
+
 	/**
 	 * Check the stored password against the provided password
 	 * @returns true if the password is correct
