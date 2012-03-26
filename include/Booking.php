@@ -7,8 +7,8 @@ class Booking extends DataObject
 {
 	private $adults;
 	private $children;
-	private $startDate = new DateTime();
-	private $endDate = new DateTime();
+	private $startDate;
+	private $endDate;
 	private $promocode;
 	private $customer;
 	
@@ -54,12 +54,14 @@ class Booking extends DataObject
 	
 	public function setStartDate($value)
 	{
-		$this->startDate = date_format($value,'d-b-Y');
+		$start = new DateTime($value);
+		$this->startDate = date_format($start,'d-b-Y');
 	}
 	
 	public function setEndDate($value)
 	{
-		$this->endDate = date_format($value,'d-b-Y');
+		$end = new DateTime($value);
+		$this->endDate = date_format($end,'d-b-Y');
 	}
 	
 	public function setPromocode($value)
