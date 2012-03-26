@@ -50,41 +50,41 @@
 	{
 		if (checkin.substring(6) < yyyy)
 		{
-			z+="Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}Cannot check in before today.\n\n";
 			checkinInvalid = 1;
 		}
 		else if (checkin.substring(6) == yyyy && checkin.substring(3,5) < mm)
 		{
-			z+="Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}Cannot check in before today.\n\n";
 			checkinInvalid = 1;
 		}
 		else if (checkin.substring(6) == yyyy && checkin.substring(3,5) == mm && checkin.substring(0,2) < dd)
 		{
-			z+="Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}Cannot check in before today.\n\n";
 			checkinInvalid = 1;
 		}
 	}
 	
 	if (checkout==null || checkout=="")
 	{
-		z+="Check out date must be filled out.\n\n";
+		z+="{message name="book-error-nocheckout"}Check out date must be filled out.\n\n";
 		checkoutInvalid = 1;
 	}
 	else
 	{
 		if (checkout.substring(6) < yyyy)
 		{
-			z+="Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
 			checkoutInvalid = 1;
 		}
 		else if (checkout.substring(6) == yyyy && checkout.substring(3,5) < mm)
 		{
-			z+="Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
 			checkoutInvalid = 1;
 		}
 		else if (checkout.substring(6) == yyyy && checkout.substring(3,5) == mm && checkout.substring(0,2) < dd)
 		{
-			z+="Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
 			checkoutInvalid = 1;
 		}
 	}
