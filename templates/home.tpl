@@ -139,14 +139,14 @@
 	
 	if (adultNum==null || adultNum=="")
 	{
-		z+="Adults field must be filled out.\n\n";
+		z+="{message name="book-error-noadult"}\n\n";
 		$("#adult").css("margin-top","6px");
 		$("#adultInput").css("border-color","red");
 		$("#adultInput").css("border-style","solid");
 	}
 	else if (adultNum < 1)
 	{
-		z+="Invalid adult entry.\n\n";
+		z+="{message name="book-error-invalid-adultentry"}\n\n";
 		$("#adultInput").css("border-color","red");
 		$("#adultInput").css("border-style","solid");
 	}
