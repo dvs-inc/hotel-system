@@ -1,5 +1,4 @@
 <tr>
-	<td>{$booking->getCustomer()->getId()}</td>
 	<td>{$booking->getCustomer()->getFirstName()},{$booking->getCustomer()->getSurname()}</td>
 	<td>{$booking->getAdults()}</td>
 	<td>{$booking->getChildren()}</td>
