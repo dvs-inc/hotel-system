@@ -29,6 +29,11 @@ class PageForgotPassword extends PageBase
 					$this->error($ex->getMessage());
 				}
 			}
+			
+			else
+			{	
+				$this->mBasePage="forgottenpassword.tpl";
+			}
 		
 		
 	}
