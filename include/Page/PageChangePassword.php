@@ -7,56 +7,56 @@ class PageForgotPassword extends PageBase
 protected function runPage()
 {
 
-try{
+	try{
 
-	$email = WebRequest::get("email");
-	$hash = WebRequest::get("hash");
+		$email = WebRequest::get("email");
+		$hash = WebRequest::get("hash");
 
-	$customer = Customer::getByEmail($email);
+		$customer = Customer::getByEmail($email);
 
-	if($customer==null)
-	{
-		throw new NonExistantObjectException();
-		
-	}
+		if($customer==null)
+		{
+			throw new NonExistantObjectException();
+				
+		}
 
-	if(WebRequest::wasPosted() && $customer!=null)
-	{
-		try{
-			$suPassword = WebRequest::post("suPassword");
-			$suConfirm = WebRequest::post("suConfirm");
+		if(WebRequest::wasPosted() && $customer!=null)
+		{
+			try{
+				$suPassword = WebRequest::post("suPassword");
+				$suConfirm = WebRequest::post("suConfirm");
 
-			// validation
-			
-			if($suPassword == ""){throw new CreateCustomerException("Password not specified");}
-			if($suConfirm == ""){throw new CreateCustomerException("Confirmed password not specified");}
-			if($suPassword != $suConfirm){throw new CreateCustomerException("Password mismatch");}
+				// validation
+				
+				if($suPassword == ""){throw new CreateCustomerException("Password not specified");}
+				if($suConfirm == ""){throw new CreateCustomerException("Confirmed password not specified");}
+				if($suPassword != $suConfirm){throw new CreateCustomerException("Password mismatch");}
 	
-			// validation			
+				// validation			
 
-			if ($suPassword != "" && $suPassword == $suConfirm)
-			{
-				$customer->setPassword($suPassword);
-			}	
+				if ($suPassword != "" && $suPassword == $suConfirm)
+				{
+					$customer->setPassword($suPassword);
+				}	
 
-			$customer->save();
-		}
+				$customer->save();
+			}
 
-		catch (CreateCustomerException $ex)
-		{	
+			catch (CreateCustomerException $ex)
+			{	
+				$this->mBasePage="changePassword.tpl";
+				$this->error($ex->getMessage());
+			}
+	
+		else
+		{
 			$this->mBasePage="changePassword.tpl";
-			$this->error($ex->getMessage());
 		}
 
-	else
+	catch (NonexistantObjectException $ex)
 	{
-		$this->mBasePage="changePassword.tpl";
+		global $cScriptPath;
+		$this->mHeaders[] = "Location: {$cScriptPath}";
 	}
-
-catch (NonexistantObjectException $ex)
-{
-	global $cScriptPath;
-	$this->mHeaders[] = "Location: {$cScriptPath}";
-}
 }
 }
