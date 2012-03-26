@@ -7,8 +7,8 @@ class Booking extends DataObject
 {
 	private $adults;
 	private $children;
-	private $startDate;
-	private $endDate;
+	private $startDate = new DateTime();
+	private $endDate = new DateTime();
 	private $promocode;
 	private $customer;
 	
