@@ -43,7 +43,7 @@
 	
 	if (checkin==null || checkin=="")
 	{
-		z+="Check in date must be filled out.\n\n";
+		z+="{message name="book-error-nocheckin"}";
 		checkinInvalid = 1;
 	}
 	else
