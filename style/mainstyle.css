@@ -185,7 +185,7 @@ h2{
 	display:inline-block;
 	width:370px;
 }
-.twocolumn .columntwo label input{
+.twocolumn .columntwo label input, #signupform label input{
 	float:right;
 	width:200px;
 }
