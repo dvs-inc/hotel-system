@@ -20,14 +20,14 @@ class PageForgotPassword extends PageBase
 				
 				catch (CreateCustomerException $ex)
 				{
-					$this->mBasePage="forgottenPassword.tpl";
+					$this->mBasePage="forgottenpassword.tpl";
 					$this->error($ex->getMessage());
 				}
 			}
 
 			else	
 			{
-				$this->mBasePage="forgottenPassword.tpl";
+				$this->mBasePage="forgottenpassword.tpl";
 			}
 		
 		
