@@ -18,7 +18,7 @@
   		var key = theEvent.keyCode || theEvent.which;
   		key = String.fromCharCode( key );
   		var regex = /[0-9]/;
-  		if( key!="\b" && theEvent.keyCode!=37 && theEvent.keyCode!=39 && theEvent.keyCode!=46 && theEvent.keyCode < 112 && theEvent.keyCode > 123 && key!="\t" && !regex.test(key) ) {
+  		if( key!="\b" && theEvent.keyCode!=37 && theEvent.keyCode!=39 && theEvent.keyCode!=46 && (theEvent.keyCode < 112 || theEvent.keyCode > 123) && key!="\t" && !regex.test(key) ) {
     		theEvent.returnValue = false;
     		if(theEvent.preventDefault) theEvent.preventDefault();
   		}
@@ -43,48 +43,48 @@
 	
 	if (checkin==null || checkin=="")
 	{
-		z+="Check in date must be filled out.\n\n";
+		z+="{message name="book-error-nocheckin\n\n"}";
 		checkinInvalid = 1;
 	}
 	else
 	{
 		if (checkin.substring(6) < yyyy)
 		{
-			z+="Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}\n\n";
 			checkinInvalid = 1;
 		}
 		else if (checkin.substring(6) == yyyy && checkin.substring(3,5) < mm)
 		{
-			z+="Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}\n\n";
 			checkinInvalid = 1;
 		}
 		else if (checkin.substring(6) == yyyy && checkin.substring(3,5) == mm && checkin.substring(0,2) < dd)
 		{
-			z+="Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}\n\n";
 			checkinInvalid = 1;
 		}
 	}
 	
 	if (checkout==null || checkout=="")
 	{
-		z+="Check out date must be filled out.\n\n";
+		z+="{message name="book-error-nocheckout"}Check out date must be filled out.\n\n";
 		checkoutInvalid = 1;
 	}
 	else
 	{
 		if (checkout.substring(6) < yyyy)
 		{
-			z+="Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
 			checkoutInvalid = 1;
 		}
 		else if (checkout.substring(6) == yyyy && checkout.substring(3,5) < mm)
 		{
-			z+="Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
 			checkoutInvalid = 1;
 		}
 		else if (checkout.substring(6) == yyyy && checkout.substring(3,5) == mm && checkout.substring(0,2) < dd)
 		{
-			z+="Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
 			checkoutInvalid = 1;
 		}
 	}
