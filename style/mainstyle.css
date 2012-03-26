@@ -181,7 +181,7 @@ h2{
 .twocolumn .columntwo{
 	float:right;
 }
-.twocolumn .columntwo label{
+.twocolumn .columntwo label, #signupform label{
 	display:inline-block;
 	width:370px;
 }
@@ -337,3 +337,4 @@ input.datainput{
 	margin-left:190px;
 	width:200px;
 }
+
