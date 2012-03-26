@@ -7,6 +7,8 @@ class PageForgotPassword extends PageBase
 protected function runPage()
 {
 
+	$this->mPageBase="changePassword.tpl";
+
 	try{
 
 		$email = WebRequest::get("email");
@@ -48,10 +50,6 @@ protected function runPage()
 				$this->error($ex->getMessage());
 			}
 	
-		else
-		{
-			$this->mBasePage="changePassword.tpl";
-		}
 
 	catch (NonexistantObjectException $ex)
 	{
