@@ -290,6 +290,9 @@ input.datainput{
 	width:auto;
 	margin-right:100px;
 }
+.tcuneven label.promo{
+	width:260px;
+}
 .twocolumn .promo .datainput{
 	float:right;
 	width:100px;
