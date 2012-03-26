@@ -11,6 +11,11 @@ class MPageBookings extends ManagementPageBase
 
 	protected function runPage()
 	{
+		global $cWebPath;
+		
+		$this->mStyles[] = $cWebPath . '/style/jsDatePick_ltr.min.css';
+		$this->mScripts[] = $cWebPath . '/scripts/jsDatePick.full.1.3.js';
+		
 		$this->mSubMenu = array(
 			"MPageBookingsList" => array(
 				"title" => "mpage-bookings-list",
