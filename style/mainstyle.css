@@ -41,9 +41,15 @@
 #loginparts #submitbutton{
 	margin-top:0px;
 }
-#submitbutton {
+#submitbutton{
 	color:DimGray;
 	margin-top:20px;
+}
+#signupform #submit input{
+	color:DimGray;
+	margin-top:20px;
+	margin-left:180px;
+	width:80px;
 }
 #loginlinks{
 	width:150px;
@@ -181,13 +187,18 @@ h2{
 .twocolumn .columntwo{
 	float:right;
 }
-.twocolumn .columntwo label, #signupform label{
+.twocolumn .columntwo label{
 	display:inline-block;
 	width:370px;
 }
-.twocolumn .columntwo label input, #signupform label input{
+.twocolumn .columntwo label input, #signupform label input, #signupform label select{
 	float:right;
 	width:200px;
+}
+#signupform label{
+	display:inline-block;
+	width:400px;
+	margin-bottom:10px;
 }
 .twocolumn .columntwo #submitbutton{
 	float:right;
