@@ -24,13 +24,13 @@ class Booking extends DataObject
 	
 	public function getStartDate()
 	{
-		$start = new DateTime($this->startDate);
+		$start = date_create($this->startDate);
 		return date_format($start,'d-m-Y');
 	}
 	
 	public function getEndDate()
 	{
-		$end = new DateTime($this->endDate);
+		$end = date_create($this->endDate);
 		return date_format($end,'d-m-Y');
 	}
 	
@@ -56,13 +56,13 @@ class Booking extends DataObject
 	
 	public function setStartDate($value)
 	{
-		$start = new DateTime($value);
+		$start = create_date($value);
 		$this->startDate = date_format($start,'d-m-Y');
 	}
 	
 	public function setEndDate($value)
 	{
-		$end = new DateTime($value);
+		$end = create_date($value);
 		$this->endDate = date_format($end,'d-m-Y');
 	}
 	
