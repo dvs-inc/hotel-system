@@ -70,6 +70,8 @@ abstract class PageBase
 			);
 		
 		$this->addSystemCssJs();
+		
+		$this->mSmarty->assign("showError", "no");
 	}
 	
 	protected function finalSetup()
@@ -243,9 +245,9 @@ abstract class PageBase
 			throw new Exception();
 		}
 	}
-		protected function error($messageTag)
+	
+	protected function error($messageTag)
 	{
-		$showError = "";
 		$this->mSmarty->assign("showError", "yes");
 		$this->mSmarty->assign("errortext", $messageTag);
 	}

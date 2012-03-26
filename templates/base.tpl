@@ -22,7 +22,7 @@
 		<div id="contentwrapper">
 			{block name="subnav"}{* For the management system, default empty *}{/block}
 			<div id="content">
-				{block name="prebody"}{* urrghh *}{/block}
+				{if $showError == "yes"}{include file="errorbar.tpl"}{/if}
 				{block name="body"}{$content|default:"<p>Nothing to see here!</p>"}{/block}
 			</div>
 		</div>
