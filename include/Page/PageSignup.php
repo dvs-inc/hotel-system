@@ -8,6 +8,7 @@ class PageSignup extends PageBase
 	{
 		$showError = "";
 		$error = "";
+		global $cWebPath;
 		$this->mBasePage = "signup.tpl";
 		
 		if(Session::isCustomerLoggedIn() ){
