@@ -25,7 +25,7 @@ class Booking extends DataObject
 	public function getStartDate()
 	{
 		//$start = date_create($this->startDate);
-		return $this->startDate//date_format($start,'d-m-Y');
+		return $this->startDate;//date_format($start,'d-m-Y');
 	}
 	
 	public function getEndDate()
