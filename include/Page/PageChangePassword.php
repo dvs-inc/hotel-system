@@ -6,15 +6,16 @@ class PageChangePassword extends PageBase
 {
 protected function runPage()
 {
-
-	$this->mPageBase="changePassword.tpl";
-
 	try{
 
 		$email = WebRequest::get("email");
 		$hash = WebRequest::get("hash");
 
 		$customer = Customer::getByEmail($email);
+		if($customer->getMailChecksum == $hash && $customer->getEmail == $email)
+		{
+			$this->mPageBase="changePassword.tpl";
+		}
 
 		if($customer==null)
 		{
