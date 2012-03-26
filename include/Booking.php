@@ -24,12 +24,12 @@ class Booking extends DataObject
 	
 	public function getStartDate()
 	{
-		return $this->startDate;
+		return date_format($this->startDate,'d-b-Y');
 	}
 	
 	public function getEndDate()
 	{
-		return $this->endDate;
+		return date_format($this->endDate,'d-b-Y');
 	}
 	
 	public function getPromocode()
@@ -54,12 +54,12 @@ class Booking extends DataObject
 	
 	public function setStartDate($value)
 	{
-		$this->startDate = $value;
+		$this->startDate = date_format($value,'d-b-Y');
 	}
 	
 	public function setEndDate($value)
 	{
-		$this->endDate = $value;
+		$this->endDate = date_format($value,'d-b-Y');
 	}
 	
 	public function setPromocode($value)
