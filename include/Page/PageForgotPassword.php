@@ -21,12 +21,12 @@ class PageForgotPassword extends PageBase
 
 			else	
 			{
-				$this->mBasePage="forgotPassword.tpl";
+				$this->mBasePage="forgottenPassword.tpl";
 			}
 		}
 		catch (CreateCustomerException $ex)
 		{
-			$this->mBasePage="forgotPassword.tpl";
+			$this->mBasePage="forgottenPassword.tpl";
 			$this->error($ex->getMessage());
 		}	
 	}
