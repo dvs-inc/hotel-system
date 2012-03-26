@@ -43,24 +43,24 @@
 	
 	if (checkin==null || checkin=="")
 	{
-		z+="{message name="book-error-nocheckin"}";
+		z+="{message name="book-error-nocheckin\n\n"}";
 		checkinInvalid = 1;
 	}
 	else
 	{
 		if (checkin.substring(6) < yyyy)
 		{
-			z+="{message name="book-error-checkin-before-today"}Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}\n\n";
 			checkinInvalid = 1;
 		}
 		else if (checkin.substring(6) == yyyy && checkin.substring(3,5) < mm)
 		{
-			z+="{message name="book-error-checkin-before-today"}Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}\n\n";
 			checkinInvalid = 1;
 		}
 		else if (checkin.substring(6) == yyyy && checkin.substring(3,5) == mm && checkin.substring(0,2) < dd)
 		{
-			z+="{message name="book-error-checkin-before-today"}Cannot check in before today.\n\n";
+			z+="{message name="book-error-checkin-before-today"}\n\n";
 			checkinInvalid = 1;
 		}
 	}
