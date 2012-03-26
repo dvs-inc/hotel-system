@@ -25,13 +25,13 @@ class Booking extends DataObject
 	public function getStartDate()
 	{
 		$start = new DateTime($this->startDate);
-		return date_format($start,'d-m-Y');
+		return date_format($start,'Y-m-d');
 	}
 	
 	public function getEndDate()
 	{
 		$end = new DateTime($this->endDate);
-		return date_format($end,'d-m-Y');
+		return date_format($end,'Y-m-d');
 	}
 	
 	public function getPromocode()
