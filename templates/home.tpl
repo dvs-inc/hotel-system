@@ -43,7 +43,7 @@
 	
 	if (checkin==null || checkin=="")
 	{
-		z+="{message name="book-error-nocheckin\n\n"}";
+		z+="{message name="book-error-nocheckin"}\n\n";
 		checkinInvalid = 1;
 	}
 	else
@@ -67,24 +67,24 @@
 	
 	if (checkout==null || checkout=="")
 	{
-		z+="{message name="book-error-nocheckout"}Check out date must be filled out.\n\n";
+		z+="{message name="book-error-nocheckout"}\n\n";
 		checkoutInvalid = 1;
 	}
 	else
 	{
 		if (checkout.substring(6) < yyyy)
 		{
-			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}\n\n";
 			checkoutInvalid = 1;
 		}
 		else if (checkout.substring(6) == yyyy && checkout.substring(3,5) < mm)
 		{
-			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}\n\n";
 			checkoutInvalid = 1;
 		}
 		else if (checkout.substring(6) == yyyy && checkout.substring(3,5) == mm && checkout.substring(0,2) < dd)
 		{
-			z+="{message name="book-error-checkout-before-today"}Cannot check out before today.\n\n";
+			z+="{message name="book-error-checkout-before-today"}\n\n";
 			checkoutInvalid = 1;
 		}
 	}
