@@ -29,6 +29,11 @@ class MPageBilling extends ManagementPageBase
 			case "pay":
 				self::checkAccess("pay-bill");
 				//$this->showPayBillPage();
+				break;
+			case "del":
+				self::checkAccess("remove-bill-item");
+				//$this->doRemoveBillItemPage();
+				break;
 		}
 	}
 	
