@@ -230,6 +230,7 @@
 .checkdate{
 	width:435px !important;
 }
-.accesstable{
-	width:500px;
+.accesstable input{
+	float:right;
+	width:50px;
 }
