@@ -84,7 +84,6 @@
 	function fish1Swim(obj) {
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
-		alert( horizontal[fish1Position] + "px");
 		document.getElementById(obj.id).style.opacity = opacityPercent;
 		opacityPercent -= 0.05;
         ++fish1Position;
