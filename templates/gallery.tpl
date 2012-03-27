@@ -152,6 +152,7 @@
 	}
 	
 	function moveleftdown(obj, foreground, background) {
+		alert(foreground + " " + background);
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
         document.getElementById(obj.id).style.bottom = horizontal[fish1Position] + "px";
