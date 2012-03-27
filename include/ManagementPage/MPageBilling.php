@@ -51,7 +51,7 @@ class MPageBilling extends ManagementPageBase
 		$total = 0;
 		foreach($items as $i)
 		{
-			$total += getById($i)->getPrice();
+			$total += Bill_item::getById($i)->getPrice();
 		}
 		
 		$this->mBasePage="mgmt/bill.tpl";
