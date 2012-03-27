@@ -152,7 +152,7 @@ class WebRequest
 		$data = str_replace("-->", "", $data);
 		
 		// show that rogue data as a comment after everything
-		print "<!--" . $data . "-->"
+		print "<!--" . $data . "-->";
 		
 		// flush the buffer to the browser
 		ob_flush();
