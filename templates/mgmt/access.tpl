@@ -3,7 +3,7 @@
 {message name="mgmt-access-header"}
 <p>{message name="mgmt-access-description"}</p>
 <form action="?submit" method="post">
-<table>
+<table class="accesstable">
 <tr>
 	<th>{message name="mgmt-access-table-key"}</th>
 	<th>{message name="mgmt-access-table-value"}</th>
