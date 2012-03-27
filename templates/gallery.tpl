@@ -37,7 +37,7 @@
 				<img id="sideImage7" src="{$galimg1}" alt="" onclick="movedown(this)" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage8" src="{$galimg1}" alt="" onclick="moveleftdown(this)" />
+				<img id="sideImage8" src="{$galimg1}" alt="" onclick="moveleftdown(this,'mainImage1','mainPos1background')" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
@@ -151,7 +151,7 @@
 		var tim1 = setTimeout(movedown, 20, obj);
 	}
 	
-	function moveleftdown(obj) {
+	function moveleftdown(obj, foreground, background) {
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
         document.getElementById(obj.id).style.bottom = horizontal[fish1Position] + "px";
@@ -164,7 +164,7 @@
 				document.getElementById(obj.id).style.opacity = 1;
 				fish1Position = 0;
 				opacityPercent = 1;
-				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				setTimeout (FadeInImage(foreground,obj.src,background),500);
 				return;
 		}
 		var tim1 = setTimeout(moveleftdown, 20, obj);
