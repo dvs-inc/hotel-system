@@ -16,7 +16,7 @@ class MPageBilling extends ManagementPageBase
 		{
 			case "view":
 				self::checkAccess("view-bill");
-				//$this->showViewBillPage();
+				$this->showViewBillPage();
 				break;
 			case "edit":
 				self::checkAccess("edit-bill");
@@ -29,10 +29,28 @@ class MPageBilling extends ManagementPageBase
 			case "pay":
 				self::checkAccess("pay-bill");
 				//$this->showPayBillPage();
-			case "list":
-			default:
-				
-				break;
 		}
+	}
+	
+	private function showViewBillPage()
+	{
+		if(!WebRequest::getInt("id"))
+		{
+			return;
+		}
+		
+		$id = WebRequest::getInt("id");
+		
+		$items = Bill_item::getIdListByBooking($id);
+		
+		$total = 0;
+		foreach($items as $i)
+		{
+			$total += $i->getPrice();
+		}
+		
+		$this->mBasePage="mgmt/bill.tpl";
+		$this->mSmarty->assign("total", $total);
+		$this->mSmarty->assign("billitems", $items);
 	}
 }
