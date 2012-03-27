@@ -141,11 +141,21 @@ class WebRequest
 		$content = Hooks::run("BeforeOutputSend",array($content));
 	
 		// clean the output buffer so anything that's been rogue sent to the 
-		// browser is discarded
-		ob_clean();
+		// browser is hidden nicely
+		$data = ob_get_clean();
 		
 		// write the HTML to the buffer
 		print $content;
+		
+		// strip out html comments
+		$data = str_replace("<!--", "", $data);
+		$data = str_replace("-->", "", $data);
+		
+		// show that rogue data as a comment after everything
+		if($data != "")
+		{
+			print "<!-- " . $data . " -->";
+		}
 		
 		// flush the buffer to the browser
 		ob_flush();

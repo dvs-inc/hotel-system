@@ -184,6 +184,12 @@ class Customer extends DataObject
 		
 		if($this->isNew)
 		{ // insert
+			$checkStatement = $gDatabase->prepare("SELECT COUNT(*) as count FROM customer WHERE email = :email;");
+			$checkStatement->bindParam(":email", $this->email );
+			$checkStatement->execute();
+			if($checkStatement->fetchColumn())
+				throw new SaveFailedException("Customer already exists");
+			
 			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :title, :firstname, :surname, :address, :email, :password, :creditcard, :language, :mailconfirm, :mailchecksum);");
 			$statement->bindParam(":title", $this->title );
 			$statement->bindParam(":firstname", $this->firstname );
@@ -256,6 +262,18 @@ class Customer extends DataObject
 		$link = 'http://'.WebRequest::httpHost().$cWebPath.'/index.php/Confirm?id='.$this->getId().'&hash='.$this->getMailConfirm();
 		$message = str_replace('$1', $link, $message);
 		Mail::send($this->getEmail(),Message::getMessage("signup-mailconfirm-subject"),$message);
+	}
+
+	// Function to send an email with a link to the change password page
+	public function sendPasswordReset()
+	{
+		global $cWebPath;
+		$message = Message::getMessage("forgotPassword-mail");
+		$this->generateMailChecksum();
+		$this->save();
+		$link = 'http://'.WebRequest::httpHost().$cWebPath.'/index.php/ForgotPassword?id='.$this->id.'&hash='.$this->getMailChecksum();
+		$message = str_replace('$1', $link, $message);
+		Mail::send($this->getEmail(),Message::getMessage("forgotPassword-mail-subject"),$message);
 	}
 
 	/**

@@ -21,14 +21,12 @@
 	float:left;
 	width:300px;
 	height:200px;
-	background:red;
 }
 
 #thumbnails .thumb img
 {
 	width:300px;
 	height:200px;
-	display:none;
 }
 
 #thumbnails .thero img
@@ -49,7 +47,6 @@
 	float:left;
 	width:615px;
 	height:415px;
-	background:greenyellow;
 }
 
 #thumbnails .theroside

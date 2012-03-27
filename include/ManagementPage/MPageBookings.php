@@ -11,6 +11,7 @@ class MPageBookings extends ManagementPageBase
 
 	protected function runPage()
 	{
+		
 		$this->mSubMenu = array(
 			"MPageBookingsList" => array(
 				"title" => "mpage-bookings-list",
@@ -65,12 +66,12 @@ class MPageBookings extends ManagementPageBase
 					throw new CreateBookingException("no-adults");
 				}	
 				
-				if($bstart == "")
+				if($bstart == null)
 				{
 					throw new CreateBookingException("no-start-date");
 				}
 				
-				if($bend == "")
+				if($bend == null)
 				{
 					throw new CreateBookingException("no-end-date");
 				}

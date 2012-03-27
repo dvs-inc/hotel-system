@@ -7,8 +7,8 @@ class Booking extends DataObject
 {
 	private $adults;
 	private $children;
-	private $startDate;
-	private $endDate;
+	private $startdate;
+	private $enddate;
 	private $promocode;
 	private $customer;
 	
@@ -24,12 +24,14 @@ class Booking extends DataObject
 	
 	public function getStartDate()
 	{
-		return $this->startDate;
+		$start = date_create($this->startdate);
+		return date_format($start,'d-m-Y');
 	}
 	
 	public function getEndDate()
 	{
-		return $this->endDate;
+		$end = date_create($this->enddate);
+		return date_format($end,'d-m-Y');
 	}
 	
 	public function getPromocode()
@@ -54,12 +56,14 @@ class Booking extends DataObject
 	
 	public function setStartDate($value)
 	{
-		$this->startDate = $value;
+		$start = create_date($value);
+		$this->startdate = date_format($start,'d-m-Y');
 	}
 	
 	public function setEndDate($value)
 	{
-		$this->endDate = $value;
+		$end = create_date($value);
+		$this->enddate = date_format($end,'d-m-Y');
 	}
 	
 	public function setPromocode($value)
@@ -98,8 +102,8 @@ class Booking extends DataObject
 			$statement = $gDatabase->prepare("INSERT INTO booking VALUES (null, :adults, :children, :startDate, :endDate, :promocode, :customer);");
 			$statement->bindParam(":adults", $this->adults );
 			$statement->bindParam(":children",$this->children );
-			$statement->bindParam(":startDate", $this->startDate );
-			$statement->bindParam(":endDate", $this->endDate );
+			$statement->bindParam(":startDate", $this->startdate );
+			$statement->bindParam(":endDate", $this->enddate );
 			$statement->bindParam(":promocode", $this->promocode );
 			$statement->bindParam(":customer", $this->customer );
 			
@@ -115,11 +119,11 @@ class Booking extends DataObject
 		}
 		else
 		{ // update
-			$statement = $gDatabase->prepare("UPDATE booking SET adults= :adults,children= :children,startDate= :startDate, endDate=:endDate, promocode=:promocode, customer= :customer WHERE id=:id LIMIT 1;");
+			$statement = $gDatabase->prepare("UPDATE booking SET adults= :adults,children= :children,startdate= :startDate, enddate=:endDate, promocode=:promocode, customer= :customer WHERE id=:id LIMIT 1;");
 			$statement->bindParam(":adults", $this->adults );
 			$statement->bindParam(":children",$this->children );
-			$statement->bindParam(":startDate", $this->startDate );
-			$statement->bindParam(":endDate", $this->endDate );
+			$statement->bindParam(":startDate", $this->startdate );
+			$statement->bindParam(":endDate", $this->enddate );
 			$statement->bindParam(":promocode", $this->promocode );
 			$statement->bindParam(":customer", $this->customer );
 			$statement->bindParam(":id", $this->id );

@@ -97,7 +97,7 @@ class MPageCustomers extends ManagementPageBase
 				$customer->setEmail($suEmail);
 				$customer->setPassword($suPassword);
 				
-				$customer->setMailconfirm("Confirmed");
+				$customer->sendMailConfirm();
 				
 				// save it
 				$customer->save();
@@ -169,8 +169,11 @@ class MPageCustomers extends ManagementPageBase
 				$address->setPostcode($suPostcode);
 				$address->setCountry($suCountry);
 				
-				
-				$customer->setEmail($suEmail);
+				if($customer->getEmail() != $suEmail)
+				{
+					$customer->setEmail($suEmail);
+					$customer->sendMailConfirm();
+				}
 				
 				// save it
 				$address->save();

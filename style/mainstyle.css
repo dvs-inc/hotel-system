@@ -41,7 +41,7 @@
 #loginparts #submitbutton{
 	margin-top:0px;
 }
-#submitbutton {
+#submitbutton{
 	color:DimGray;
 	margin-top:20px;
 }
@@ -185,9 +185,20 @@ h2{
 	display:inline-block;
 	width:370px;
 }
-.twocolumn .columntwo label input{
+.twocolumn .columntwo label input, #signupform label input, #signupform label select{
 	float:right;
 	width:200px;
+}
+#signupform label{
+	display:inline-block;
+	width:400px;
+	margin-bottom:10px;
+}
+#signupform #submit input{
+	color:DimGray;
+	margin-top:20px;
+	margin-left:135px;
+	width:80px;
 }
 .twocolumn .columntwo #submitbutton{
 	float:right;
@@ -337,3 +348,4 @@ input.datainput{
 	margin-left:190px;
 	width:200px;
 }
+
