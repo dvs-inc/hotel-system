@@ -8,10 +8,10 @@
    availability function	 *}
 
 <table>
-<tr> <th /> {foreach from="$datelist" item="d"}<th>{$d->format("d-m-Y")}</th>{/foreach}</tr>
+<tr> <th >{message name="room-name"}</th>{foreach from="$datelist" item="d"}<th>{$d->format("d-m-Y")}</th>{/foreach}</tr>
 {foreach from="$availmatrix" key="k" item="i"}
-	<tr>
-	<th>{$k->getName()}</th>
+	<tr data-room="{$k}">
+	<th>{$roomlist.{$k}->getName()}</th>
 	{foreach from="$i" item="j"}
 		<td>{$j}</td>
 	{/foreach}

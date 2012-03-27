@@ -24,21 +24,20 @@ class PageCalendar extends PageBase
 		}
 	
 		$availabilityMatrix = array();
-		
+		$roomlist = array();
 		foreach($idlist as $id)
 		{
-			echo "hi";
 			$r = Room::getById($id);
-			//$availabilityMatrix[$r] = array();
-			//foreach($dates as $d)
-			//{
-			//	$availabilityMatrix[$r][] = 0;
-			//}
+			$roomlist[$id]=$r;
+			$availabilityMatrix[$id] = array();
+			foreach($dates as $d)
+			{
+				$availabilityMatrix[$id][array_search($d,$dates)] = (mt_rand()%2==0);
+			}
 		}
-		
-		print_r($availabilityMatrix);
 		
 		$this->mSmarty->assign("availmatrix", $availabilityMatrix);
 		$this->mSmarty->assign("datelist", $dates);
+		$this->mSmarty->assign("roomlist", $roomlist);
 	}
 }
