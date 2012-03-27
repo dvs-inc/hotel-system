@@ -92,7 +92,7 @@
 				document.getElementById(obj.id).style.opacity = 1;
 				fish1Position = 0;
 				opacityPercent = 1;
-				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				setTimeout (FadeInImage('mainImage1',{$galimg1},'mainPos1background'),500);
 				return;
 		}
 		var tim1 = setTimeout(function(){fish1Swim(obj)}, 20);
