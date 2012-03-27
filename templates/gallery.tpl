@@ -82,14 +82,14 @@
 	}
 
 	function fish1Swim(obj) {
-		document.getElementById("sideImage1").style.position = "relative";
-        document.getElementById("sideImage1").style.left = horizontal[fish1Position] + "px";
-		document.getElementById("sideImage1").style.opacity = opacityPercent;
+		document.getElementById(obj.id).style.position = "relative";
+        document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
+		document.getElementById(obj.id).style.opacity = opacityPercent;
 		opacityPercent -= 0.05;
         ++fish1Position;
         if (fish1Position == num) {
-                document.getElementById("sideImage1").style.left = "0px";
-				document.getElementById("sideImage1").style.opacity = 1;
+                document.getElementById(obj.id).style.left = "0px";
+				document.getElementById(obj.id).style.opacity = 1;
 				fish1Position = 0;
 				opacityPercent = 1;
 				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
