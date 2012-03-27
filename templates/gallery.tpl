@@ -168,7 +168,7 @@
 				setTimeout (FadeInImage(foreground,obj.src,background),500);
 				return;
 		}
-		var tim1 = setTimeout(moveleftdown, 20, obj);
+		var tim1 = setTimeout(moveleftdown, 20, obj, foreground, background);
 	}
 	
 	
