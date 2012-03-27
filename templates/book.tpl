@@ -65,6 +65,8 @@
 	var checkinInvalid = 0;
 	var checkoutInvalid = 0;
 	
+	var regex = /[0-9]/;
+	
 	if (checkin==null || checkin=="")
 	{
 		z+="{message name="book-error-nocheckin"}\n\n";
@@ -72,7 +74,26 @@
 	}
 	else
 	{
-		if (checkin.substring(6) < yyyy)
+		if (checkin.length != 10)
+		{
+			z+="{message name="book-error-invalid-checkin"}\n\n";
+			checkinInvalid = 1;
+		}
+		else if (!regex.test(checkin.substring(0,1))
+				|| !regex.test(checkin.substring(1,2))
+				|| checkin.substring(2,3)!="-"
+				|| !regex.test(checkin.substring(3,4))
+				|| !regex.test(checkin.substring(4,5))
+				|| checkin.substring(5,6)!="-"
+				|| !regex.test(checkin.substring(6,7))
+				|| !regex.test(checkin.substring(7,8))
+				|| !regex.test(checkin.substring(8,9))
+				|| !regex.test(checkin.substring(9)))
+		{
+			z+="{message name="book-error-invalid-checkin"}\n\n";
+			checkinInvalid = 1;
+		}
+		else if (checkin.substring(6) < yyyy)
 		{
 			z+="{message name="book-error-checkin-before-today"}\n\n";
 			checkinInvalid = 1;
@@ -96,7 +117,26 @@
 	}
 	else
 	{
-		if (checkout.substring(6) < yyyy)
+		if (checkout.length != 10)
+		{
+			z+="{message name="book-error-invalid-checkout"}\n\n";
+			checkoutInvalid = 1;
+		}
+		else if (!regex.test(checkout.substring(0,1))
+				|| !regex.test(checkout.substring(1,2))
+				|| checkout.substring(2,3)!="-"
+				|| !regex.test(checkout.substring(3,4))
+				|| !regex.test(checkout.substring(4,5))
+				|| checkout.substring(5,6)!="-"
+				|| !regex.test(checkout.substring(6,7))
+				|| !regex.test(checkout.substring(7,8))
+				|| !regex.test(checkout.substring(8,9))
+				|| !regex.test(checkout.substring(9)))
+		{
+			z+="{message name="book-error-invalid-checkout"}\n\n";
+			checkoutInvalid = 1;
+		}
+		else if (checkout.substring(6) < yyyy)
 		{
 			z+="{message name="book-error-checkout-before-today"}\n\n";
 			checkoutInvalid = 1;
