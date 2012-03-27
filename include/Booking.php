@@ -11,6 +11,7 @@ class Booking extends DataObject
 	private $enddate;
 	private $promocode;
 	private $customer;
+	private $room;
 	
 	public function getAdults()
 	{
@@ -44,6 +45,11 @@ class Booking extends DataObject
 		return Customer::getById($this->customer);
 	}
 	
+	public function getRoom()
+	{
+		return Room::getById($this->room);
+	}
+	
 	public function setAdults($value)
 	{
 		$this->adults = $value;
@@ -75,6 +81,11 @@ class Booking extends DataObject
 	{
 		$this->customer = $value;
 	}
+
+	public function setRoom($value)
+	{
+		$this->room = $value;
+	}
 	
 	public static function getById($id)
 	{
@@ -99,13 +110,14 @@ class Booking extends DataObject
 		
 		if($this->isNew)
 		{ // insert
-			$statement = $gDatabase->prepare("INSERT INTO booking VALUES (null, :adults, :children, :startDate, :endDate, :promocode, :customer);");
+			$statement = $gDatabase->prepare("INSERT INTO booking VALUES (null, :adults, :children, :startDate, :endDate, :promocode, :customer, :room);");
 			$statement->bindParam(":adults", $this->adults );
 			$statement->bindParam(":children",$this->children );
 			$statement->bindParam(":startDate", $this->startdate );
 			$statement->bindParam(":endDate", $this->enddate );
 			$statement->bindParam(":promocode", $this->promocode );
 			$statement->bindParam(":customer", $this->customer );
+			$statement->bindParam(":room", $this->room );
 			
 			if($statement->execute())
 			{
@@ -119,13 +131,14 @@ class Booking extends DataObject
 		}
 		else
 		{ // update
-			$statement = $gDatabase->prepare("UPDATE booking SET adults= :adults,children= :children,startdate= :startDate, enddate=:endDate, promocode=:promocode, customer= :customer WHERE id=:id LIMIT 1;");
+			$statement = $gDatabase->prepare("UPDATE booking SET adults= :adults,children= :children,startdate= :startDate, enddate=:endDate, promocode=:promocode, customer= :customer, room=:room WHERE id=:id LIMIT 1;");
 			$statement->bindParam(":adults", $this->adults );
 			$statement->bindParam(":children",$this->children );
 			$statement->bindParam(":startDate", $this->startdate );
 			$statement->bindParam(":endDate", $this->enddate );
 			$statement->bindParam(":promocode", $this->promocode );
 			$statement->bindParam(":customer", $this->customer );
+			$statement->bindParam(":room", $this->room );
 			$statement->bindParam(":id", $this->id );
 			if(!$statement->execute())
 			{

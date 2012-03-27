@@ -61,6 +61,7 @@ class MPageBookings extends ManagementPageBase
 				$bstart = WebRequest::post("bstart");
 				$bend = WebRequest::post("bend");
 				$bpromo = WebRequest::postInt("bpromo");
+				$broom = WebRequest::postInt("broom");
 				
 			
 				// data validation
@@ -93,7 +94,7 @@ class MPageBookings extends ManagementPageBase
 				$booking->setStartDate($bstart);
 				$booking->setEndDate($bend);
 				$booking->setPromocode($bpromo);
-				
+				$booking->setRoom($broom);
 				
 				$booking->save();
 
@@ -125,6 +126,7 @@ class MPageBookings extends ManagementPageBase
 				$bstart = WebRequest::post("bstart");
 				$bend = WebRequest::post("bend");
 				$bpromo = WebRequest::postInt("bpromo");
+				$broom = WebRequest::PostInt("broom");
 				$id = WebRequest::getInt("id");
 				
 				// data validation
@@ -163,6 +165,7 @@ class MPageBookings extends ManagementPageBase
 				$booking->setStartDate($rmax);
 				$booking->setEndDate($rprice);
 				$booking->setPromocode($bpromo);
+				$booking->setRoom($broom);
 				
 				
 				$booking->save();
@@ -195,6 +198,7 @@ class MPageBookings extends ManagementPageBase
 				$this->mSmarty->assign("bstart", $booking->getStartDate());
 				$this->mSmarty->assign("bend", $booking->getEndDate());
 				$this->mSmarty->assign("bpromo", $booking->getPromocode());
+				$this->mSmarty->assign("broom",$booking->getRoom());
 			} catch (Exception $ex)
 			{
 				$this->mBasePage="mgmt/bookingEdit.tpl";

@@ -7,14 +7,14 @@
 
 {block name="columntwo"}
 	<h2>{message name="yourdetails"}</h2>
-	<label>{message name="title"}<select name="qbTitle" id="titleInput" class="dropDown">{include file="titles.tpl" selectedVal=""}</select></label>
-	<label>{message name="firstname"}<input name="qbFirstname" id="firstnameInput" class="datainput" /></label>
-	<label>{message name="lastname"}<input name="qbLastname" id="lastnameInput" class="datainput" /></label>
-	<label>{message name="address"}<input name="qbAddress" id="addressInput" class="datainput" /></label>
-	<label>{message name="city"}<input name="qbCity" id="cityInput" class="datainput" /></label>
-	<label>{message name="postcode"}<input name="qbPostcode" id="postcodeInput" class="datainput" /></label>
-	<label>{message name="country"}<select name="qbCountry" id="countryInput" class="dropDown">{include file="countries.tpl" selectedVal=" "}</select></label>
-	<label>{message name="email"}<input name="qbEmail" id="emailInput" class="datainput"/></label>
+	<label>{message name="title"}<select name="qbTitle" id="titleInput" class="dropDown">{include file="titles.tpl" selectedVal="{$qbTitle}"}</select></label>
+	<label>{message name="firstname"}<input name="qbFirstname" id="firstnameInput" class="datainput" value="{$qbFirstname}" /></label>
+	<label>{message name="lastname"}<input name="qbLastname" id="lastnameInput" class="datainput"  value="{$qbLastname}"/></label>
+	<label>{message name="address"}<input name="qbAddress" id="addressInput" class="datainput"  value="{$qbAddress}"/></label>
+	<label>{message name="city"}<input name="qbCity" id="cityInput" class="datainput"  value="{$qbCity}"/></label>
+	<label>{message name="postcode"}<input name="qbPostcode" id="postcodeInput" class="datainput"  value="{$qbPostcode}"/></label>
+	<label>{message name="country"}<select name="qbCountry" id="countryInput" class="dropDown">{include file="countries.tpl" selectedVal="$qbCountry"}</select></label>
+	<label>{message name="email"}<input name="qbEmail" id="emailInput" class="datainput"  value="{$qbEmail}"/></label>
 	<input type="submit" id="submitbutton" value="{message name="check-availability"}"/>
 {/block}
 

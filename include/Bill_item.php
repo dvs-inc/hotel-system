@@ -20,22 +20,22 @@ class Bill_item extends DataObject
 	
 	public function getBooking()
 	{
-		return $this->booking;
+		return Booking::getById($this->booking);
 	}	
 
-	public funtion setName($value)
+	public function setName($value)
 	{
 		$this->name = $value;
 	}
 
-	public funtion setPrice($value)
+	public function setPrice($value)
 	{
 		$this->price = $value;
 	}
 
-	public funtion setBooking($value)
+	public function setBooking($value)
 	{
-		$this->booking = $value;
+		$this->booking = $value->getId();
 	}
 	
 	public static function getById($id)
@@ -97,5 +97,17 @@ class Bill_item extends DataObject
 		$statement->execute();
 		$this->id=0;
 		$this->isNew=true;
+	}
+	
+	public static function getIdListByBooking($booking)
+	{
+		global $gDatabase;
+		$statement = $gDatabase->prepare("SELECT id FROM bill_item WHERE booking = :booking ;");
+		$statement->bindParam(":booking", $booking);
+		$statement->execute();
+
+		$result = $statement->fetchAll(PDO::FETCH_COLUMN,0);
+
+		return $result;
 	}
 }
