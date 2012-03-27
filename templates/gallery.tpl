@@ -95,7 +95,7 @@
 				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
 				return;
 		}
-		var tim1 = setTimeout(fish1Swim(obj), 20);
+		var tim1 = setTimeout(fish1Swim, 20);
 	}
 	
 	// Opacity and Fade in script.
