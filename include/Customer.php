@@ -264,6 +264,7 @@ class Customer extends DataObject
 		global $cWebPath;
 		$message = Message::getMessage("forgotPassword-mail");
 		$this->generateMailChecksum();
+		$this->save();
 		$link = 'http://'.WebRequest::httpHost().$cWebPath.'/index.php/ForgotPassword?id='.$this->id.'&hash='.$this->getMailChecksum();
 		$message = str_replace('$1', $link, $message);
 		Mail::send($this->getEmail(),Message::getMessage("forgotPassword-mail-subject"),$message);
