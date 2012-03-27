@@ -97,7 +97,7 @@ class MPageCustomers extends ManagementPageBase
 				$customer->setEmail($suEmail);
 				$customer->setPassword($suPassword);
 				
-				$customer->setMailconfirm("Confirmed");
+				$customer->sendMailConfirm();
 				
 				// save it
 				$customer->save();
