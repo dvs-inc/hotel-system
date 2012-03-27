@@ -14,56 +14,56 @@
 					<img id="sideImage1" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage1','mainPos1background')"/>
 				</div>
 				<div class="thumb">
-					<img id="sideImage2" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage1','mainPos1background')" />
+					<img id="sideImage2" src="{$galimg2}" alt="" onclick="moveleft(this,'mainImage1','mainPos1background')" />
 				</div>
 			</div>
 		</div>
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage3" src="{$galimg1}" alt="" onclick="moveup(this,'mainImage1','mainPos1background')" />
+				<img id="sideImage3" src="{$galimg3}" alt="" onclick="moveup(this,'mainImage1','mainPos1background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage4" src="{$galimg1}" alt="" onclick="moveup(this,'mainImage1','mainPos1background')" />
+				<img id="sideImage4" src="{$galimg4}" alt="" onclick="moveup(this,'mainImage1','mainPos1background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage5" src="{$galimg1}" alt="" onclick="moveleftup(this,'mainImage1','mainPos1background')" />
+				<img id="sideImage5" src="{$galimg5}" alt="" onclick="moveleftup(this,'mainImage1','mainPos1background')" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage6" src="{$galimg1}" alt="" onclick="movedown(this,'mainImage2','mainPos2background')" />
+				<img id="sideImage6" src="{$galimg6}" alt="" onclick="movedown(this,'mainImage2','mainPos2background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage7" src="{$galimg1}" alt="" onclick="movedown(this,'mainImage2','mainPos2background')" />
+				<img id="sideImage7" src="{$galimg7}" alt="" onclick="movedown(this,'mainImage2','mainPos2background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage8" src="{$galimg1}" alt="" onclick="moveleftdown(this,'mainImage2','mainPos2background')" />
+				<img id="sideImage8" src="{$galimg8}" alt="" onclick="moveleftdown(this,'mainImage2','mainPos2background')" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
 			<div class="therounit">
 				<div class="thumb thero" id="mainPos2background">
-					<img id="mainImage2" src="{$galimg1}" alt=""/>
+					<img id="mainImage2" src="{$galimg8}" alt=""/>
 				</div>
 			</div>
 			<div class="theroside">
 				<div class="thumb">
-					<img id="sideImage9" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage2','mainPos2background')" />
+					<img id="sideImage9" src="{$galimg9}" alt="" onclick="moveleft(this,'mainImage2','mainPos2background')" />
 				</div>
 				<div class="thumb">
-					<img id="sideImage10" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage2','mainPos2background')" />
+					<img id="sideImage10" src="{$galimg10}" alt="" onclick="moveleft(this,'mainImage2','mainPos2background')" />
 				</div>
 			</div>
 		</div>
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage11" src="{$galimg1}" alt="" onclick="moveup(this,'mainImage2','mainPos2background')" />
+				<img id="sideImage11" src="{$galimg11}" alt="" onclick="moveup(this,'mainImage2','mainPos2background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage12" src="{$galimg1}" alt="" onclick="moveup(this,'mainImage2','mainPos2background')" />
+				<img id="sideImage12" src="{$galimg12}" alt="" onclick="moveup(this,'mainImage2','mainPos2background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage13" src="{$galimg1}" alt="" onclick="moveleftup(this,'mainImage2','mainPos2background')" />
+				<img id="sideImage13" src="{$galimg13}" alt="" onclick="moveleftup(this,'mainImage2','mainPos2background')" />
 			</div>
 		</div>		
 	</div>
