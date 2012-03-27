@@ -11,59 +11,59 @@
 			</div>
 			<div class="theroside">
 				<div class="thumb">
-					<img id="sideImage1" src="{$galimg1}" alt="" onclick="moveleft(this)" />
+					<img id="sideImage1" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage1','mainPos1background')" />
 				</div>
 				<div class="thumb">
-					<img id="sideImage2" src="{$galimg1}" alt="" onclick="moveleft(this)" />
+					<img id="sideImage2" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage1','mainPos1background')" />
 				</div>
 			</div>
 		</div>
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage3" src="{$galimg1}" alt="" onclick="moveup(this)" />
+				<img id="sideImage3" src="{$galimg1}" alt="" onclick="moveup(this,'mainImage1','mainPos1background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage4" src="{$galimg1}" alt="" onclick="moveup(this)" />
+				<img id="sideImage4" src="{$galimg1}" alt="" onclick="moveup(this,'mainImage1','mainPos1background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage5" src="{$galimg1}" alt="" onclick="moveleftup(this)" />
+				<img id="sideImage5" src="{$galimg1}" alt="" onclick="moveleftup(this,'mainImage1','mainPos1background')" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage6" src="{$galimg1}" alt="" onclick="movedown(this)" />
+				<img id="sideImage6" src="{$galimg1}" alt="" onclick="movedown(this,'mainImage2','mainPos2background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage7" src="{$galimg1}" alt="" onclick="movedown(this)" />
+				<img id="sideImage7" src="{$galimg1}" alt="" onclick="movedown(this,'mainImage2','mainPos2background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage8" src="{$galimg1}" alt="" onclick="moveleftdown(this,'mainImage1','mainPos1background')" />
+				<img id="sideImage8" src="{$galimg1}" alt="" onclick="moveleftdown(this,'mainImage2','mainPos2background')" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
 			<div class="therounit">
-				<div class="thumb thero">
+				<div class="thumb thero" id="mainPos2background">
 					<img id="mainImage2" src="{$galimg1}" alt=""/>
 				</div>
 			</div>
 			<div class="theroside">
 				<div class="thumb">
-					<img id="sideImage9" src="{$galimg1}" alt="" onclick="moveleft(this)" />
+					<img id="sideImage9" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage2','mainPos2background')" />
 				</div>
 				<div class="thumb">
-					<img id="sideImage10" src="{$galimg1}" alt="" onclick="moveleft(this)" />
+					<img id="sideImage10" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage2','mainPos2background')" />
 				</div>
 			</div>
 		</div>
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage11" src="{$galimg1}" alt="" onclick="moveup(this)" />
+				<img id="sideImage11" src="{$galimg1}" alt="" onclick="moveup(this,'mainImage2','mainPos2background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage12" src="{$galimg1}" alt="" onclick="moveup(this)" />
+				<img id="sideImage12" src="{$galimg1}" alt="" onclick="moveup(this,'mainImage2','mainPos2background')" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage13" src="{$galimg1}" alt="" onclick="moveleftup(this)" />
+				<img id="sideImage13" src="{$galimg1}" alt="" onclick="moveleftup(this,'mainImage2','mainPos2background')" />
 			</div>
 		</div>		
 	</div>
@@ -81,7 +81,7 @@
         fillPosition -= 15;
 	}
 
-	function moveleft(obj) {
+	function moveleft(obj, foreground, background) {
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
 		document.getElementById(obj.id).style.opacity = opacityPercent;
@@ -92,13 +92,13 @@
 				document.getElementById(obj.id).style.opacity = 1;
 				fish1Position = 0;
 				opacityPercent = 1;
-				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				setTimeout (FadeInImage(foreground,obj.src,background),500);
 				return;
 		}
-		var tim1 = setTimeout(moveleft, 20, obj);
+		var tim1 = setTimeout(moveleft, 20, obj, foreground, background);
 	}
 	
-	function moveup(obj) {
+	function moveup(obj, foreground, background) {
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.top = horizontal[fish1Position] + "px";
 		document.getElementById(obj.id).style.opacity = opacityPercent;
@@ -109,13 +109,13 @@
 				document.getElementById(obj.id).style.opacity = 1;
 				fish1Position = 0;
 				opacityPercent = 1;
-				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				setTimeout (FadeInImage(foreground,obj.src,background),500);
 				return;
 		}
-		var tim1 = setTimeout(moveup, 20, obj);
+		var tim1 = setTimeout(moveup, 20, obj, foreground, background);
 	}
 	
-	function moveleftup(obj) {
+	function moveleftup(obj, foreground, background) {
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
         document.getElementById(obj.id).style.top = horizontal[fish1Position] + "px";
@@ -128,13 +128,13 @@
 				document.getElementById(obj.id).style.opacity = 1;
 				fish1Position = 0;
 				opacityPercent = 1;
-				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				setTimeout (FadeInImage(foreground,obj.src,background),500);
 				return;
 		}
-		var tim1 = setTimeout(moveleftup, 20, obj);
+		var tim1 = setTimeout(moveleftup, 20, obj, foreground, background);
 	}
 
-	function movedown(obj) {
+	function movedown(obj, foreground, background) {
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.bottom = horizontal[fish1Position] + "px";
 		document.getElementById(obj.id).style.opacity = opacityPercent;
@@ -145,14 +145,13 @@
 				document.getElementById(obj.id).style.opacity = 1;
 				fish1Position = 0;
 				opacityPercent = 1;
-				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				setTimeout (FadeInImage(foreground,obj.src,background),500);
 				return;
 		}
-		var tim1 = setTimeout(movedown, 20, obj);
+		var tim1 = setTimeout(movedown, 20, obj, foreground, background);
 	}
 	
 	function moveleftdown(obj, foreground, background) {
-		alert(foreground + " " + background);
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
         document.getElementById(obj.id).style.bottom = horizontal[fish1Position] + "px";
