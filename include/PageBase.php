@@ -86,6 +86,8 @@ abstract class PageBase
 
 		$this->mSmarty->assign("pagetitle", $this->mPageTitle);
 
+		$this->mHeaders[] = "Content-Type: text/html; charset=utf-8";
+		
 		// setup the current page on the menu, but only if the current page 
 		// exists on the main menu in the first place
 		if(array_key_exists(get_class($this), $this->mMainMenu))
