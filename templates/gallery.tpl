@@ -6,7 +6,7 @@
 		<div class="thumbcontainer">
 			<div class="therounit">
 				<div class="thumb thero" id="mainPos1background">
-					<img id="mainImage1" src="{$cWebPath}/images/bflogo.png" alt=""/>
+					<img id="mainImage1" src="{$galimg1}" alt=""/>
 				</div>
 			</div>
 			<div class="theroside">
