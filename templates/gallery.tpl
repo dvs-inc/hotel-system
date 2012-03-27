@@ -11,59 +11,59 @@
 			</div>
 			<div class="theroside">
 				<div class="thumb">
-					<img id="sideImage1" src="{$galimg1}" alt="" onclick="FadeInImage('mainImage1','{$galimg1}','mainPos1background')"/>
+					<img id="sideImage1" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 				</div>
 				<div class="thumb">
-					<img id="sideImage2" src="{$galimg1}" alt="" onclick="fish1Swim()" />
+					<img id="sideImage2" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 				</div>
 			</div>
 		</div>
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage3" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage4" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage5" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage6" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage7" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage8" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
 			<div class="therounit">
 				<div class="thumb thero">
-					<img src="{$galimg1}" />
+					<img id="mainImage2" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 				</div>
 			</div>
 			<div class="theroside">
 				<div class="thumb">
-					<img src="{$galimg1}" />
+					<img id="sideImage9" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 				</div>
 				<div class="thumb">
-					<img src="{$galimg1}" />
+					<img id="sideImage10" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 				</div>
 			</div>
 		</div>
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage11" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage12" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 			<div class="thumb">
-				<img src="{$galimg1}" />
+				<img id="sideImage13" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
 			</div>
 		</div>		
 	</div>
@@ -81,7 +81,8 @@
         fillPosition -= 15;
 	}
 
-	function fish1Swim() {
+	function fish1Swim(obj) {
+		alert(obj.id);
 		document.getElementById("sideImage2").style.position = "relative";
         document.getElementById("sideImage2").style.left = horizontal[fish1Position] + "px";
 		document.getElementById("sideImage2").style.opacity = opacityPercent;
