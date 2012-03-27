@@ -51,7 +51,7 @@ class MPageBilling extends ManagementPageBase
 		$total = 0;
 		foreach($items as $i)
 		{
-			$total += $i->getPrice();
+			$total += Bill_item::getById($i)->getPrice();
 		}
 		
 		$this->mBasePage="mgmt/bill.tpl";
@@ -76,6 +76,6 @@ class MPageBilling extends ManagementPageBase
 		Booking::getById($id)->delete();
 
 		global $cScriptPath;
-		$this->mHeaders[] = "Location: {$cScriptPath}/Booking";
+		$this->mHeaders[] = "Location: {$cScriptPath}/Billing";
 	}
 }
