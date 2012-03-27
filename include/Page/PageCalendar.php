@@ -7,7 +7,7 @@ class PageCalendar extends PageBase
 	protected function runPage()
 	{
 		$this->mBasePage = "cal.tpl";
-		
+				
 		global $cWebPath;
 
 		$startdate = new DateTime();

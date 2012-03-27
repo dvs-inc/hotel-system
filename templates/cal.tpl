@@ -19,4 +19,14 @@
 {/foreach}
 </table>
 
+<form>
+<label>{message name="room"}
+<select name="calroom">
+	<option value="">{message name="please-select"}</option>
+	{foreach from="$roomlist" item="r"}
+		<option value="{$r->getId()}">{$r->getName()}</option>
+	{/foreach}
+</select></label>
+</form>
+
 {/block}
