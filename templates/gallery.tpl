@@ -75,17 +75,17 @@
 	var fish1Position = 0;
 	var horizontal = [];
 	var fillPosition = 10;
-	var num = 100;
+	var num = 20;
 	for(var i = 0; i < num; ++i) {
         horizontal[i] = fillPosition;
-        fillPosition -= 2;
+        fillPosition -= 15;
 	}
 
 	function fish1Swim(obj) {
-		document.getElementById(obj.id).style.position = "relative";
-        document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
-		document.getElementById(obj.id).style.opacity = opacityPercent;
-		opacityPercent -= 0.01;
+		document.getElementById("sideImage1").style.position = "relative";
+        document.getElementById("sideImage1").style.left = horizontal[fish1Position] + "px";
+		document.getElementById("sideImage1").style.opacity = opacityPercent;
+		opacityPercent -= 0.05;
         ++fish1Position;
         if (fish1Position == num) {
                 document.getElementById(obj.id).style.left = "0px";
@@ -97,6 +97,7 @@
 		}
 		var tim1 = setTimeout(fish1Swim(obj), 20);
 	}
+	
 	// Opacity and Fade in script.
 	// Script copyright (C) 2008 http://www.cryer.co.uk/.
 	// Script is free to use provided this copyright header is included.
