@@ -169,7 +169,7 @@ class MPageCustomers extends ManagementPageBase
 				$address->setPostcode($suPostcode);
 				$address->setCountry($suCountry);
 				
-				if($customer->getEmail != $suEmail)
+				if($customer->getEmail() != $suEmail)
 				{
 					$customer->setEmail($suEmail);
 				}
