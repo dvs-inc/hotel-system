@@ -184,6 +184,12 @@ class Customer extends DataObject
 		
 		if($this->isNew)
 		{ // insert
+			$checkStatement = $gDatabase->prepare("SELECT COUNT(*) as count FROM customer WHERE email = :email;");
+			$checkStatement->bindParam(":email", $this->email );
+			$checkStatement->execute();
+			if($checkStatement->fetchColumn())
+				throw new SaveFailedException("Customer already exists");
+			
 			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :title, :firstname, :surname, :address, :email, :password, :creditcard, :language, :mailconfirm, :mailchecksum);");
 			$statement->bindParam(":title", $this->title );
 			$statement->bindParam(":firstname", $this->firstname );
