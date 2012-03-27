@@ -82,21 +82,20 @@
 	}
 
 	function fish1Swim(obj) {
-		alert(obj.id);
-		document.getElementById("sideImage2").style.position = "relative";
-        document.getElementById("sideImage2").style.left = horizontal[fish1Position] + "px";
-		document.getElementById("sideImage2").style.opacity = opacityPercent;
+		document.getElementById(obj.id).style.position = "relative";
+        document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
+		document.getElementById(obj.id).style.opacity = opacityPercent;
 		opacityPercent -= 0.05;
         ++fish1Position;
         if (fish1Position == num) {
-                document.getElementById("sideImage2").style.left = "0px";
-				document.getElementById("sideImage2").style.opacity = 1;
+                document.getElementById(obj.id).style.left = "0px";
+				document.getElementById(obj.id).style.opacity = 1;
 				fish1Position = 0;
 				opacityPercent = 1;
-				setTimeout (FadeInImage('mainImage1','{$galimg1}','mainPos1background'),500);
+				setTimeout (FadeInImage('mainImage1',id.src,'mainPos1background'),500);
 				return;
 		}
-		var tim1 = setTimeout(fish1Swim, 20);
+		var tim1 = setTimeout(fish1Swim(obj), 20);
 	}
 	
 	function pausecomp(ms) {
