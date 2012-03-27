@@ -11,59 +11,59 @@
 			</div>
 			<div class="theroside">
 				<div class="thumb">
-					<img id="sideImage1" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+					<img id="sideImage1" src="{$galimg1}" alt="" onclick="moveleft(this)" />
 				</div>
 				<div class="thumb">
-					<img id="sideImage2" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+					<img id="sideImage2" src="{$galimg1}" alt="" onclick="moveleft(this)" />
 				</div>
 			</div>
 		</div>
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage3" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage3" src="{$galimg1}" alt="" onclick="moveup(this)" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage4" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage4" src="{$galimg1}" alt="" onclick="moveup(this)" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage5" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage5" src="{$galimg1}" alt="" onclick="moveleftup(this)" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage6" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage6" src="{$galimg1}" alt="" onclick="movedown(this)" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage7" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage7" src="{$galimg1}" alt="" onclick="movedown(this)" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage8" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage8" src="{$galimg1}" alt="" onclick="moveleftdown(this)" />
 			</div>
 		</div>		
 		<div class="thumbcontainer">
 			<div class="therounit">
 				<div class="thumb thero">
-					<img id="mainImage2" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+					<img id="mainImage2" src="{$galimg1}" alt=""/>
 				</div>
 			</div>
 			<div class="theroside">
 				<div class="thumb">
-					<img id="sideImage9" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+					<img id="sideImage9" src="{$galimg1}" alt="" onclick="moveleft(this)" />
 				</div>
 				<div class="thumb">
-					<img id="sideImage10" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+					<img id="sideImage10" src="{$galimg1}" alt="" onclick="moveleft(this)" />
 				</div>
 			</div>
 		</div>
 		<div class="thumbcontainer">
 			<div class="thumb">
-				<img id="sideImage11" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage11" src="{$galimg1}" alt="" onclick="moveup(this)" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage12" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage12" src="{$galimg1}" alt="" onclick="moveup(this)" />
 			</div>
 			<div class="thumb">
-				<img id="sideImage13" src="{$galimg1}" alt="" onclick="fish1Swim(this)" />
+				<img id="sideImage13" src="{$galimg1}" alt="" onclick="moveleftup(this)" />
 			</div>
 		</div>		
 	</div>
@@ -81,7 +81,7 @@
         fillPosition -= 15;
 	}
 
-	function fish1Swim(obj) {
+	function moveleft(obj) {
 		document.getElementById(obj.id).style.position = "relative";
         document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
 		document.getElementById(obj.id).style.opacity = opacityPercent;
@@ -97,6 +97,79 @@
 		}
 		var tim1 = setTimeout(fish1Swim, 20, obj);
 	}
+	
+	function moveup(obj) {
+		document.getElementById(obj.id).style.position = "relative";
+        document.getElementById(obj.id).style.top = horizontal[fish1Position] + "px";
+		document.getElementById(obj.id).style.opacity = opacityPercent;
+		opacityPercent -= 0.05;
+        ++fish1Position;
+        if (fish1Position == num) {
+                document.getElementById(obj.id).style.top = "0px";
+				document.getElementById(obj.id).style.opacity = 1;
+				fish1Position = 0;
+				opacityPercent = 1;
+				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				return;
+		}
+		var tim1 = setTimeout(fish1Swim, 20, obj);
+	}
+	
+	function moveleftup(obj) {
+		document.getElementById(obj.id).style.position = "relative";
+        document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
+        document.getElementById(obj.id).style.top = horizontal[fish1Position] + "px";
+		document.getElementById(obj.id).style.opacity = opacityPercent;
+		opacityPercent -= 0.05;
+        ++fish1Position;
+        if (fish1Position == num) {
+                document.getElementById(obj.id).style.left = "0px";
+                document.getElementById(obj.id).style.top = "0px";
+				document.getElementById(obj.id).style.opacity = 1;
+				fish1Position = 0;
+				opacityPercent = 1;
+				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				return;
+		}
+		var tim1 = setTimeout(fish1Swim, 20, obj);
+	}
+
+	function movedown(obj) {
+		document.getElementById(obj.id).style.position = "relative";
+        document.getElementById(obj.id).style.bottom = horizontal[fish1Position] + "px";
+		document.getElementById(obj.id).style.opacity = opacityPercent;
+		opacityPercent -= 0.05;
+        ++fish1Position;
+        if (fish1Position == num) {
+                document.getElementById(obj.id).style.bottom = "0px";
+				document.getElementById(obj.id).style.opacity = 1;
+				fish1Position = 0;
+				opacityPercent = 1;
+				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				return;
+		}
+		var tim1 = setTimeout(fish1Swim, 20, obj);
+	}
+	
+	function moveleftdown(obj) {
+		document.getElementById(obj.id).style.position = "relative";
+        document.getElementById(obj.id).style.left = horizontal[fish1Position] + "px";
+        document.getElementById(obj.id).style.bottom = horizontal[fish1Position] + "px";
+		document.getElementById(obj.id).style.opacity = opacityPercent;
+		opacityPercent -= 0.05;
+        ++fish1Position;
+        if (fish1Position == num) {
+                document.getElementById(obj.id).style.left = "0px";
+                document.getElementById(obj.id).style.bottom = "0px";
+				document.getElementById(obj.id).style.opacity = 1;
+				fish1Position = 0;
+				opacityPercent = 1;
+				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
+				return;
+		}
+		var tim1 = setTimeout(fish1Swim, 20, obj);
+	}
+	
 	
 	// Opacity and Fade in script.
 	// Script copyright (C) 2008 http://www.cryer.co.uk/.
