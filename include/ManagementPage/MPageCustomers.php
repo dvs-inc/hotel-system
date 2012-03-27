@@ -172,6 +172,7 @@ class MPageCustomers extends ManagementPageBase
 				if($customer->getEmail() != $suEmail)
 				{
 					$customer->setEmail($suEmail);
+					$customer->sendMailConfirm();
 				}
 				
 				// save it
