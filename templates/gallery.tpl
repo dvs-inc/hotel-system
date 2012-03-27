@@ -11,7 +11,7 @@
 			</div>
 			<div class="theroside">
 				<div class="thumb">
-					<img id="sideImage1" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage1','mainPos1background')" />
+					<img id="sideImage1" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage1','mainPos1background')"/>
 				</div>
 				<div class="thumb">
 					<img id="sideImage2" src="{$galimg1}" alt="" onclick="moveleft(this,'mainImage1','mainPos1background')" />
