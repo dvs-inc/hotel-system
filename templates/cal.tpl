@@ -13,7 +13,7 @@
 	<tr data-room="{$k}">
 	<th>{$roomlist.{$k}->getName()}</th>
 	{foreach from="$i" item="j"}
-		<td>{$j}</td>
+		<td{if $j == true} style="background-color:red;"{else} style="background-color:green;"{/if} />
 	{/foreach}
 	</tr>
 {/foreach}
