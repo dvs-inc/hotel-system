@@ -57,6 +57,7 @@ class PageForgotPassword extends PageBase
 					Session::setLoggedInCustomer($id);
 			
 					// redirect to main page
+					global $cWebPath;
 					$this->mHeaders[] = "HTTP/1.1 303 See Other";
 					$this->mHeaders[] = "Location: " . $cWebPath . "/index.php";
 				}
