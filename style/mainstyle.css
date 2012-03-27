@@ -45,12 +45,6 @@
 	color:DimGray;
 	margin-top:20px;
 }
-#signupform #submit input{
-	color:DimGray;
-	margin-top:20px;
-	margin-left:180px;
-	width:80px;
-}
 #loginlinks{
 	width:150px;
 	display:block;
@@ -199,6 +193,12 @@ h2{
 	display:inline-block;
 	width:400px;
 	margin-bottom:10px;
+}
+#signupform #submit input{
+	color:DimGray;
+	margin-top:20px;
+	margin-left:135px;
+	width:80px;
 }
 .twocolumn .columntwo #submitbutton{
 	float:right;
