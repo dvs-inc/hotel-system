@@ -95,7 +95,7 @@
 				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
 				return;
 		}
-		var tim1 = setTimeout(fish1Swim, 20, obj);
+		var tim1 = setTimeout(moveleft, 20, obj);
 	}
 	
 	function moveup(obj) {
@@ -112,7 +112,7 @@
 				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
 				return;
 		}
-		var tim1 = setTimeout(fish1Swim, 20, obj);
+		var tim1 = setTimeout(moveup, 20, obj);
 	}
 	
 	function moveleftup(obj) {
@@ -131,7 +131,7 @@
 				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
 				return;
 		}
-		var tim1 = setTimeout(fish1Swim, 20, obj);
+		var tim1 = setTimeout(moveleftup, 20, obj);
 	}
 
 	function movedown(obj) {
@@ -148,7 +148,7 @@
 				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
 				return;
 		}
-		var tim1 = setTimeout(fish1Swim, 20, obj);
+		var tim1 = setTimeout(movedown, 20, obj);
 	}
 	
 	function moveleftdown(obj) {
@@ -167,7 +167,7 @@
 				setTimeout (FadeInImage('mainImage1',obj.src,'mainPos1background'),500);
 				return;
 		}
-		var tim1 = setTimeout(fish1Swim, 20, obj);
+		var tim1 = setTimeout(moveleftdown, 20, obj);
 	}
 	
 	
