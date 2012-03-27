@@ -18,6 +18,7 @@ class CreateCustomerException extends Exception{}
 class CreateBookingException extends Exception{}
 
 class NonexistantObjectException extends Exception{}
+class InvalidChecksumException extends Exception{}
 
 class AccessDeniedException extends Exception{}
 
