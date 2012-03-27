@@ -8,5 +8,4 @@
 {/foreach}
 <tr id="thNONE"><th>{message name="bill-total"}</th><th>&pound;{$total|string_format:"%.2f"}</th><th /></tr>
 </table>
-<a href="{$cScriptPath}/Billing?action=add&id={$item->getBooking()->getID()}">{message name="add-item"}</a>
 {/block}
