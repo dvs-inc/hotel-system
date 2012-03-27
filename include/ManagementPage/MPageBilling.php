@@ -32,7 +32,7 @@ class MPageBilling extends ManagementPageBase
 				break;
 			case "del":
 				self::checkAccess("remove-bill-item");
-				//$this->doRemoveBillItemPage();
+				$this->doRemoveBillItemAction();
 				break;
 		}
 	}
@@ -57,5 +57,25 @@ class MPageBilling extends ManagementPageBase
 		$this->mBasePage="mgmt/bill.tpl";
 		$this->mSmarty->assign("total", $total);
 		$this->mSmarty->assign("billitems", $items);
+	}
+	
+	private function showEditBillPage()
+	{
+		$this->mBasePage="mgmt/editbill.tpl";
+	}
+	
+		private function doRemoveBillItemAction()
+	{
+		$id=WebRequest::getInt("id");
+		if($id < 1)
+				throw new Exception("Bill Item Id too small");
+
+		if(Booking::getById($id) == null)
+				throw new Exception("Bill Item does not exist");
+
+		Booking::getById($id)->delete();
+
+		global $cScriptPath;
+		$this->mHeaders[] = "Location: {$cScriptPath}/Booking";
 	}
 }

@@ -4,8 +4,9 @@
 <table id="bill">
 <tr id="thNONE"><th>{message name="bill-item"}</th><th>{message name="price"}</th><th id="link" /></tr>
 {foreach from="$billitems" item="item"}
-	{include file="mgmt/billitme.tpl" item="$item"}
+	{include file="mgmt/billitem.tpl" item="$item"}
 {/foreach}
 <tr id="thNONE"><th>{message name="bill-total"}</th><th>&pound;{$total|string_format:"%.2f"}</th><th /></tr>
 </table>
+<a href="{$cScriptPath}/Billing?action=add&id={$item->getBooking()->getID()}">{message name="add-item"}</a>
 {/block}
