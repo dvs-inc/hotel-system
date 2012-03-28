@@ -62,14 +62,14 @@ class Booking extends DataObject
 	
 	public function setStartDate($value)
 	{
-		$start = create_date($value);
-		$this->startdate = date_format($start,'d-m-Y');
+		$start = new DateTime($value);
+		$this->startdate = $start->format('Y-m-d');
 	}
 	
 	public function setEndDate($value)
 	{
-		$end = create_date($value);
-		$this->enddate = date_format($end,'d-m-Y');
+		$end = new DateTime($value);
+		$this->enddate = $end->format('Y-m-d');
 	}
 	
 	public function setPromocode($value)
