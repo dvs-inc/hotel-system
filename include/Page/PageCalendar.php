@@ -32,7 +32,39 @@ class PageCalendar extends PageBase
 			// search for customer
 			if(! ($customer = Customer::getByEmail(WebRequest::post("qbEmail"))))
 			{
-				// create customer
+				$customer = new Customer();
+				
+				$suTitle = WebRequest::post("qbTitle");
+				$suFirstname = WebRequest::post("qbFirstname");
+				$suLastname = WebRequest::post("qbLastname");
+				$suAddress = WebRequest::post("qbAddress");
+				$suCity = WebRequest::post("qbCity");
+				$suPostcode = WebRequest::post("qbPostcode");
+				$suCountry = WebRequest::post("qbCountry");
+				$suEmail = WebRequest::post("qbEmail");
+				
+				$customer->setPassword($suEmail);
+				
+				// set values
+				$customer->setTitle($suTitle);
+				$customer->setFirstname($suFirstname);
+				$customer->setSurname($suLastname);
+			
+				$address = new Address();
+				$address->setLine1($suAddress);
+				$address->setCity($suCity);
+				$address->setPostCode($suPostcode);
+				$address->setCountry($suCountry);
+				$address->save();
+			
+				$customer->setAddress($address);
+			
+				$customer->setEmail($suEmail);
+			
+				// save it
+				$customer->save();
+				
+				$customer->sendMailConfirm();
 			}
 			
 			$booking = new Booking();
