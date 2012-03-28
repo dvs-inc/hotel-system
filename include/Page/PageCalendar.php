@@ -81,6 +81,17 @@ class PageCalendar extends PageBase
 			
 			$booking->save();
 			
+			$msg = Message::getMessage("booking-confirmation");
+			
+			$msg = str_replace("$1", $booking->getStartDate(), $msg);
+			$msg = str_replace("$2", $booking->getEndDate(), $msg);
+			$msg = str_replace("$3", $booking->getAdults(), $msg);
+			$msg = str_replace("$4", $booking->getChildren(), $msg);
+			$msg = str_replace("$5", $booking->getRoom()->getName(), $msg);
+			
+			Mail::send($customer->getEmail(), Message::getMessage("booking-confimation-subject"), $msg);
+			
+			$this->mSmarty->assign("content", $msg);
 			return;
 		}
 		throw new YouShouldntBeDoingThatException();
