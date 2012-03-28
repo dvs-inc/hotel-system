@@ -56,9 +56,9 @@ function validateForm()
 onload = function() {
     if (!document.getElementsByTagName || !document.createTextNode) return;
     var rows = document.getElementById('calroomtable').getElementsByTagName('tr');
-    for (i = 1; i < rows.length-1; i++) {
+    for (i = 1; i < rows.length; i++) {
         rows[i].onclick = function() {
-			for (j = 1; j < rows.length-1; j++) {
+			for (j = 1; j < rows.length; j++) {
 				var currentrow = rows[j];
 				currentrow.style.backgroundColor = "transparent";
 			}
