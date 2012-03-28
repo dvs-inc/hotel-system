@@ -200,8 +200,9 @@
 }
 #link{
 	width:50px !important;
+	min-width:50px !important;
+	padding-right:0px !important;
 }
-
 .uncertain
 {
 	font-style:italic;
@@ -233,4 +234,11 @@
 .accesstable input{
 	float:right;
 	width:50px;
+}
+#bill th{
+	padding-right:30px;
+	min-width: 100px;
+}
+.billappend{
+	margin-top:30px;
 }
