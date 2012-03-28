@@ -135,4 +135,15 @@ class Room extends DataObject
 
 		return $result;
 	}
+
+	public function isAvailable($date)
+	{
+		global $gDatabase;
+		$statement = $gDatabase->prepare("SELECT COUNT(*) as count FROM booking WHERE :date >= startdate AND :date < enddate AND room = :room;");
+		$statement->bindParam(":room", $this->id);
+		$statement->bindParam(":date", $date->format("Y-m-d"));
+		$statement->execute();
+		
+		return ($statement->fetchColumn() == 0);
+	}
 }

@@ -32,7 +32,7 @@ class PageCalendar extends PageBase
 			$availabilityMatrix[$id] = array();
 			foreach($dates as $d)
 			{
-				$availabilityMatrix[$id][array_search($d,$dates)] = (mt_rand()%2==0);
+				$availabilityMatrix[$id][array_search($d,$dates)] = (!$r->isAvailable($d));
 			}
 		}
 		
@@ -40,4 +40,6 @@ class PageCalendar extends PageBase
 		$this->mSmarty->assign("datelist", $dates);
 		$this->mSmarty->assign("roomlist", $roomlist);
 	}
+	
+	
 }
