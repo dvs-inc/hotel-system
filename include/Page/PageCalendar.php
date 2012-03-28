@@ -32,7 +32,42 @@ class PageCalendar extends PageBase
 			// search for customer
 			if(! ($customer = Customer::getByEmail(WebRequest::post("qbEmail"))))
 			{
-				// create customer
+				$customer = new Customer();
+				
+				$suTitle = WebRequest::post("qbTitle");
+				$suFirstname = WebRequest::post("qbFirstname");
+				$suLastname = WebRequest::post("qbLastname");
+				$suAddress = WebRequest::post("qbAddress");
+				$suCity = WebRequest::post("qbCity");
+				$suPostcode = WebRequest::post("qbPostcode");
+				$suCountry = WebRequest::post("qbCountry");
+				$suEmail = WebRequest::post("qbEmail");
+				
+				$customer->setPassword($suEmail);
+				
+				// set values
+				$customer->setTitle($suTitle);
+				$customer->setFirstname($suFirstname);
+				$customer->setSurname($suLastname);
+			
+				$address = new Address();
+				$address->setLine1($suAddress);
+				$address->setCity($suCity);
+				$address->setPostCode($suPostcode);
+				$address->setCountry($suCountry);
+				$address->save();
+			
+				$customer->setAddress($address);
+			
+				$customer->setEmail($suEmail);
+			
+				// save it
+				$customer->save();
+				
+				$customer->sendMailConfirm();
+				
+				// save it again
+				$customer->save();
 			}
 			
 			$booking = new Booking();
@@ -46,6 +81,17 @@ class PageCalendar extends PageBase
 			
 			$booking->save();
 			
+			$msg = Message::getMessage("booking-confirmation");
+			
+			$msg = str_replace("$1", $booking->getStartDate(), $msg);
+			$msg = str_replace("$2", $booking->getEndDate(), $msg);
+			$msg = str_replace("$3", $booking->getAdults(), $msg);
+			$msg = str_replace("$4", $booking->getChildren(), $msg);
+			$msg = str_replace("$5", $booking->getRoom()->getName(), $msg);
+			
+			Mail::send($customer->getEmail(), Message::getMessage("booking-confimation-subject"), $msg);
+			
+			$this->mSmarty->assign("content", $msg);
 			return;
 		}
 		throw new YouShouldntBeDoingThatException();
