@@ -198,7 +198,7 @@ class MPageBookings extends ManagementPageBase
 				$this->mSmarty->assign("bstart", $booking->getStartDate());
 				$this->mSmarty->assign("bend", $booking->getEndDate());
 				$this->mSmarty->assign("bpromo", $booking->getPromocode());
-				$this->mSmarty->assign("broom",$booking->getRoom());
+				$this->mSmarty->assign("broom",$booking->getRoom()->getId());
 			} catch (Exception $ex)
 			{
 				$this->mBasePage="mgmt/bookingEdit.tpl";
