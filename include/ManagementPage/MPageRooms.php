@@ -175,7 +175,7 @@ class MPageRooms extends ManagementPageBase
 			}
 			catch (CreateRoomException $ex)
 			{
-				$this->mBasePage="mgmt/roomList.tpl";
+				$this->mBasePage="mgmt/roomEdit.tpl";
 				$this->error($ex->getMessage());
 			}
 		}
