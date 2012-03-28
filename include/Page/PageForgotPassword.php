@@ -96,6 +96,8 @@ class PageForgotPassword extends PageBase
 				
 					$customer->sendPasswordReset();
 					
+					//$this->mBasePage="passwordResetSent.tpl";
+					
 					// TODO: show some confirmation, check email, etc
 				}	
 				catch (CreateCustomerException $ex)
