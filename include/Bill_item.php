@@ -61,7 +61,7 @@ class Bill_item extends DataObject
 		
 		if($this->isNew)
 		{
-			$statement = $gDatabase->prepare("INSERT INTO bill_item VALUES (null, :name, :price, :booking");
+			$statement = $gDatabase->prepare("INSERT INTO bill_item VALUES (null, :name, :price, :booking);");
 			$statement->bindParam(":name", $this->name );
 			$statement->bindParam(":price", $this->price );
 			$statement->bindParam(":booking", $this->booking );

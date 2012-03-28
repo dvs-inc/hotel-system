@@ -20,15 +20,15 @@ class MPageBilling extends ManagementPageBase
 				break;
 			case "edit":
 				self::checkAccess("edit-bill");
-				//$this->showEditBillPage();
+				$this->showEditBillItemPage();
 				break;
 			case "add":
 				self::checkAccess("append-bill");
-				//$this->showAddBillItemPage();
+				$this->showAddBillItemPage();
 				break;
 			case "pay":
 				self::checkAccess("pay-bill");
-				//$this->showPayBillPage();
+				$this->doPayBillAction();
 				break;
 			case "del":
 				self::checkAccess("remove-bill-item");
@@ -47,35 +47,105 @@ class MPageBilling extends ManagementPageBase
 		$id = WebRequest::getInt("id");
 		
 		$items = Bill_item::getIdListByBooking($id);
-		
+		$billitems = array();
 		$total = 0;
 		foreach($items as $i)
 		{
-			$total += Bill_item::getById($i)->getPrice();
+			$bi = Bill_item::getById($i);
+			$total += $bi->getPrice();
+			$billitems[]=$bi;
 		}
 		
 		$this->mBasePage="mgmt/bill.tpl";
 		$this->mSmarty->assign("total", $total);
-		$this->mSmarty->assign("billitems", $items);
+		$this->mSmarty->assign("billitems", $billitems);
+		$this->mSmarty->assign("bid", $id);
+		
 	}
 	
-	private function showEditBillPage()
+	private function showEditBillItemPage()
 	{
-		$this->mBasePage="mgmt/editbill.tpl";
+		$rt = WebRequest::getInt("rt");
+		$id = WebRequest::getInt("id");
+		
+		$bi = Bill_item::getById($id);
+		if($bi == null)
+		{
+			throw new NonexistantObjectException();
+		}
+		
+		if(WebRequest::wasPosted())
+		{
+			$bi->setName(WebRequest::post("billname"));
+			$bi->setPrice(WebRequest::post("billprice"));
+			$bi->save();
+			global $cScriptPath;
+			$this->mHeaders[] = "Location: {$cScriptPath}/Billing?action=view&id=$rt";
+		}
+		else
+		{
+			$this->mSmarty->assign("billname", $bi->getName());
+			$this->mSmarty->assign("billprice", $bi->getPrice());
+			$this->mSmarty->assign("bid", $rt);
+			$this->mSmarty->assign("itemid", $id);
+			$this->mBasePage="mgmt/billedit.tpl";
+		}
+	}
+	private function showAddBillItemPage()
+	{
+		$rt = WebRequest::getInt("id");
+		
+		if(WebRequest::wasPosted())
+		{
+			$bi = new Bill_item();
+			$bi->setBooking(Booking::getById($rt));
+			$bi->setName(WebRequest::post("billname"));
+			$bi->setPrice(WebRequest::post("billprice"));
+			$bi->save();
+			global $cScriptPath;
+			$this->mHeaders[] = "Location: {$cScriptPath}/Billing?action=view&id=$rt";
+		}
+		else
+		{
+			$this->mSmarty->assign("bid", $rt);
+			$this->mBasePage="mgmt/billcreate.tpl";
+		}
 	}
 	
-		private function doRemoveBillItemAction()
+	private function doRemoveBillItemAction()
 	{
 		$id=WebRequest::getInt("id");
 		if($id < 1)
 				throw new Exception("Bill Item Id too small");
 
-		if(Booking::getById($id) == null)
+		if(Bill_item::getById($id) == null)
 				throw new Exception("Bill Item does not exist");
 
-		Booking::getById($id)->delete();
+		Bill_item::getById($id)->delete();
 
 		global $cScriptPath;
-		$this->mHeaders[] = "Location: {$cScriptPath}/Billing";
+		$this->mHeaders[] = "Location: {$cScriptPath}/Billing?action=view&id=".WebRequest::getInt("rt");
+	}
+
+	private function doPayBillAction()
+	{
+		$id=WebRequest::getInt("id");
+
+		$items = Bill_item::getIdListByBooking($id);
+		$total = 0;
+		foreach($items as $i)
+		{
+			$bi = Bill_item::getById($i);
+			$total += $bi->getPrice();
+		}
+
+		$inv = new Bill_item();
+		$inv -> setBooking(Booking::getById($id));
+		$inv -> setName("Payment");
+		$inv -> setPrice( - $total);
+		$inv->save();
+
+		global $cScriptPath;
+		$this->mHeaders[] = "Location: {$cScriptPath}/Billing?action=view&id=".$id;
 	}
 }
