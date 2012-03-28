@@ -63,7 +63,7 @@ onload = function() {
 				currentrow.style.backgroundColor = "transparent";
 			}
 			this.style.backgroundColor = "white";
-			document.forms["selectroom"]["calroom"].value = this.rowIndex + 1;
+			document.forms["selectroom"]["calroom"].value = this.getAttribute("data-room");
         }
     }
 }
