@@ -8,5 +8,7 @@
 {/foreach}
 <tr id="thNONE"><th>{message name="bill-total"}</th><th>&pound;{$total|string_format:"%.2f"}</th><th /></tr>
 </table>
+<div class="billappend">
 <a href="?action=add&id={$bid}">{message name="bill-append"}</a>&nbsp;|&nbsp;<a href="?action=pay&id={$bid}">{message name="bill-pay"}</a>
+</div>
 {/block}
