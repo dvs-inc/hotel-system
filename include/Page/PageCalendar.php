@@ -12,7 +12,7 @@ class PageCalendar extends PageBase
 			
 			if(!WebRequest::postInt("calroom")) 
 			{
-				$this->showCal()
+				$this->showCal();
 				return;
 			}
 			
