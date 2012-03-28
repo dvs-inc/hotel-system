@@ -1,5 +1,4 @@
 <option value=" "{if $selectedVal == " "} selected="selected"{/if}>(please select a country)</option>
-<option value="--"{if $selectedVal == "--"} selected="selected"{/if}>none</option>
 <option value="AF"{if $selectedVal == "AF"} selected="selected"{/if}>Afghanistan</option>
 <option value="AL"{if $selectedVal == "AL"} selected="selected"{/if}>Albania</option>
 <option value="DZ"{if $selectedVal == "DZ"} selected="selected"{/if}>Algeria</option>
