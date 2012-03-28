@@ -11,7 +11,6 @@ class Customer extends DataObject
 	private $address;
 	private $email;
 	private $password;
-	private $creditcard;
 	private $language;
 	private $mailconfirm;
 	private $mailchecksum;
@@ -47,11 +46,6 @@ class Customer extends DataObject
 	public function getEmail()
 	{
 		return $this->email;
-	}
-
-	public function getCreditCard()
-	{
-		return CreditCard::getById($this->creditcard);
 	}
 
 	public function getLanguage()
@@ -115,11 +109,6 @@ class Customer extends DataObject
 	public function setPassword($newPassword)
 	{
 		$this->password = self::encryptPassword($this->email, $newPassword);
-	}
-
-	public function setCreditCard($value)
-	{
-		$this->creditcard = $value->getId();
 	}
 
 	public function setLanguage($value)
@@ -190,14 +179,13 @@ class Customer extends DataObject
 			if($checkStatement->fetchColumn())
 				throw new SaveFailedException("Customer already exists");
 			
-			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :title, :firstname, :surname, :address, :email, :password, :creditcard, :language, :mailconfirm, :mailchecksum);");
+			$statement = $gDatabase->prepare("INSERT INTO customer VALUES (null, :title, :firstname, :surname, :address, :email, :password, :language, :mailconfirm, :mailchecksum);");
 			$statement->bindParam(":title", $this->title );
 			$statement->bindParam(":firstname", $this->firstname );
 			$statement->bindParam(":surname",$this->surname );
 			$statement->bindParam(":address", $this->address );
 			$statement->bindParam(":email", $this->email );
 			$statement->bindParam(":password", $this->password );
-			$statement->bindParam(":creditcard", $this->creditcard );
 			$statement->bindParam(":language", $this->language );
 			$statement->bindParam(":mailconfirm", $this->mailconfirm );	
 			$statement->bindParam(":mailchecksum", $this->mailchecksum );
@@ -214,14 +202,13 @@ class Customer extends DataObject
 		}
 		else
 		{ // update
-			$statement = $gDatabase->prepare("UPDATE customer SET title = :title, firstname= :firstname,surname= :surname,address= :address,email=:email, password=:password, creditcard=:creditcard, language=:language, mailconfirm=:mailconfirm, mailchecksum=:mailchecksum WHERE id=:id LIMIT 1;");
+			$statement = $gDatabase->prepare("UPDATE customer SET title = :title, firstname= :firstname,surname= :surname,address= :address,email=:email, password=:password,language=:language, mailconfirm=:mailconfirm, mailchecksum=:mailchecksum WHERE id=:id LIMIT 1;");
 			$statement->bindParam(":title", $this->title );
 			$statement->bindParam(":firstname", $this->firstname );
 			$statement->bindParam(":surname",$this->surname );
 			$statement->bindParam(":address", $this->address );
 			$statement->bindParam(":email", $this->email );
 			$statement->bindParam(":password", $this->password );
-			$statement->bindParam(":creditcard", $this->creditcard );
 			$statement->bindParam(":language", $this->language );
 			$statement->bindParam(":mailconfirm", $this->mailconfirm );
 			$statement->bindParam(":mailchecksum", $this->mailchecksum );
