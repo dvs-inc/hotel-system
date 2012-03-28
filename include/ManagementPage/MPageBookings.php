@@ -175,7 +175,7 @@ class MPageBookings extends ManagementPageBase
 			}
 			catch (CreateBookingException $ex)
 			{
-				$this->mBasePage="mgmt/bookingEdit.tpl";
+				$this->mBasePage="mgmt/bookingList.tpl";
 				$this->error($ex->getMessage());
 			}
 		}
