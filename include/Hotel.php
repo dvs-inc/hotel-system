@@ -13,16 +13,9 @@ class Hotel
 		$this->cleanupEnvironment();
 	}
 	
-	public function setManagementMode($value)
+	public function setManagementMode()
 	{
-		if($value == "1" || $value == "2")
-		{
-			$this->managementMode = $value;
-		}
-		else
-		{
-			$this->managementMode = true;
-		}
+		$this->managementMode = true;
 	}
 	
 	public static function exceptionHandler($exception)

@@ -10,5 +10,5 @@ require_once('config.php');
 
 // create and run a new instance of the Hotel application in management mode.
 $application = new Hotel();
-$application->setManagementMode(1);
+$application->setManagementMode();
 $application->run();
