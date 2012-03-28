@@ -19,7 +19,7 @@
 {/block}
 
 {block name="twocolpre"}
-	<form name="quickBookAndDetails" action="#" method="post" onsubmit="return validateForm();">
+	<form name="quickBookAndDetails" action="{$cScriptPath}/Calendar" method="post" onsubmit="return validateForm();">
 {/block}
 
 {block name="twocolpost"}

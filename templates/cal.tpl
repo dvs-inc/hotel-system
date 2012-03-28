@@ -24,6 +24,20 @@
 
 <form name="selectroom" action="#" method="post" onsubmit="return validateForm();">
 <input name="calroom" value="" type="hidden"/>
+<input type="hidden" name="qbCheckin" value="{$valQbCheckin}"/>
+<input type="hidden" name="qbCheckout" value="{$valQbCheckout}"/>
+<input type="hidden" name="qbAdults" value="{$valQbAdults}"/>
+<input type="hidden" name="qbChildren" value="{$valQbChildren}"/>
+<input type="hidden" name="qbPromoCode" value="{$valQbPromoCode}"/>
+<input type="hidden" name="qbTitle" value="{$valQbTitle}"/>
+<input type="hidden" name="qbFirstname" value="{$valQbFirstname}"/>
+<input type="hidden" name="qbLastname" value="{$valQbLastname}"/>
+<input type="hidden" name="qbAddress" value="{$valQbAddress}"/>
+<input type="hidden" name="qbCity" value="{$valQbCity}"/>
+<input type="hidden" name="qbPostcode" value="{$valQbPostcode}"/>
+<input type="hidden" name="qbCountry" value="{$valQbCountry}"/>
+<input type="hidden" name="qbEmail" value="{$valQbEmail}"/>
+
 <input type="submit" id="submitbutton" value="{message name="submitbutton"}"/>
 </form>
 
