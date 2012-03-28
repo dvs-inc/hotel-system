@@ -184,7 +184,7 @@ class MPageCustomers extends ManagementPageBase
 			}
 			catch (CreateCustomerException $ex)
 			{
-				$this->mBasePage="mgmt/customerEdit.tpl";
+				$this->mBasePage="mgmt/custEdit.tpl";
 				$this->error($ex->getMessage());
 			}
 		}
