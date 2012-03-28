@@ -65,6 +65,9 @@ class PageCalendar extends PageBase
 				$customer->save();
 				
 				$customer->sendMailConfirm();
+				
+				// save it again
+				$customer->save();
 			}
 			
 			$booking = new Booking();
